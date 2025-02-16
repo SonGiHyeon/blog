@@ -19,6 +19,12 @@
         </h2>
     </div>
 
+    <form action="index.html" method="get">
+        <p>
+            <button type="subit" class="large-button">홈</button>
+        </p>
+    </form>
+
     <form action="web.html" method="get">
         <p>
             <button type="subit" class="large-button">2주차 정리본</button>
@@ -45,13 +51,6 @@
 
 
     <!-- 2/3 -->
-
-    <section id="home">
-        <h2>Welcome to GiHyeon's Blog</h2>
-        <p>이 블로그는 주로 블록체인에 대한 얘기를 나누는 곳입니다.</p>
-    </section>
-
-    <br>
 
     <h2>블록체인 구조와 특징</h2>
 
@@ -199,7 +198,8 @@
     <h4>타임 스탬프 해시 과정</h4>
     <ul>
         <li><strong>1. 데이터 준비</strong> => 타임스탬프를 부여하려는 디지털 데이터 준비(Ex: txt, jpg…)</li>
-        <li><strong>2. 데이터의 해시 값 생성</strong> => 암호학적 해시 함수(Hash Function) 적용 => 해시 함수는 데이터를 고정된 길이의 ‘해시 값’으로 변환한다.</li>
+        <li><strong>2. 데이터의 해시 값 생성</strong> => 암호학적 해시 함수(Hash Function) 적용 => 해시 함수는 데이터를 고정된 길이의 ‘해시 값’으로 변환한다.
+        </li>
         <ul>
             <li>입력 데이터가 어떤 크기이든 상관없이 고정된 크기의 해시 값으로 압축된다.</li>
             <li>데이터가 조금이라도 변경되면 완전히 다른 해시 값이 생성된다.</li>
@@ -215,7 +215,8 @@
             </ul>
         </ul>
         <li><strong>4. 타임 스탬프와 해시 값 반환</strong> => TSA는 사용자가 제출한 해시 값에 타임스탬프와 서명을 추가한 결과를 사용자에게 반환한다.</li>
-        <li><strong>5. 데이터 검증 방법</strong> => 데이터의 타임스탬프의 검증 방법: 원본 데이터의 해시 값을 다시 계산(SHA-256으로 자신의 데이터를 해싱) => 계산한 해시 값과
+        <li><strong>5. 데이터 검증 방법</strong> => 데이터의 타임스탬프의 검증 방법: 원본 데이터의 해시 값을 다시 계산(SHA-256으로 자신의 데이터를 해싱) => 계산한 해시
+            값과
             TSA가 발행한 타임스탬프의 해시 값을 비교한다.</li>
         <ul>
             <li>해시가 동일? 데이터 변조 X</li>
@@ -256,7 +257,8 @@
     <h3>SHA-256 알고리즘 작동 과정</h3>
 
     <ul>
-        <li><strong>1. 입력 데이터 준비</strong>: 입력 받은 임의의 길이의 데이터는 고정된 크기(512비트 블록)로 처리되며, 필요한 경우 패딩(padding)을 통해 데이터를 맞춘다.
+        <li><strong>1. 입력 데이터 준비</strong>: 입력 받은 임의의 길이의 데이터는 고정된 크기(512비트 블록)로 처리되며, 필요한 경우 패딩(padding)을 통해 데이터를
+            맞춘다.
         </li>
         <li><strong>2. 패딩</strong>: 입력 데이터를 512비트 블록으로 나누기 위해 패딩을 추가한다.</li>
         <li><strong>3. 초기 해시 값 설정</strong>: 8개의 32비트 초기 해시 값을 정의한다.</li>
@@ -358,7 +360,8 @@
             <li>암호 화폐에도 암호 기술이 많이 사용됨</li>
             <ul>
                 <li>해시 함수, 공개 키 암호화, 디지털 서명과 같은 다양한 암호화 기술을 사용하며, 블록체인에 저장된 데이터의 ‘일관성’을 보호하고 거래를 ‘인증’하는 데 사용한다.</li>
-                <li>타원곡선 전자서명 알고리즘(Elliptical Curve Digital Signature Algorithm, ECDSA)는 블록체인에 기록된 자산을 정당한 ‘소유주’만이 사용할 수
+                <li>타원곡선 전자서명 알고리즘(Elliptical Curve Digital Signature Algorithm, ECDSA)는 블록체인에 기록된 자산을 정당한 ‘소유주’만이
+                    사용할 수
                     있도록 보장한다.</li>
             </ul>
         </ul>
@@ -493,7 +496,8 @@
                     <li>크기: 4바이트</li>
                 </ul>
             </li>
-            <li>입력(Input) => 입력은 트랜잭션이 사용하는 ‘이전 트랜잭션의 출력(UTXO: Unspent Transaction Output)’을 참조한다. 입력은 송신자의 ‘서명’이 포함된
+            <li>입력(Input) => 입력은 트랜잭션이 사용하는 ‘이전 트랜잭션의 출력(UTXO: Unspent Transaction Output)’을 참조한다. 입력은 송신자의 ‘서명’이
+                포함된
                 정보다.
                 <ul>
                     <li>트랜잭션 해시(Transaction Hash)
