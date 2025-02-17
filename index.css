@@ -90,3 +90,13 @@ ul {
     cursor: pointer;
     /* 마우스를 올렸을 때 손 모양 */
 }
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    /* 이미지들이 좌우 끝에 정렬되도록 설정 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+    width: 100%;
+    /* 부모 컨테이너를 전체 너비로 설정 */
+}
