@@ -42,8 +42,17 @@
         <p>
             <li><a href="#conditional and repetitive statements">조건문과 반복문</a></li>
         </p>
-    </ul>
 
+        <p>
+            <li><a href="#simple web page creation">간단한 웹 페이지 구현(계산기)</a></li>
+        </p>
+
+        <p>
+            <li><a href="#reference type, array & object learing">참조타입, 배열과 객체</a></li>
+        </p>
+
+    </ul>
+    <!-- 박스 모양안에 글 넣기 -->
     <div class="section">
         <section id="conditional and repetitive statements">
 
@@ -164,6 +173,10 @@
 
     <!-- 2/18 -->
 
+    <div class="section">
+        <section id="simple web page creation"></section>
+    </div>
+
     <img src="./asset/스크린샷 2025-02-18 오후 5.38.26.png" width='600px' height='600px'>
 
     <div class="section">
@@ -189,13 +202,134 @@
         구현 완료!
     </div>
 
+    </div>
+
+    <!-- 2/19 -->
+
+
+    <section id="reference type, array & object learing"></section>
+
+
+    <div class="section">
+        <h2>참조 타입(Reference Type)</h2>
+        <ul>
+            <li>값 자체가 아닌 ‘메모리 주소’를 저장한다.</li>
+            <li>여러 데이터를 묶어서 관리하거나 구조화할 때 사용된다.</li>
+        </ul>
+
+
+        <h3>객체(Object)</h3>
+        <ul>
+            <li>여러 데이터를 키와 값(Key-Value) 형태로 묶어 표현할 수 있다.</li>
+            <li>객체는 데이터의 ‘구조화된 저장소’ 역할을 한다.</li>
+        </ul>
+
+
+
+        <h3>배열(Array)</h3>
+        <ul>
+            <li>여러 데이터를 ‘순서대로 나열’하여 관리할 수 있는 리스트 형태의 데이터 타입</li>
+            <li>인덱스로 접근 가능</li>
+        </ul>
+
+        <h3>함수(Function)</h3>
+        <ul>
+            <li>특정 작업을 수행하는 코드 블록</li>
+            <li>값처럼 변수에 저장하거나 다른 함수에 전달할 수 있다.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>참조 타입의 특징</h2>
+
+        <h3>참조 저장</h3>
+        <ul>
+            <li>값을 저장하는 대신 ‘메모리 주소’를 저장한다.</li>
+            <li>하나의 객체를 여러 변수가 공유할 수 있다.</li>
+        </ul>
+
+        <h3>데이터 복사</h3>
+        <ul>
+            <li>참조 타입을 복사하면, 새로운 객체가 만들어지는 것이 아니라 ‘같은 객체’를 참조한다.</li>
+        </ul>
+
+        <h3>얕은 복사(Shallow Copy)와 깊은 복사(Deep Copy)</h3>
+
+        <h4>얕은 복사</h4>
+        <ul>
+            <li>객체의 1단계 데이터만 복사한다.</li>
+            <li>중첩된 객체나 배열은 참조만 복사한다.</li>
+            <li>복사본에서 중첩 데이터를 수정하면 원본에도 영향을 미친다.</li>
+        </ul>
+        <ul>
+            <li><strong>예시:</strong> 스프레드 연산자(…), Object.assign() 메서드</li>
+        </ul>
+
+        <h4>깊은 복사</h4>
+        <ul>
+            <li>객체의 모든 데이터(중첩된 객체나 배열 포함)를 완전히 새로운 메모리 공간에 복사한다.</li>
+            <li>한쪽을 수정해도 다른 쪽에 영향을 미치지 않는다.</li>
+        </ul>
+        <ul>
+            <li><strong>예시:</strong> JSON.parse(JSON.stringify()), 라이브러리</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>배열(Array)</h2>
+        <ul>
+            <li>여러 데이터를 하나의 리스트로 묶어서 관리</li>
+            <li>다양한 타입의 데이터를 순서대로 저장할 수 있는 구조</li>
+            <li>배열의 각 요소는 인덱스(Index)를 통해 접근 가능</li>
+        </ul>
+
+        <h3>배열의 주요 특징</h3>
+        <ul>
+            <li>순서가 있는 데이터 집합</li>
+            <li>다양한 데이터 타입 저장 가능</li>
+            <li>동적 크기</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>배열의 반복</h2>
+
+        <h3>기본 반복문</h3>
+        <ul>
+            <li><strong>for 루프:</strong> 배열의 길이를 기준으로 각 요소를 처리한다.</li>
+            <li><strong>for...of 루프:</strong> 배열의 요소에만 집중하는 간결한 반복문</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>객체</h2>
+
+        <h3>객체(Object)란?</h3>
+        <ul>
+            <li>자바스크립트의 가장 중요한 데이터 구조 중 하나</li>
+            <li>데이터를 ‘키’-‘값’ 형태로 저장한다.</li>
+        </ul>
+
+        <h3>객체의 기본 구조</h3>
+        <ul>
+            <li><strong>키:</strong> 속성을 구분하는 이름, 문자열 또는 심볼 타입이어야 한다.</li>
+            <li><strong>값:</strong> 키에 연결된 데이터로, 모든 데이터 타입을 사용할 수 있다.</li>
+        </ul>
+
+        <h2>기본 내장 함수</h2>
+        <ul>
+            <li>배열, 문자열, 객체 등 다양한 데이터 타입을 쉽게 다룰 수 있도록 자바스크립트에서 미리 제공하는 함수</li>
+            <li>프로그래밍을 더욱 효율적이고 직관적으로 만들어주는 도구다.</li>
+        </ul>
+    </div>
+
     <div class="below"></div>
 
     <div class="below_box">
         &copy; 2025 GiHyeon's Blog
         <p>All rights reserved</p>
     </div>
-    </div>
+
 </body>
 
 </html>
