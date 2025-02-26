@@ -53,6 +53,12 @@
         </p>
     </ul>
 
+    <ul>
+        <p>
+            <li><a href="#asynchronous">비동기</a></li>
+        </p>
+    </ul>
+
     <section id="higher order function"></section>
     <h2>일급 객체</h2>
     <div class="section">
@@ -205,6 +211,164 @@
         </ul>
     </div>
     </div>
+
+    <!-- 2/26 -->
+
+    <section id="asynchronous"></section>
+    <h2>Read Me - 비동기</h2>
+    <div class="section">
+        <h3>블로킹</h3>
+        <ul>
+            <li>하나의 작업이 끝날 때까지 이어지는 작업을 막는 것</li>
+        </ul>
+    </div>
+
+    <h2>비동기적 실행 예시</h2>
+    <div class="section">
+        <ul>
+            <li>백그라운드 실행, 로딩 창 등의 작업</li>
+            <li>인터넷으로 서버로 요청을 보내고, 응답을 기다리는 작업</li>
+            <li>큰 용량의 파일을 로딩하는 작업</li>
+        </ul>
+    </div>
+
+    <h2>동기 & 비동기</h2>
+    <div class="section">
+        <h3>동기(synchronous)</h3>
+        <ul>
+            <li>특정 코드의 실행이 완료될 때까지 기다리고 난 후 다음 코드를 수행하는 것</li>
+        </ul>
+        <h3>비동기(asynchronous)</h3>
+        <ul>
+            <li>특정 코드의 실행이 완료될 때까지 기다리지 않고 다음 코드들을 수행하는 것</li>
+        </ul>
+    </div>
+
+    <h2>JavaScript의 작동원리</h2>
+    <div class="section">
+        <ul>
+            <li>싱글 스레드 기반으로 동작하는 언어(한 번에 하나의 작업만 처리할 수 있다) -> 기본적으로 동기적으로 코드 실행</li>
+            <li>JavaScript는 비동기 처리를 지원 -> 런타임 환경이 함께 협력하여 비동기 작업을 처리하기 때문</li>
+        </ul>
+    </div>
+
+    <h2>비동기로 작동하는 코드를 제어할 수 있는 방법: Callback</h2>
+    <div class="section">
+        <ul>
+            <li>callback 함수를 통해 비동기 코드의 순서를 제어할 수 있다 -> 비동기를 동기화할 수 있다.</li>
+        </ul>
+        <h3>Callback hell</h3>
+        <ul>
+            <li>callback 함수를 통해 비동기 코드의 순서를 제어할 수 있지만 코드가 길어질수록 복잡해지고 가독성이 낮아지는 단점이 있다.</li>
+        </ul>
+    </div>
+
+    <h2>비동기로 작동하는 코드를 제어할 수 있는 방법: Promise</h2>
+    <div class="section">
+        <h3>new Promise</h3>
+        <ul>
+            <li>Promise는 class이기 때문에 ‘new’ 키워드를 통해 Promise 객체를 생성한다.</li>
+            <li>Promise는 비동기 처리를 수행할 콜백 함수(executor)를 인수로 전달받는다.</li>
+            <li>콜백 함수는 resolve, reject 함수를 인수로 전달받으며 자동 실행된다.</li>
+            <li>코드가 정상적으로 처리되면 ‘resolve 함수’를 호출하고, 에러 발생 시 ‘reject 함수’를 호출한다.</li>
+        </ul>
+    </div>
+
+    <h2>내부 프로퍼티</h2>
+    <div class="section">
+        <h3>State</h3>
+        <ul>
+            <li>기본 상태는 pending(대기), 성공 시 fulfilled(이행), 에러 발생 시 rejected(거부)</li>
+        </ul>
+        <h3>Result</h3>
+        <ul>
+            <li>초기 상태는 undefined, resolve(value) 호출 시 value로, reject(error) 호출 시 error로 변경</li>
+        </ul>
+    </div>
+
+    <h2>Then, Catch, Finally</h2>
+    <div class="section">
+        <h3>Then</h3>
+        <ul>
+            <li>resolve 함수가 호출되면 .then 메서드로 접근 가능</li>
+            <li>Promise를 반환하면 다음 .then의 콜백 함수로 result 전달</li>
+        </ul>
+        <h3>Catch</h3>
+        <ul>
+            <li>reject 함수가 호출되면 .catch 메서드로 접근 가능</li>
+        </ul>
+        <h3>Finally</h3>
+        <ul>
+            <li>정상 처리 여부와 상관없이 .finally 메서드로 접근 가능</li>
+        </ul>
+    </div>
+
+    <h2>Promise Chaining</h2>
+    <div class="section">
+        <ul>
+            <li>비동기 작업을 순차적으로 진행해야 할 경우 사용</li>
+        </ul>
+    </div>
+
+    <h2>비동기로 작동하는 코드를 제어할 수 있는 방법: Promise.all()</h2>
+    <div class="section">
+        <ul>
+            <li>여러 개의 비동기 작업을 동시에 처리할 때 사용</li>
+            <li>인자로 배열을 받으며, 모든 Promise가 정상적으로 처리되면 결과를 배열로 저장하여 새로운 Promise 반환</li>
+            <li>하나라도 에러 발생 시 즉시 종료</li>
+        </ul>
+    </div>
+
+    <h2>Async / Await</h2>
+    <div class="section">
+        <ul>
+            <li>함수 앞에 async 키워드를 사용하고, async 함수 내에서만 await 키워드를 사용</li>
+            <li>await 키워드가 작성된 코드가 실행된 후 다음 코드 실행</li>
+        </ul>
+    </div>
+
+    <h2>Node.js</h2>
+    <div class="section">
+        <ul>
+            <li>JavaScript를 사용하여 서버 사이드 애플리케이션을 개발할 수 있게 해주는 런타임 환경</li>
+        </ul>
+        <h3>Node.js 내장 모듈을 사용하는 방법</h3>
+        <ul>
+            <li>모든 모듈은 require 구문을 이용하여 불러와야 함</li>
+        </ul>
+        <h3>3rd-party 모듈을 사용하는 방법</h3>
+        <ul>
+            <li>공식 제공하는 빌트인 모듈이 아닌 모든 외부 모듈</li>
+            <li>npm을 사용하여 다운로드 (Ex: npm install ...)</li>
+        </ul>
+    </div>
+
+    <h2>fetch API</h2>
+    <div class="section">
+        <ul>
+            <li>URL로 요청을 보낼 수 있는 API</li>
+        </ul>
+    </div>
+
+    <h2>Axios</h2>
+    <div class="section">
+        <ul>
+            <li>브라우저를 위한 Promise API를 활용하는 HTTP 비동기 통신 라이브러리</li>
+        </ul>
+        <h3>Axios 사용법</h3>
+        <ul>
+            <li>npm install axios</li>
+        </ul>
+        <h3>GET 요청</h3>
+        <ul>
+            <li>일반적으로 정보를 요청하기 위해 사용</li>
+        </ul>
+        <h3>POST 요청</h3>
+        <ul>
+            <li>서버에 데이터를 보내기 위해 사용</li>
+        </ul>
+    </div>
+
 
 
     <div class="below"></div>
