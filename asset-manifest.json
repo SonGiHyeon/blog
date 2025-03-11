@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/SonGiHyeon/blog/static/css/main.97f2386b.css",
-    "main.js": "/SonGiHyeon/blog/static/js/main.20f8dd1f.js",
-    "index.html": "/SonGiHyeon/blog/index.html",
-    "main.97f2386b.css.map": "/SonGiHyeon/blog/static/css/main.97f2386b.css.map",
-    "main.20f8dd1f.js.map": "/SonGiHyeon/blog/static/js/main.20f8dd1f.js.map"
+    "main.css": "/blog/static/css/main.97f2386b.css",
+    "main.js": "/blog/static/js/main.20f8dd1f.js",
+    "index.html": "/blog/index.html",
+    "main.97f2386b.css.map": "/blog/static/css/main.97f2386b.css.map",
+    "main.20f8dd1f.js.map": "/blog/static/js/main.20f8dd1f.js.map"
   },
   "entrypoints": [
     "static/css/main.97f2386b.css",
