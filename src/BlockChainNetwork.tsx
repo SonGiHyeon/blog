@@ -28,7 +28,7 @@ const BlockChainNetwork = () => {
 
                     <h2>블록체인의 트릴레마</h2>
 
-                    <img src="스크린샷%202025-03-11%20오전%2010.52.14.png" width={800} height={400} />
+                    <img src={process.env.PUBLIC_URL + '/blockChainTrilemma.png'} width={800} height={400} />
 
                     <h1>암호화폐에서의 트릴레마</h1>
                     <p>
@@ -36,7 +36,7 @@ const BlockChainNetwork = () => {
                         <strong>'탈중앙화'</strong> (독점적이지 않은 상태) 세 가지 요소 간의 균형 문제를 의미합니다.
                     </p>
 
-                    <img src="스크린샷%202025-03-11%20오전%2010.57.30.png" width={800} height={400} />
+                    <img src={process.env.PUBLIC_URL + "/blockChainTrilemmaEx.png"} width={800} height={400} />
 
                     <h2>비트코인의 트릴레마</h2>
                     <p>
@@ -89,7 +89,7 @@ const BlockChainNetwork = () => {
 
                     <br></br>
                     <h3>이더리움 노드 분포도에 대한 대시보드</h3>
-                    <img src="스크린샷%202025-03-11%20오후%203.08.11.png" width={800} height={500} />
+                    <img src={process.env.PUBLIC_URL + "/ethereumNodeDashboard.png"} width={800} height={500} />
 
                     <h2>결론</h2>
                     <p>
@@ -101,7 +101,7 @@ const BlockChainNetwork = () => {
                     <h2>솔라나</h2>
 
                     <h3>솔라나 노드 분포도에 대한 대시보드</h3>
-                    <img src="스크린샷%202025-03-11%20오전%2011.29.23.png" width={800} height={400} />
+                    <img src={process.env.PUBLIC_URL + "/solanaDashboard.png"} width={800} height={400} />
 
                     <h1>솔라나의 핵심 기술: Proof of History (PoH)</h1>
                     <p>솔라나(Solana)는 최근 몇 년간 큰 주목을 받고 있는 블록체인 플랫폼 중 하나입니다. 그 이유 중 하나는 바로 솔라나가 도입한 독특한 합의 메커니즘인 'Proof of History(PoH)' 때문입니다. 이 기술은 솔라나가 높은 처리량과 낮은 거래 지연 시간을 달성하는 데 핵심적인 역할을 합니다.</p>
@@ -125,15 +125,15 @@ const BlockChainNetwork = () => {
                     <br></br>
 
                     <h3>- 솔라나 주요 지표 -</h3>
-                    <p><img src="스크린샷%202025-03-11%20오전%2011.02.23.png" width={800} height={600} /></p>
+                    <p><img src={process.env.PUBLIC_URL + "/solanaIndicator.png"} width={800} height={600} /></p>
 
                     <h3>- 이더리움 주요 지표 -</h3>
-                    <p><img src="스크린샷%202025-03-11%20오전%2011.14.18.png" width={1200} height={400} /></p>
+                    <p><img src={process.env.PUBLIC_URL + "/ethereumIndicator.png"} width={1200} height={400} /></p>
 
                     <h3>단점</h3>
                     <p>솔라나 체인은 종종 정지되었던 역사를 가지고 있습니다.</p>
 
-                    <img src="/스크린샷%202025-03-11%20오전%2010.29.51.png" alt="블록체인 스크린샷" width={800} height={400} />
+                    <img src={process.env.PUBLIC_URL + "/solanaChainStop.png"} width={800} height={400} />
 
                     <h2>이더리움과 솔라나 비교</h2>
                     <ul>
