@@ -7,6 +7,7 @@ import Web from './Web';
 import JavaScript from './JavaScript';
 import JavaScriptAdvanced from './JavaScriptAdvanced';
 import ReactAdvanced from './ReactAdvanced';
+import BlockChaintrilemma from './BlockChaintrilemma';
 import BlockChainNetwork from './BlockChainNetwork';
 
 const root = ReactDOM.createRoot(
@@ -15,10 +16,10 @@ const root = ReactDOM.createRoot(
 
 const Index = () => {
   // 상태 변수: 현재 표시할 컴포넌트 선택
-  const [activeComponent, setActiveComponent] = useState<'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChainNetwork'>('App');
+  const [activeComponent, setActiveComponent] = useState<'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork'>('App');
 
   // 컴포넌트 변경 함수
-  const changeComponent = (component: 'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChainNetwork') => {
+  const changeComponent = (component: 'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork') => {
     setActiveComponent(component);
   };
 
@@ -32,7 +33,8 @@ const Index = () => {
         <button onClick={() => changeComponent('JavaScript')}>JavaScript</button>
         <button onClick={() => changeComponent('JavaScriptAdvanced')}>JavaScript Advanced</button>
         <button onClick={() => changeComponent('ReactAdvanced')}>React Advanced</button>
-        <button onClick={() => changeComponent('BlockChainNetwork')}>BlockChain Network</button>
+        <button onClick={() => changeComponent('BlockChaintrilemma')}>BlockChain trilemma</button>
+        <button onClick={() => changeComponent('BlockChainNetwork')}>BlockChainNetwork</button>
 
         {/* 상태에 맞는 컴포넌트만 렌더링 */}
         {activeComponent === 'App' && <App />}
@@ -41,6 +43,7 @@ const Index = () => {
         {activeComponent === 'JavaScript' && <JavaScript />}
         {activeComponent === 'JavaScriptAdvanced' && <JavaScriptAdvanced />}
         {activeComponent === 'ReactAdvanced' && <ReactAdvanced />}
+        {activeComponent === 'BlockChaintrilemma' && <BlockChaintrilemma />}
         {activeComponent === 'BlockChainNetwork' && <BlockChainNetwork />}
       </div>
     </React.StrictMode>
