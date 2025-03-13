@@ -9,6 +9,8 @@ import JavaScriptAdvanced from './JavaScriptAdvanced';
 import ReactAdvanced from './ReactAdvanced';
 import BlockChaintrilemma from './BlockChaintrilemma';
 import BlockChainNetwork from './BlockChainNetwork';
+import DAppInfo from './DAppInfo';
+import TokenomicsResearch from './TokenomicsResearch';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,10 +18,11 @@ const root = ReactDOM.createRoot(
 
 const Index = () => {
   // 상태 변수: 현재 표시할 컴포넌트 선택
-  const [activeComponent, setActiveComponent] = useState<'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork'>('App');
+  const [activeComponent, setActiveComponent] = useState<'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork' | 'TokenomicsResearch'
+    | 'DAppInfo'>('App');
 
   // 컴포넌트 변경 함수
-  const changeComponent = (component: 'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork') => {
+  const changeComponent = (component: 'App' | 'BlockChainInfo' | 'Web' | 'JavaScript' | 'JavaScriptAdvanced' | 'ReactAdvanced' | 'BlockChaintrilemma' | 'BlockChainNetwork' | 'DAppInfo' | 'TokenomicsResearch') => {
     setActiveComponent(component);
   };
 
@@ -35,6 +38,10 @@ const Index = () => {
         <button onClick={() => changeComponent('ReactAdvanced')}>React Advanced</button>
         <button onClick={() => changeComponent('BlockChaintrilemma')}>BlockChain trilemma</button>
         <button onClick={() => changeComponent('BlockChainNetwork')}>BlockChainNetwork</button>
+        <button onClick={() => changeComponent('DAppInfo')}>DAppInfo</button>
+        <button onClick={() => changeComponent('DAppInfo')}>DAppInfo</button>
+        <button onClick={() => changeComponent('TokenomicsResearch')}>TokenomicsResearch</button>
+
 
         {/* 상태에 맞는 컴포넌트만 렌더링 */}
         {activeComponent === 'App' && <App />}
@@ -45,6 +52,8 @@ const Index = () => {
         {activeComponent === 'ReactAdvanced' && <ReactAdvanced />}
         {activeComponent === 'BlockChaintrilemma' && <BlockChaintrilemma />}
         {activeComponent === 'BlockChainNetwork' && <BlockChainNetwork />}
+        {activeComponent === 'DAppInfo' && <DAppInfo />}
+        {activeComponent === 'TokenomicsResearch' && <TokenomicsResearch />}
       </div>
     </React.StrictMode>
   );
