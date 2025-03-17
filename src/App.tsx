@@ -1,18 +1,18 @@
+// 메인
+import './index.css';
+
 const Header = () => {
   return (
     <div className="text-center my-6">
-      <h1 className="text-3xl font-semibold text-center my-6 text-primary">
+      <h1>
         Welcome to GiHyeon's Blog
       </h1>
-      <p className="text-center text-gray-600 mb-6">
+      <p>
         이 블로그는 주로 블록체인에 대한 얘기를 나누는 곳입니다.
       </p>
-      <h1 className="text-4xl font-bold text-primary transition-colors duration-500 hover:text-secondary">
-        Gihyeon's Blog
-      </h1>
-      <h2 className="text-xl text-gray-600 mt-2 transition-colors duration-300 hover:text-primary">
+      <h4>
         블록체인 관련 끄적끄적...
-      </h2>
+      </h4>
     </div>
   );
 };

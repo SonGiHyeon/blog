@@ -1,0 +1,144 @@
+/* 전체 페이지 스타일 */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* 화면 높이를 100%로 맞추기 */
+    min-height: 100%;
+    /* 최소 높이 100% 설정 (화면 크기 미달 시 대비) */
+    color: #333;
+}
+
+/* App의 중앙 위치 */
+.App {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    /* padding과 border를 포함한 너비 계산 */
+}
+
+/* 제목 스타일 */
+h2 {
+    font-size: 28px;
+    color: #4b8e8d;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Ethereum Sepolia 라벨 스타일 */
+.network-label {
+    position: absolute;
+    right: 220px;
+    background-color: #e7b3ff;
+    /* 연한 분홍빛 배경색 */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 지갑 정보 표시 */
+.wallet-info {
+    margin-bottom: 30px;
+    background: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.wallet-info p {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+}
+
+/* 주소와 프라이빗 키 정보 */
+.wallet-info .address-private-section {
+    font-weight: bold;
+    color: #4b8e8d;
+    font-size: 14px;
+}
+
+/* 입력 필드 */
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #4b8e8d;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #3a7169;
+}
+
+/* 송금 섹션 */
+h3 {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #4b8e8d;
+    font-weight: 600;
+}
+
+/* 트랜잭션 해시 출력 */
+a {
+    color: #4b8e8d;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 성공 메시지 (프라이빗 키 복사 성공 시) */
+.copy-success {
+    color: #28a745;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 600px) {
+    .App {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
