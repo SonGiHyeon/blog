@@ -37,7 +37,7 @@ h2 {
 /* Ethereum Sepolia 라벨 스타일 */
 .network-label {
     position: absolute;
-    right: 220px;
+    right: 400px;
     background-color: #e7b3ff;
     /* 연한 분홍빛 배경색 */
     color: white;
@@ -141,4 +141,84 @@ a:hover {
     button {
         font-size: 14px;
     }
+}
+
+/* 새로운 지갑(스펙타클한 CSS) */
+
+.wallet-info-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.wallet-info-container:hover {
+    transform: scale(1.02);
+}
+
+.copy-address {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+    transition: color 0.2s ease-in-out;
+}
+
+.copy-address:hover {
+    color: #0056b3;
+}
+
+.copied {
+    margin-left: 10px;
+    color: green;
+    font-weight: bold;
+}
+
+.private-key-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.private-key-input {
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    width: 220px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: monospace;
+    color: white;
+    transition: background 0.3s ease-in-out;
+}
+
+.private-key-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 4px 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease-in-out;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* '개인 키' 글자가 세로로 보이지 않도록 수정 */
+.private-key-container strong {
+    writing-mode: horizontal-tb;
+    /* 기본적으로 가로로 표시 */
+    display: block;
+    /* 한 줄로 표시 */
+    font-size: 18px;
+    color: #333;
 }

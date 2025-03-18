@@ -132,9 +132,7 @@ import Web from './Web';
 import JavaScript from './JavaScript';
 import JavaScriptAdvanced from './JavaScriptAdvanced';
 import ReactAdvanced from './ReactAdvanced';
-import BlockChaintrilemma from './BlockChaintrilemma';
 import BlockChainNetwork from './BlockChainNetwork';
-import TokenomicsResearch from './TokenomicsResearch';
 import Wallet from './Wallet';
 
 const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => void }) => {
@@ -191,6 +189,16 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
             <button onClick={() => setActiveContent('TypeScript')}>TypeScript</button>
           </>
         )
+      case '/blockchain-network':
+        return (
+          <>
+            <button onClick={() => setActiveContent('On-Chain Data')}>On-Chain Data</button>
+            <button onClick={() => setActiveContent('DApp')}>DApp</button>
+            <button onClick={() => setActiveContent('Wallet')}>Wallet</button>
+            <button onClick={() => setActiveContent('BlockChain Trilemma')}>BlockChain Trilemma</button>
+            <button onClick={() => setActiveContent('TokenomicsResearch')}>TokenomicsResearch</button>
+          </>
+        )
       default:
         return null;
     }
@@ -204,7 +212,7 @@ const Index = () => {
   const location = useLocation();
 
   // 메인 화면인 '/app'일 때는 사이드바 숨기기
-  const showSidebar = !['/app', '/wallet', '/blockchain-trilemma', '/blockchain-network', '/tokenomics-research'].includes(location.pathname);
+  const showSidebar = !['/app', '/wallet'].includes(location.pathname);
 
   // URL 변경 시 기본 콘텐츠 설정
   useEffect(() => {
@@ -218,6 +226,8 @@ const Index = () => {
       setActiveContent('Higher Order Function');
     } else if (location.pathname === '/react-advanced') {
       setActiveContent('React State & Props');
+    } else if (location.pathname === '/blockchain-network') {
+      setActiveContent('On-Chain Data');
     }
 
     else {
@@ -235,9 +245,7 @@ const Index = () => {
         <Link to="/javascript">JavaScript</Link>
         <Link to="/javascript-advanced">JavaScript Advanced</Link>
         <Link to="/react-advanced">React Advanced</Link>
-        <Link to="/blockchain-trilemma">BlockChain trilemma</Link>
         <Link to="/blockchain-network">BlockChainNetwork</Link>
-        <Link to="/tokenomics-research">TokenomicsResearch</Link>
         <Link to="/wallet">Wallet</Link>
       </nav>
 
@@ -258,9 +266,7 @@ const Index = () => {
             <Route path="/javascript" element={<JavaScript activeContent={activeContent} />} />
             <Route path="/javascript-advanced" element={<JavaScriptAdvanced activeContent={activeContent} />} />
             <Route path="/react-advanced" element={<ReactAdvanced activeContent={activeContent} />} />
-            <Route path="/blockchain-trilemma" element={<BlockChaintrilemma />} />
-            <Route path="/blockchain-network" element={<BlockChainNetwork />} />
-            <Route path="/tokenomics-research" element={<TokenomicsResearch />} />
+            <Route path="/blockchain-network" element={<BlockChainNetwork activeContent={activeContent} />} />
             <Route path="/wallet" element={<Wallet />} />
           </Routes>
         </div>

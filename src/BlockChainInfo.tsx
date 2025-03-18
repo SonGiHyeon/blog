@@ -1,3 +1,4 @@
+
 const arrow = "=>";
 
 const BlockChainInfo = ({ activeContent }: { activeContent: string }) => {
