@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://songihyeon.github.io/app/",
   "dependencies": {
+    "@solana/web3.js": "^1.98.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -15,11 +16,14 @@
     "@types/react-router-dom": "^5.3.3",
     "bip39": "^3.1.0",
     "buffer": "^6.0.3",
+    "chart.js": "^4.4.8",
     "crypto-js": "^4.2.0",
     "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
+    "tonweb": "^0.0.66",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "web3": "^4.16.0"
@@ -52,6 +56,7 @@
   },
   "devDependencies": {
     "@types/bip39": "^2.4.2",
+    "@types/chart.js": "^2.9.41",
     "@types/crypto-js": "^4.2.2",
     "gh-pages": "^6.3.0"
   }

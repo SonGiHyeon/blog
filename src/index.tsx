@@ -125,6 +125,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import { Buffer } from "buffer";
 import './index.css';
 import App from './App';
 import BlockChainInfo from './BlockChainInfo';
@@ -134,6 +135,9 @@ import JavaScriptAdvanced from './JavaScriptAdvanced';
 import ReactAdvanced from './ReactAdvanced';
 import BlockChainNetwork from './BlockChainNetwork';
 import Wallet from './Wallet';
+import Explorer from './explorer';
+
+window.Buffer = Buffer;
 
 const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => void }) => {
   const location = useLocation();
@@ -212,7 +216,7 @@ const Index = () => {
   const location = useLocation();
 
   // 메인 화면인 '/app'일 때는 사이드바 숨기기
-  const showSidebar = !['/app', '/wallet'].includes(location.pathname);
+  const showSidebar = !['/app', '/wallet', '/explorer'].includes(location.pathname);
 
   // URL 변경 시 기본 콘텐츠 설정
   useEffect(() => {
@@ -247,6 +251,7 @@ const Index = () => {
         <Link to="/react-advanced">React Advanced</Link>
         <Link to="/blockchain-network">BlockChainNetwork</Link>
         <Link to="/wallet">Wallet</Link>
+        <Link to="/explorer">Explorer</Link>
       </nav>
 
       <div className="main-content">
@@ -268,6 +273,7 @@ const Index = () => {
             <Route path="/react-advanced" element={<ReactAdvanced activeContent={activeContent} />} />
             <Route path="/blockchain-network" element={<BlockChainNetwork activeContent={activeContent} />} />
             <Route path="/wallet" element={<Wallet />} />
+            <Route path="/explorer" element={<Explorer />} />
           </Routes>
         </div>
       </div>
