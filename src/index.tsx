@@ -201,6 +201,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
             <button onClick={() => setActiveContent('Wallet')}>Wallet</button>
             <button onClick={() => setActiveContent('BlockChain Trilemma')}>BlockChain Trilemma</button>
             <button onClick={() => setActiveContent('TokenomicsResearch')}>TokenomicsResearch</button>
+            <button onClick={() => setActiveContent('Truffle & Hardhat')}>Truffle & Hardhat</button>
           </>
         )
       default:

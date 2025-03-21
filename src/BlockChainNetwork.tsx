@@ -1,3 +1,5 @@
+const arrow = "=>";
+
 const BlockChainNetwork = ({ activeContent }: { activeContent: string }) => {
 
     const renderContent = () => {
@@ -689,6 +691,103 @@ const BlockChainNetwork = ({ activeContent }: { activeContent: string }) => {
                                 </li>
                             </ul>
                         </div>
+
+                    </div>
+                )
+            case 'Truffle & Hardhat':
+                return (
+                    <div className="container">
+                        <h2>스마트 컨트랙트를 배포하는 과정</h2>
+                        <div className="section">
+                            <p>‘컴파일’과 ‘배포’ 두 단계로 나뉘며, 각각 EVM 스마트 컨트랙트 개발의 필수적인 과정</p>
+
+                            <h3>1. 스마트 컨트랙트 배포 과정 개요</h3>
+                            <ul>
+                                <li>컴파일(Compile): Solidity 코드를 EVM(이더리움 가상 머신)이 이해할 수 있는 바이트코드(Bytecode)로 변환</li>
+                                <li>배포(Deploy): 변환된 바이트코드를 트랜잭션을 통해 블록체인에 배포</li>
+                            </ul>
+
+                            <h3>2. 컴파일(Compile)</h3>
+                            <p>컴파일 과정은 Solidity 코드를 EVM이 이해할 수 있도록 변환하는 과정이다.</p>
+
+                            <h4>컴파일 과정에서 수행하는 작업</h4>
+                            <ul>
+                                <li>Solidity 소스 코드(.sol) {arrow} 바이트코드(.bin)로 변환</li>
+                                <li>ABI(Application Binary Interface) 생성(.json 파일)</li>
+                                <li>컴파일 된 JSON 파일 저장</li>
+                            </ul>
+
+                            <h3>3. 배포(Deploy)</h3>
+                            <p>배포 과정은 변환된 바이트코드를 블록체인에 올리는 과정</p>
+
+                            <h4>배포 과정</h4>
+                            <ul>
+                                <li>스마트 컨트랙트 배포 트랜잭션 생성 및 블록체인에 전송</li>
+                                <li>배포된 컨트랙트 주소 반환</li>
+                            </ul>
+
+                            <h4>배포 후 블록체인 상태</h4>
+                            <ul>
+                                <li>스마트 컨트랙트가 블록체인에 저장됨</li>
+                                <li>컨트랙트 주소가 생성됨</li>
+                                <li>이후 해당 주소를 사용하여 컨트랙트와 상호작용 가능</li>
+                            </ul>
+
+                            <h3>4. 컴파일 VS 배포 비교</h3>
+                            <ul>
+                                <li>컴파일은 스마트 컨트랙트를 블록체인에서 실행 가능한 형태로 변환하는 과정</li>
+                                <li>배포는 변환된 코드를 실제 블록체인에 올리는 과정</li>
+                            </ul>
+
+                            <h2>Truffle</h2>
+                            <div className="section">
+                                <p>EVM 스마트 컨트랙트 개발을 쉽게 할 수 있도록 도와주는 프레임워크</p>
+                                <ul>
+                                    <li>스마트 컨트랙트의 개발, 테스트, 배포 및 네트워크 관리를 효율적으로 수행하도록 도와준다.</li>
+                                    <li>node.js에서 동작을 하여 npm 으로 설치 할 수 있다.</li>
+                                </ul>
+
+                                <h4>Truffle 프로젝트 생성</h4>
+                                <ul>
+                                    <li>truffle init {arrow} Truffle Sample Project를 만들어준다.</li>
+                                </ul>
+
+                                <h4>Truffle Develop</h4>
+                                <ul>
+                                    <li>truffle develop {arrow} truffle에서 기본적으로 제공하는 이더리움 클라이언트</li>
+                                </ul>
+
+                                <h4>스마트 컨트랙트 작업</h4>
+                                <ul>
+                                    <li>스마트 컨트랙트 컴파일: compile</li>
+                                    <li>스마트 컨트랙트 배포: migrate</li>
+                                    <li>스마트 컨트랙트 테스트: test</li>
+                                </ul>
+                            </div>
+
+                            <h2>Hardhat</h2>
+                            <div className="section">
+                                <p>EVM 스마트 컨트랙트 개발을 쉽게 할 수 있도록 도와주는 프레임워크</p>
+
+                                <h4>Hardhat 프로젝트 생성</h4>
+                                <ul>
+                                    <li>npx hardhat init {arrow} Hardhat Sample-Hardhat Project를 만들어준다.</li>
+                                </ul>
+
+                                <h4>로컬 블록체인 네트워크 실행</h4>
+                                <ul>
+                                    <li>npx hardhat node</li>
+                                </ul>
+
+                                <h4>스마트 컨트랙트 작업</h4>
+                                <ul>
+                                    <li>스마트 컨트랙트 컴파일: npx hardhat compile</li>
+                                    <li>스마트 컨트랙트 배포: npx hardhat ignition deploy</li>
+                                    <li>스마트 컨트랙트 테스트: npx hardhat test</li>
+                                </ul>
+                            </div>
+                        </div>
+
 
                     </div>
                 )
