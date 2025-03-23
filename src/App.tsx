@@ -20,6 +20,8 @@ const ImageGallery = () => {
     "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fn2Vmb%2FbtsKdvtVDf9%2Fw8VRfOIxueDLec4MC5Eve0%2Fimg.jpg",
     "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/55/32/b9/5532b9c7-3793-c006-87dd-5fd2634e28d2/Launch_Screen.jpg/460x0w.webp",
     "https://media1.tenor.com/m/hArfSAyNzjUAAAAd/solana-moon.gif",
+    "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/55/32/b9/5532b9c7-3793-c006-87dd-5fd2634e28d2/Launch_Screen.jpg/460x0w.webp",
+    "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fn2Vmb%2FbtsKdvtVDf9%2Fw8VRfOIxueDLec4MC5Eve0%2Fimg.jpg"
   ];
 
   return (

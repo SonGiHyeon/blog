@@ -3,29 +3,23 @@ import Web3 from 'web3';
 import { Bar } from 'react-chartjs-2';
 import { Chart } from 'chart.js';
 import { ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-import './Wallet.css';
 import { Connection } from '@solana/web3.js';
+import './Wallet.css';
 
 const ethereum_web3 = new Web3('https://mainnet.infura.io/v3/7a2f1e9b214448069fe349701c066903');
 const sepolia_web3 = new Web3('https://sepolia.infura.io/v3/7a2f1e9b214448069fe349701c066903');
 
 Chart.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
+// Ethereum Network Dashboard
 function EthereumExplorer() {
     const [latestMainnetBlock, setLatestMainnetBlock] = useState<number | null>(null);
-    const [latestSepoliaBlock, setLatestSepoliaBlock] = useState<number | null>(null);
     const [mainnetChart, setMainnetChart] = useState<number[]>([]);
-    const [sepoliaChart, setSepoliaChart] = useState<number[]>([]);
 
     const [mainnetSearchInput, setMainnetSearchInput] = useState<string>('');
     const [mainnetSearchResult, setMainnetSearchResult] = useState<any>(null);
     const [mainnetIsLoading, setMainnetIsLoading] = useState(false);
     const [mainnetError, setMainnetError] = useState<string | null>(null);
-
-    const [sepoliaSearchInput, setSepoliaSearchInput] = useState<string>('');
-    const [sepoliaSearchResult, setSepoliaSearchResult] = useState<any>(null);
-    const [sepoliaIsLoading, setSepoliaIsLoading] = useState(false);
-    const [sepoliaError, setSepoliaError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchLatestBlocks();
@@ -34,23 +28,16 @@ function EthereumExplorer() {
     const fetchLatestBlocks = async () => {
         try {
             const mainnetBlockNum = Number(await ethereum_web3.eth.getBlockNumber());
-            const sepoliaBlockNum = Number(await sepolia_web3.eth.getBlockNumber());
             setLatestMainnetBlock(mainnetBlockNum);
-            setLatestSepoliaBlock(sepoliaBlockNum);
 
             const mainnetBlocks = [];
-            const sepoliaBlocks = [];
 
             for (let i = 0; i < 10; i++) {
                 const mainnetBlockData = await ethereum_web3.eth.getBlock(mainnetBlockNum - (9 - i));
                 mainnetBlocks.push(mainnetBlockData ? mainnetBlockData.transactions.length : 0);
-
-                const sepoliaBlockData = await sepolia_web3.eth.getBlock(sepoliaBlockNum - (9 - i));
-                sepoliaBlocks.push(sepoliaBlockData ? sepoliaBlockData.transactions.length : 0);
             }
 
             setMainnetChart(mainnetBlocks);
-            setSepoliaChart(sepoliaBlocks);
         } catch (err) {
             console.error('블록 데이터를 불러오는 중 오류 발생:', err);
         }
@@ -91,44 +78,6 @@ function EthereumExplorer() {
             console.error(err);
         } finally {
             setMainnetIsLoading(false);
-        }
-    };
-
-    const handleSepoliaSearch = async () => {
-        if (!sepoliaSearchInput.trim()) return;
-        setSepoliaIsLoading(true);
-        setSepoliaError(null);
-        setSepoliaSearchResult(null);
-
-        try {
-            if (/^\d+$/.test(sepoliaSearchInput)) {
-                const sepoliaBlock = await sepolia_web3.eth.getBlock(Number(sepoliaSearchInput));
-                if (!sepoliaBlock) {
-                    setSepoliaError('❌ 해당 블록을 찾을 수 없습니다.');
-                    return;
-                }
-                setSepoliaSearchResult({ type: 'block', sepoliaData: sepoliaBlock });
-            } else if (/^0x[a-fA-F0-9]{64}$/.test(sepoliaSearchInput)) {
-                const sepoliaTx = await sepolia_web3.eth.getTransaction(sepoliaSearchInput);
-                const sepoliaReceipt = await sepolia_web3.eth.getTransactionReceipt(sepoliaSearchInput);
-
-                if (!sepoliaTx) {
-                    setSepoliaError('❌ 트랜잭션 정보를 찾을 수 없습니다.');
-                    return;
-                }
-
-                setSepoliaSearchResult({
-                    type: 'transaction',
-                    sepoliaData: { tx: sepoliaTx, receipt: sepoliaReceipt }
-                });
-            } else {
-                setSepoliaError('잘못된 입력입니다. 블록 번호 또는 트랜잭션 해시를 입력하세요.');
-            }
-        } catch (err) {
-            setSepoliaError('검색 중 오류가 발생했습니다. 올바른 정보를 입력했는지 확인하세요.');
-            console.error(err);
-        } finally {
-            setSepoliaIsLoading(false);
         }
     };
 
@@ -176,9 +125,83 @@ function EthereumExplorer() {
                     }} />
                 </div>
             </div>
+        </div>
+    );
+}
 
-            <div className="search-box">
-                <br />
+// Sepolia Testnet Dashboard
+function SepoliaExplorer() {
+    const [latestSepoliaBlock, setLatestSepoliaBlock] = useState<number | null>(null);
+    const [sepoliaChart, setSepoliaChart] = useState<number[]>([]);
+
+    const [sepoliaSearchInput, setSepoliaSearchInput] = useState<string>('');
+    const [sepoliaSearchResult, setSepoliaSearchResult] = useState<any>(null);
+    const [sepoliaIsLoading, setSepoliaIsLoading] = useState(false);
+    const [sepoliaError, setSepoliaError] = useState<string | null>(null);
+
+    useEffect(() => {
+        fetchLatestBlocks();
+    }, []);
+
+    const fetchLatestBlocks = async () => {
+        try {
+            const sepoliaBlockNum = Number(await sepolia_web3.eth.getBlockNumber());
+            setLatestSepoliaBlock(sepoliaBlockNum);
+
+            const sepoliaBlocks = [];
+
+            for (let i = 0; i < 10; i++) {
+                const sepoliaBlockData = await sepolia_web3.eth.getBlock(sepoliaBlockNum - (9 - i));
+                sepoliaBlocks.push(sepoliaBlockData ? sepoliaBlockData.transactions.length : 0);
+            }
+            setSepoliaChart(sepoliaBlocks);
+        } catch (err) {
+            console.error('블록 데이터를 불러오는 중 오류 발생:', err);
+        }
+    };
+
+    const handleSepoliaSearch = async () => {
+        if (!sepoliaSearchInput.trim()) return;
+        setSepoliaIsLoading(true);
+        setSepoliaError(null);
+        setSepoliaSearchResult(null);
+
+        try {
+            if (/^\d+$/.test(sepoliaSearchInput)) {
+                const sepoliaBlock = await sepolia_web3.eth.getBlock(Number(sepoliaSearchInput));
+                if (!sepoliaBlock) {
+                    setSepoliaError('❌ 해당 블록을 찾을 수 없습니다.');
+                    return;
+                }
+                setSepoliaSearchResult({ type: 'block', sepoliaData: sepoliaBlock });
+            } else if (/^0x[a-fA-F0-9]{64}$/.test(sepoliaSearchInput)) {
+                const sepoliaTx = await sepolia_web3.eth.getTransaction(sepoliaSearchInput);
+                const sepoliaReceipt = await sepolia_web3.eth.getTransactionReceipt(sepoliaSearchInput);
+
+                if (!sepoliaTx) {
+                    setSepoliaError('❌ 트랜잭션 정보를 찾을 수 없습니다.');
+                    return;
+                }
+
+                setSepoliaSearchResult({
+                    type: 'transaction',
+                    sepoliaData: { tx: sepoliaTx, receipt: sepoliaReceipt }
+                });
+            } else {
+                setSepoliaError('잘못된 입력입니다. 블록 번호 또는 트랜잭션 해시를 입력하세요.');
+            }
+        } catch (err) {
+            setSepoliaError('검색 중 오류가 발생했습니다. 올바른 정보를 입력했는지 확인하세요.');
+            console.error(err);
+        } finally {
+            setSepoliaIsLoading(false);
+        }
+    };
+
+    return (
+        <div className="search-box">
+            <br />
+            <div className="App">
                 <h2>🔎 Sepolia Testnet 대시보드</h2>
                 <h3>🔍 검색</h3>
                 <input
@@ -220,11 +243,10 @@ function EthereumExplorer() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-// Solana 대시보드
-
+// Solana Network 대시보드
 const connection = new Connection('https://broken-dimensional-choice.solana-mainnet.quiknode.pro/5ae79302c5a0faca5e1872cad9a0adf6c12f31ff/');
 
 Chart.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -396,23 +418,48 @@ function SolanaExplorer() {
     );
 }
 
+// Main App Component
 function App() {
-    return (
-        <div className="App">
-            <div className="dashboard-container">
-                {/* Ethereum 대시보드 렌더링 */}
-                <div className="ethereum-dashboard">
-                    <EthereumExplorer />
-                </div>
+    const [selectedDashboard, setSelectedDashboard] = useState<string>('ethereum');
 
-                {/* Solana 대시보드 렌더링 */}
-                <div className="solana-dashboard">
-                    <SolanaExplorer />
+    const renderDashboard = () => {
+        switch (selectedDashboard) {
+            case 'ethereum':
+                return <EthereumExplorer />;
+            case 'sepolia':
+                return <SepoliaExplorer />;
+            case 'solana':
+                return <SolanaExplorer />;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="layout">
+            {/* 상단 네비게이션 바 */}
+
+            {/* 메인 콘텐츠 (사이드바 + 대시보드) */}
+            <div className="main-content">
+                <Sidebar onSelect={setSelectedDashboard} />
+                <div className="content">
+                    {renderDashboard()}
                 </div>
             </div>
         </div>
     );
 }
 
-export default App;
 
+// Sidebar Component
+function Sidebar({ onSelect }: { onSelect: (dashboard: string) => void }) {
+    return (
+        <div className="sidebar">
+            <button onClick={() => onSelect('ethereum')}>Ethereum Mainnet</button>
+            <button onClick={() => onSelect('sepolia')}>Sepolia Testnet</button>
+            <button onClick={() => onSelect('solana')}>Solana Network</button>
+        </div>
+    );
+}
+
+export default App;

@@ -146,6 +146,8 @@ ul {
 .main-content {
   display: flex;
   flex-grow: 1;
+  height: calc(100vh - 50px);
+  /* 네비게이션 바 높이를 뺀 나머지 공간 */
 }
 
 /* 왼쪽 사이드바 */
@@ -159,6 +161,8 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  position: relative;
+  /* 위치 조정 */
 }
 
 .sidebar button {
