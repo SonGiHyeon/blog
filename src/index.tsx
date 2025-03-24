@@ -23,74 +23,29 @@ type SidebarContent = {
 const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => void }) => {
   const location = useLocation();
 
-  const renderSidebarContent = () => {
-    switch (location.pathname) {
-      case '/blockchain-info':
-        return (
-          <>
-            <button onClick={() => setActiveContent('블록체인 구조와 특징')}>블록체인 구조와 특징</button>
-            <button onClick={() => setActiveContent('해시함수')}>해시함수</button>
-            <button onClick={() => setActiveContent('블록 정보')}>블록 정보</button>
-            <button onClick={() => setActiveContent('분산 원장')}>분산 원장</button>
-            <button onClick={() => setActiveContent('이더리움')}>이더리움</button>
-          </>
-        );
-      case '/web':
-        return (
-          <>
-            <button onClick={() => setActiveContent('웹 개요')}>웹 개요</button>
-            <button onClick={() => setActiveContent('Git 개요')}>Git 개요</button>
-            <button onClick={() => setActiveContent('HTML')}>HTML</button>
-            <button onClick={() => setActiveContent('CSS')}>CSS</button>
-            <button onClick={() => setActiveContent('JavaScript')}>JavaScript</button>
-          </>
-        );
-      case '/javascript':
-        return (
-          <>
-            <button onClick={() => setActiveContent('JavaScript')}>JavaScript</button>
-            <button onClick={() => setActiveContent('Calculator')}>Calculator</button>
-            <button onClick={() => setActiveContent('Reference type, Array & Object Learing')}>참조 배열 객체</button>
-            <button onClick={() => setActiveContent('JavaScript Grammar')}>JavaScript Grammar</button>
-            <button onClick={() => setActiveContent('DOM')}>DOM</button>
-          </>
-        )
-      case '/javascript-advanced':
-        return (
-          <>
-            <button onClick={() => setActiveContent('Higher Order Function')}>Higher Order Function</button>
-            <button onClick={() => setActiveContent('Object Oriented Programming')}>Object Oriented Programming</button>
-            <button onClick={() => setActiveContent('Asynchronous')}>Asynchronous</button>
-            <button onClick={() => setActiveContent('React Basic')}>React Basic</button>
-            <button onClick={() => setActiveContent('React SPA')}>React SPA</button>
-          </>
-        )
-      case '/react-advanced':
-        return (
-          <>
-            <button onClick={() => setActiveContent('React State & Props')}>React State & Props</button>
-            <button onClick={() => setActiveContent('HTTP/네트워크')}>HTTP/네트워크</button>
-            <button onClick={() => setActiveContent('AJAX')}>AJAX</button>
-            <button onClick={() => setActiveContent('TypeScript')}>TypeScript</button>
-          </>
-        )
-      case '/blockchain-network':
-        return (
-          <>
-            <button onClick={() => setActiveContent('On-Chain Data')}>On-Chain Data</button>
-            <button onClick={() => setActiveContent('DApp')}>DApp</button>
-            <button onClick={() => setActiveContent('Wallet')}>Wallet</button>
-            <button onClick={() => setActiveContent('BlockChain Trilemma')}>BlockChain Trilemma</button>
-            <button onClick={() => setActiveContent('TokenomicsResearch')}>TokenomicsResearch</button>
-            <button onClick={() => setActiveContent('Truffle & Hardhat')}>Truffle & Hardhat</button>
-          </>
-        )
-      default:
-        return null;
-    }
+  const sidebarContent: SidebarContent = {
+    '/blockchain-info': ['블록체인 구조와 특징', '해시함수', '블록 정보', '분산 원장', '이더리움'],
+    '/web': ['웹 개요', 'Git 개요', 'HTML', 'CSS', 'JavaScript'],
+    '/javascript': ['JavaScript', 'Calculator', '참조 배열 객체', 'JavaScript Grammar', 'DOM'],
+    '/javascript-advanced': ['Higher Order Function', 'Object Oriented Programming', 'Asynchronous', 'React Basic', 'React SPA'],
+    '/react-advanced': ['React State & Props', 'HTTP/네트워크', 'AJAX', 'TypeScript'],
+    '/blockchain-network': ['On-Chain Data', 'DApp', 'Wallet', 'BlockChain Trilemma', 'TokenomicsResearch', 'Truffle & Hardhat'],
+    '/solidity': ['Solditiy Basic Grammar 1']
   };
 
-  return renderSidebarContent();
+  return (
+    <>
+      {sidebarContent[location.pathname] && (
+        <div className="sidebar">
+          {sidebarContent[location.pathname].map((content: string) => (
+            <button key={content} onClick={() => setActiveContent(content)}>
+              {content}
+            </button>
+          ))}
+        </div>
+      )}
+    </>
+  );
 };
 
 const Index = () => {
@@ -98,23 +53,16 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/blockchain-info') {
-      setActiveContent('블록체인 구조와 특징');
-    } else if (location.pathname === '/web') {
-      setActiveContent('웹 개요');
-    } else if (location.pathname === '/javascript') {
-      setActiveContent('JavaScript');
-    } else if (location.pathname === '/javascript-advanced') {
-      setActiveContent('Higher Order Function');
-    } else if (location.pathname === '/react-advanced') {
-      setActiveContent('React State & Props');
-    } else if (location.pathname === '/blockchain-network') {
-      setActiveContent('On-Chain Data');
-    }
-
-    else {
-      setActiveContent('');
-    }
+    const defaultContentMap: { [key: string]: string } = {
+      '/blockchain-info': '블록체인 구조와 특징',
+      '/web': '웹 개요',
+      '/javascript': 'JavaScript',
+      '/javascript-advanced': 'Higher Order Function',
+      '/react-advanced': 'React State & Props',
+      '/blockchain-network': 'On-Chain Data',
+      '/solidity': 'Solditiy Basic Grammar 1'
+    };
+    setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);
 
   const hideSidebarRoutes = ['/app', '/wallet', '/explorer'];

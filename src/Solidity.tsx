@@ -125,8 +125,8 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
                                 <li>revert(message): 강제적으로 실행을 취소하고 트랜잭션 롤백</li>
                             </ul>
                         </div>
-
                     </div>
+
                 )
         }
     }
