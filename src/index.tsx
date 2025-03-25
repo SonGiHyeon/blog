@@ -30,7 +30,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/javascript-advanced': ['Higher Order Function', 'Object Oriented Programming', 'Asynchronous', 'React Basic', 'React SPA'],
     '/react-advanced': ['React State & Props', 'HTTP/네트워크', 'AJAX', 'TypeScript'],
     '/blockchain-network': ['On-Chain Data', 'DApp', 'Wallet', 'BlockChain Trilemma', 'TokenomicsResearch', 'Truffle & Hardhat'],
-    '/solidity': ['Solditiy Basic Grammar 1']
+    '/solidity': ['Solditiy Basic Grammar 1', 'Solditiy Basic Grammar 2']
   };
 
   return (
