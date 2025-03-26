@@ -456,6 +456,424 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+
+            // 3/26
+            case 'Solditiy Basic Grammar 3':
+                return (
+                    <div className="container">
+
+                        <h2> 변수 선언 및 가시성 </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>Solidity에서 변수(Variable)는 데이터를 저장하고 관리하는 데 사용된다.</li>
+                                <li>변수를 선언하면 이더리움 블록체인 상의 스마트 컨트랙트에 상태(State)를 유지할 수 있게 된다.</li>
+                            </ul>
+
+                            <h3> 특징 </h3>
+                            <ul>
+                                <li>변수를 선언할 때 데이터 타입과 가시성(Visibility)을 명시해야 함</li>
+                                <li>선언된 변수는 블록체인 상에 저장되며, public으로 선언된 변수는 자동으로 getter 함수가 생성됨</li>
+                            </ul>
+
+                            <h3> 변수 선언 형식 </h3>
+                            <ul>
+                                <li><code>&lt;데이터 타입&gt; &lt;가시성&gt; &lt;변수명&gt; = &lt;초기값&gt;;</code></li>
+                            </ul>
+
+                            <h3> 변수의 가시성(Visibility) </h3>
+                            <ul>
+                                <li><strong>public</strong>: 외부, 내부에서 모두 접근 가능 (모든 컨트랙트, 외부 계정)</li>
+                                <li><strong>private</strong>: 선언된 컨트랙트 내부에서만 접근 가능</li>
+                                <li><strong>internal</strong>: 선언된 컨트랙트 및 상속받은 컨트랙트에서 접근 가능</li>
+                                <li><strong>external</strong>: 외부에서만 접근 가능 (변수에는 사용 불가, 함수에만 사용 가능)</li>
+                            </ul>
+                        </div>
+
+                        <h2> 상태 변수와 로컬 변수 </h2>
+                        <div className="section">
+
+                            <h3> 상태 변수 </h3>
+                            <ul>
+                                <li>블록체인 저장소(Storage)에 저장</li>
+                                <li>영구적으로 저장(트랜잭션 후에도 유지)</li>
+                                <li>가스 비용 발생(쓰기, 읽기 시)</li>
+                                <li>컨트랙트 내부에서 선언</li>
+                            </ul>
+
+                            <h3> 로컬 변수 </h3>
+                            <ul>
+                                <li>메모리 또는 스택에 저장</li>
+                                <li>함수 실행 시에만 존재, 실행 후 소멸</li>
+                                <li>가스 비용 적음(일시적 사용)</li>
+                                <li>함수 내부에서 선언</li>
+                            </ul>
+                        </div>
+
+                        <h2> 상수 및 불변 함수 </h2>
+                        <div className="section">
+
+                            <h3> 상수 </h3>
+                            <ul>
+                                <li>배포 시점에 고정된 값</li>
+                                <li>수정 불가능</li>
+                                <li>가스 비용 절감 (읽기 연산에만 사용됨)</li>
+                            </ul>
+
+                            <h3> 불변 </h3>
+                            <ul>
+                                <li>배포 시점에서만 설정 가능, 이후에는 변경 불가능</li>
+                                <li>보안성이 향상됨</li>
+                            </ul>
+                        </div>
+
+                        <h2> 함수(Function) </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>스마트 컨트랙트에서 특정 동작을 수행하는 코드 블록</li>
+                                <li>입력값을 받아 처리하고, 결과값을 반환하거나 상태를 변경하는 역할</li>
+                            </ul>
+
+                            <h3> 특징 </h3>
+                            <ul>
+                                <li>특정 작업을 수행하는 코드 블록</li>
+                                <li>외부 호출 또는 내부 로직에서 사용</li>
+                                <li>상태 변수에 접근하거나 외부에서 데이터를 가져오는 데 사용됨</li>
+                                <li>가시성 및 상태 변경자를 설정 가능</li>
+                            </ul>
+
+                            <h3> 함수의 기본 구성 요소 </h3>
+                            <ul>
+                                <li><code>Function</code>: 함수 선언 키워드</li>
+                                <li>함수 이름</li>
+                                <li>입력 파라미터(타입과 이름)</li>
+                                <li>가시성 지정자</li>
+                                <li>상태 변경자</li>
+                                <li>반환 타입</li>
+                            </ul>
+
+                            <h3> 상태 변경자 </h3>
+                            <ul>
+                                <li><strong>view</strong>: 상태 변수의 읽기만 허용(가스 비용 없음)</li>
+                                <li><strong>pure</strong>: 상태 변수의 읽기 및 쓰기 모두 금지(가스 비용 없음)</li>
+                                <li><strong>payable</strong>: 이더리움을 받을 수 있는 함수(특정 금액을 받기 위한 함수)</li>
+                            </ul>
+
+                            <h3> 반환값 </h3>
+                            <ul>
+                                <li>returns 키워드를 사용하여 반환값의 타입을 지정</li>
+                            </ul>
+
+                            <h3> 함수 호출 방법 </h3>
+                            <ul>
+                                <li><strong>내부 호출</strong>: <code>internalFunction()</code>을 직접 호출 가능</li>
+                                <li><strong>외부 호출</strong>: <code>this.externalFunction()</code> 형식으로 접근</li>
+                            </ul>
+
+                            <h3> 접근 제어자(Modifiers) </h3>
+                            <ul>
+                                <li>특정 조건을 충족할 때만 함수를 실행하도록 설정 가능</li>
+                            </ul>
+
+                            <h3> 함수 오버로딩 </h3>
+                            <ul>
+                                <li>같은 이름의 함수를 서로 다른 매개변수로 선언 가능</li>
+                            </ul>
+                        </div>
+
+                        <h2> storage, memory, calldata </h2>
+                        <div className="section">
+
+                            <h3> storage </h3>
+                            <ul>
+                                <li>블록체인의 영구 저장소(상태 변수)</li>
+                                <li>트랜잭션 이후에도 유지됨</li>
+                                <li>읽기/쓰기 시 비용이 높음</li>
+                                <li>변경 가능</li>
+                            </ul>
+
+                            <h3> memory </h3>
+                            <ul>
+                                <li>임시 메모리(함수 실행 중에만 유지)</li>
+                                <li>함수 실행 종료 후 소멸됨</li>
+                                <li>가스 비용이 저렴</li>
+                                <li>변경 가능</li>
+                            </ul>
+
+                            <h3> calldata </h3>
+                            <ul>
+                                <li>함수 호출 시 외부 입력 데이터(읽기 전용)</li>
+                                <li>함수 호출이 끝나면 소멸됨</li>
+                                <li>가스 비용이 가장 저렴</li>
+                                <li>변경 불가능</li>
+                            </ul>
+                        </div>
+
+                        <h2> 조건문 및 반복문 </h2>
+                        <div className="section">
+
+                            <h3> 1. 조건문 </h3>
+                            <ul>
+                                <li>특정 조건을 만족할 때 코드의 실행을 결정한다.</li>
+                            </ul>
+
+                            <h4> - If, else if, else </h4>
+                            <ul>
+                                <li><strong>If</strong>: 조건이 참일 경우 코드 실행</li>
+                                <li><strong>else if</strong>: 이전 조건이 거짓일 경우 다른 조건 확인</li>
+                                <li><strong>else</strong>: 모든 조건이 거짓일 경우 실행</li>
+                            </ul>
+
+                            <h3> - 삼항 연산자 </h3>
+                            <ul>
+                                <li>간단한 조건문을 한 줄로 작성할 수 있다.</li>
+                                <li>형식: (조건) ? (참 일 때 값) : (거짓일 때 값)</li>
+                            </ul>
+
+                            <h3> 2. 반복문 </h3>
+                            <ul>
+                                <li>특정 조건이 만족될 때까지 코드를 반복 실행한다.</li>
+                            </ul>
+
+                            <h4> - for 문 </h4>
+                            <ul>
+                                <li>반복 횟수가 명확할 때 사용</li>
+                                <li>반복 조건이 거짓이 될 때까지 반복 실행</li>
+                            </ul>
+
+                            <h4> - While 문 </h4>
+                            <ul>
+                                <li>조건이 참인 동안 계속 실행</li>
+                                <li>반복 횟수가 명확하지 않거나 조건에 따라 반복 여부가 결정될 때 사용</li>
+                            </ul>
+
+                            <h3> 3. 반복문 제어 키워드 </h3>
+                            <ul>
+                                <li><strong>break</strong>: 반복문을 즉시 종료</li>
+                                <li><strong>continue</strong>: 다음 반복으로 건너뛰기</li>
+                            </ul>
+
+                            <h3> 4. 반복문 사용 시 주의사항 </h3>
+                            <ul>
+                                <li>가스 비용 고려</li>
+                                <li>무한 루프 방지</li>
+                                <li>최적화된 데이터 구조 사용</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 이벤트(Events) </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>스마트 컨트랙트와 외부 애플리케이션과의 통신을 위한 메커니즘</li>
+                                <li>스마트 컨트랙트 내에서 발생한 특정 동작을 기록하고, 해당 로그는 이더리움 블록체인에 저장되어 외부 애플리케이션이 이를 감지할 수 있다.</li>
+                            </ul>
+
+                            <h3> 특징 </h3>
+                            <ul>
+                                <li>블록체인에 기록되어 외부에서 읽기 가능</li>
+                                <li>트랜잭션 로그로 저장(영구 저장은 아니지만 검색 가능)</li>
+                                <li>스마트 컨트랙트와 외부 애플리케이션 간의 소통에 사용됨</li>
+                            </ul>
+
+                            <h3> 1. 이벤트 선언 및 사용 방법 </h3>
+                            <ul>
+                                <li><strong>아밴트 선언</strong>: <code>event</code> 키워드를 변수 앞에다 붙이면 됨</li>
+                                <li><strong>이벤트 발생(emit)</strong>: 이벤트는 <code>emit</code> 키워드로 발생시킬 수 있다. 이벤트 로그가 블록체인에 기록되어 외부 애플리케이션이 감지할 수 있음</li>
+                            </ul>
+
+                            <h3> 2. 이벤트 필터링 </h3>
+                            <ul>
+                                <li>이벤트 로그는 인덱스(Indexed)를 사용해 값 타입을 빠르게 검색할 수 있다.</li>
+                            </ul>
+
+                            <h3> 3. 이벤트 활용 사례 </h3>
+                            <ul>
+                                <li>상태 변경 로그 기록</li>
+                                <li>거래 기록</li>
+                                <li>엑세스 제어 로그</li>
+                            </ul>
+
+                            <h3> 4. 트랜잭션 로그에서 이벤트 확인 </h3>
+                            <ul>
+                                <li>Hardhat이나 Ethers.js 같은 것들을 이용해서 해당 이벤트를 조회할 수 있다.</li>
+                            </ul>
+
+                            <h3> 5. 가스 비용 최적화와 이벤트 </h3>
+                            <ul>
+                                <li>이벤트는 가스 비용이 낮음</li>
+                                <li>로그로 저장되므로, 상태 저장 비용 없이 외부에서 데이터를 추적할 수 있음</li>
+                                <li>복잡한 데이터 저장 대신 이벤트를 활용해 가스 비용을 줄이는 것이 일반적</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 접근 제어자 </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>함수 실행 전에 특정 조건을 검사하거나, 공통적인 동작을 재사용 가능하게 만드는 기능</li>
+                                <li>접근 제어, 상태 확인, 재사용 가능한 코드 작성에 사용된다.</li>
+                            </ul>
+
+                            <h3> 특징 </h3>
+                            <ul>
+                                <li>함수 실행 전에 특정 조건을 검사</li>
+                                <li>코드의 재사용성을 높임</li>
+                                <li>주로 접근 제한과 조건 확인에 사용됨</li>
+                            </ul>
+
+                            <h3> 1. 기본적인 Modifier 구조 </h3>
+                            <ul>
+                                <li><strong>Modifier 선언</strong>: 보통 내부의 <code>require</code>문이 참이어야지 실행된다</li>
+                                <li><code>_</code> {arrow} 해당 위치에서 원래의 함수 코드가 실행된다.</li>
+                            </ul>
+
+                            <h3> 2. Modifier 활용 사례 </h3>
+                            <ul>
+                                <li>접근 제어</li>
+                                <li>상태 확인</li>
+                                <li>재진입 방지</li>
+                            </ul>
+
+                            <h3> 3. Modifier에서 인자 사용하기 </h3>
+                            <ul>
+                                <li>Modifier에서 매개변수를 받아 조건을 설정할 수 있다.</li>
+                            </ul>
+
+                            <h3> 4. Modifier와 다중 사용 </h3>
+                            <ul>
+                                <li>여러 Modifier를 동시에 사용할 수도 있다.</li>
+                            </ul>
+
+                            <h3> 5. Modifier의 장점 </h3>
+                            <ul>
+                                <li>코드 재사용성</li>
+                                <li>가독성 향상</li>
+                                <li>보안 강화</li>
+                                <li>가스 비용 최적화</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 에러 처리 </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>예외(Exception)를 처리하기 위한 다양한 방법을 제공한다.</li>
+                            </ul>
+
+                            <h3> 에러 처리 메커니즘 </h3>
+                            <ul>
+                                <li><code>require()</code> {arrow} 조건 검사 및 입력값 검증</li>
+                                <li><code>revert()</code> {arrow} 명시적으로 오류 발생</li>
+                                <li><code>assert()</code> {arrow} 내부 논리 오류 체크</li>
+                                <li><code>try/catch</code> {arrow} 외부 호출 실패를 처리</li>
+                            </ul>
+
+                            <h3> 1. require() 함수 </h3>
+                            <ul>
+                                <li>주로 입력 값 검증이나 특정 조건이 만족되지 않을 경우 사용된다.</li>
+                                <li>기본 문법</li>
+                                <ul>
+                                    <li><code>condition</code>: 참이어야 하는 조건</li>
+                                    <li><code>Error message</code>: 조건이 참이 아닐 경우 출력되는 메시지</li>
+                                </ul>
+                            </ul>
+
+                            <h3> 2. revert() 함수 </h3>
+                            <ul>
+                                <li>특정 조건이 충족되지 않을 때 명시적으로 오류를 발생시킨다.</li>
+                            </ul>
+
+                            <h3> 3. assert() 함수 </h3>
+                            <ul>
+                                <li>내부 오류나 불변성 검사를 위해 사용된다.</li>
+                                <li>실패 시 모든 가스를 소모하므로 주의해야 한다.</li>
+                            </ul>
+
+                            <h3> 4. try/catch 블록 </h3>
+                            <ul>
+                                <li><code>try/catch</code>는 외부 호출이나 저수준 함수 호출에서 발생할 수 있는 실패를 처리한다.</li>
+                            </ul>
+
+                            <h3> 5. 가스 소비 최적화와 에러 처리 </h3>
+                            <ul>
+                                <li><code>require()</code> {arrow} 입력값 검사 및 가스 절약에 가장 효율적</li>
+                                <li><code>revert()</code> {arrow} 특정 조건을 명시적으로 처리, 트랜잭션 중단 및 가스 반환</li>
+                                <li><code>assert()</code> {arrow} 코드 버그 및 불변성 유지, 실패 시 모든 가스 소모</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 이더 송금 </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>이더를 스마트 컨트랙트 간에 송금하거나, 스마트 컨트랙트에서 외부 계정으로 이더를 전송할 수 있다.</li>
+                                <li>이더 송금은 주로 ‘지불’, ‘입출금’ 기능을 구현할 때 사용된다.</li>
+                            </ul>
+
+                            <h3> 이더 송금을 위한 3가지 방법 </h3>
+                            <ul>
+                                <li><strong>transfer()</strong> {arrow} 안전한 이더 송금(가스 제한: 2,300)</li>
+                                <li><strong>send()</strong> {arrow} 실패 시 반환값으로 성공 여부 확인</li>
+                                <li><strong>call()</strong> {arrow} 가장 유연하지만 주의가 필요한 송금 방법</li>
+                            </ul>
+
+                            <h3> 1. 이더를 받기 위한 설정(payable 키워드) </h3>
+                            <ul>
+                                <li>함수가 이더를 받을 수 있으려면 <code>payable</code> 키워드를 명시해야 한다.</li>
+                            </ul>
+
+                            <h3> 2. 이더 송금 방법 </h3>
+                            <ul>
+                                <li><strong>transfer() 함수</strong></li>
+                                <ul>
+                                    <li>이더 전송 시 가장 안전한 방법</li>
+                                    <li>가스 한도: 2,300 gas {arrow} 상태 변경 로직이 없는 수신자만 사용 가능</li>
+                                    <li>실패 시 자동으로 트랜잭션이 롤백됨</li>
+                                </ul>
+
+                                <li><strong>send() 함수</strong></li>
+                                <ul>
+                                    <li>가스 한도: 2,300 gas</li>
+                                    <li>반환값으로 성공 여부(true/false) 확인 가능</li>
+                                    <li>실패 시 트랜잭션은 롤백되지 않음 {arrow} 명시적으로 처리해야 함</li>
+                                </ul>
+
+                                <li><strong>call() 함수</strong></li>
+                                <ul>
+                                    <li>가장 유연하고 강력한 방법</li>
+                                    <li>가스 제한이 없으며, 원하는 만큼 가스를 전송 가능</li>
+                                    <li>재진입 공격에 취약할 수 있음</li>
+                                </ul>
+                            </ul>
+
+                            <h3> 3. 이더 수신 함수 </h3>
+                            <ul>
+                                <li><strong>receive() 함수</strong>: 순수 이더 전송 시 호출됨</li>
+                                <li><strong>fallback() 함수</strong>: receive 함수가 없거나, 호출할 함수가 없는 경우 호출</li>
+                            </ul>
+
+                            <h3> 4. 이더 송금 시 보안 고려사항 </h3>
+                            <ul>
+                                <li>재진입 공격 방지</li>
+                                <li><strong>call()</strong> 사용 시 재진입 공격 방지를 위한 ReentrancyGuard 패턴 사용</li>
+                            </ul>
+
+                            <h3> 5. 이더 잔액 확인 </h3>
+                            <ul>
+                                <li>스마트 컨트랙트의 잔액 또는 특정 주소의 잔액을 조회할 수 있다.</li>
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+                )
         }
     }
 
