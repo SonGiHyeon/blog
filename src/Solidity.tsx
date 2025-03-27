@@ -874,6 +874,154 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            // 3/27
+            case 'Solditiy Basic Grammar 4':
+                return (
+                    <div className="container">
+
+                        <h2>주요 전역 변수와 전역 함수</h2>
+                        <div className="section">
+
+                            <h3>전역 변수</h3>
+                            <ul>
+                                <li>이더리움 블록체인에서 스마트 계약 실행 시 자동으로 제공되는 ‘읽기 전용 데이터’이다.</li>
+                                <li>주로 블록, 트랜잭션, 메시지에 대한 정보를 제공한다.</li>
+                            </ul>
+
+                            <h4>전역 변수 목록</h4>
+                            <ul>
+                                <li><strong>msg.sender</strong>: 현재 함수를 호출한 주체의 주소</li>
+                                <li><strong>msg.value</strong>: 호출 시 전송된 이더의 양(wei 단위)</li>
+                                <li><strong>msg.data</strong>: 호출 시 전송된 데이터 전체</li>
+                                <li><strong>tx.origin</strong>: 트랜잭션을 시작한 외부 계정 주소(최초 발신자의 주소 반환)</li>
+                                <li><strong>block.timestamp</strong>: 현재 블록이 생성된 시간(초 단위, 유닉스 타임스탬프)</li>
+                                <li><strong>block.number</strong>: 현재 블록의 번호</li>
+                                <li><strong>block.prevrando</strong>: 이전 블록의 난수값</li>
+                                <li><strong>block.gaslimit</strong>: 현재 블록의 가스 한도(전체 사용 가능한 가스의 양)</li>
+                                <li><strong>block.coinbase</strong>: 현재 블록을 채굴한 채굴자의 주소</li>
+                                <li><strong>gasleft()</strong>: 현재 실행 중인 함수에 남아 있는 가스량</li>
+                            </ul>
+
+                            <h3>전역 함수</h3>
+                            <ul>
+                                <li>스마트 계약 내에서 호출할 수 있는 내장 함수로, 주로 트랜잭션 관리나 블록 상태 추적에 사용된다.</li>
+                            </ul>
+
+                            <h4>전역 함수 목록</h4>
+                            <ul>
+                                <li><strong>gasleft()</strong>: 현재 트랜잭션에 남아 있는 가스 양 확인</li>
+                                <li><strong>keccak256()</strong>: 입력된 데이터를 해시 처리(SHA-3)</li>
+                                <li><strong>blockhash(uint)</strong>: 특정 블록 번호에 대한 해시 값을 반환(256개 이내의 최근 블록)</li>
+                            </ul>
+
+                            <h3>전역 변수와 함수의 활용 시 주의사항</h3>
+                            <ul>
+                                <li><strong>보안 문제</strong>
+                                    <ul>
+                                        <li>tx.origin은 재진입 공격에 취약하여 인증에 사용하지 않음</li>
+                                        <li>대신 msg.sender 사용 권장</li>
+                                    </ul>
+                                </li>
+                                <li><strong>타임스탬프 조작</strong>
+                                    <ul>
+                                        <li>block.timestamp는 채굴자에 의해 소폭 조작될 수 있음</li>
+                                    </ul>
+                                </li>
+                                <li><strong>가스 관리</strong>
+                                    <ul>
+                                        <li>반복문이나 복잡한 로직은 가스 비용 증가에 주의</li>
+                                        <li>gasleft() 함수를 활용해 남은 가스량을 실시간으로 추적</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h2>상속</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>기존 계약의 기능을 확장하거나 재사용하기 위한 기능</li>
+                                <li>기존 스마트 계약의 코드를 그대로 사용하면서도 새로운 기능을 덧붙일 수 있음</li>
+                            </ul>
+
+                            <h4>상속의 장점</h4>
+                            <ul>
+                                <li>코드 재사용</li>
+                                <li>계약의 유지 보수 용이성</li>
+                                <li>가독성 향상 및 코드의 명확성 증가</li>
+                            </ul>
+
+                            <h3>기본 상속 문법</h3>
+                            <ul>
+                                <li>is 키워드를 사용해 부모 계약을 상속</li>
+                                <li>부모 계약의 함수나 변수에 접근 가능</li>
+                                <li>상속된 함수와 상태 변수는 별도의 선언 없이도 사용 가능</li>
+                            </ul>
+
+                            <h3>함수 오버라이딩</h3>
+                            <ul>
+                                <li><strong>virtual</strong>: 부모 계약에서 오버라이딩 가능하도록 설정</li>
+                                <li><strong>override</strong>: 자식 계약에서 부모 계약의 함수를 재정의할 때 사용</li>
+                            </ul>
+
+                            <h3>다중 상속</h3>
+                            <ul>
+                                <li>상속 우선순위는 상속 선언 순서에 따라 결정됨</li>
+                            </ul>
+
+                            <h3>접근 제어자와 상속</h3>
+                            <ul>
+                                <li><strong>public</strong>: 상속받은 계약에서 접근 가능</li>
+                                <li><strong>internal</strong>: 상속받은 계약에서 접근 가능(외부에서는 접근 불가)</li>
+                                <li><strong>private</strong>: 상속받은 계약에서도 접근 불가</li>
+                            </ul>
+                        </div>
+
+                        <h2>인터페이스와 추상 계약</h2>
+                        <div className="section">
+
+                            <h3>인터페이스</h3>
+                            <ul>
+                                <li>외부 계약이 따를 수 있는 표준 함수 시그니처만 정의</li>
+                                <li>상태 변수나 구현 로직 없이, 오직 함수 선언만 포함</li>
+                            </ul>
+
+                            <h3>추상 계약</h3>
+                            <ul>
+                                <li>하나 이상의 구현되지 않은 함수를 가진 계약</li>
+                                <li>공통 기능을 정의하고, 이를 상속받은 계약에서 구현</li>
+                            </ul>
+
+                            <h4>추상 계약의 특징</h4>
+                            <ul>
+                                <li>직접 배포할 수 없음</li>
+                                <li>최소한 하나 이상의 virtual 함수 포함</li>
+                                <li>상속받은 계약에서 반드시 override 필요</li>
+                            </ul>
+                        </div>
+
+                        <h2>라이브러리</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>재사용 가능한 코드 집합</li>
+                                <li>상태 변수가 없고, 배포 불가능하며, 오직 함수만 제공</li>
+                            </ul>
+
+                            <h3>라이브러리의 특징</h3>
+                            <ul>
+                                <li>상태 변수를 가질 수 없음</li>
+                                <li>library 키워드를 사용해 정의</li>
+                                <li>pure 또는 view 함수를 주로 포함</li>
+                                <li>스마트 계약에서 직접 호출되거나 using for 구문 사용 가능</li>
+                                <li>내장된 가스 최적화 기능 제공</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
         }
     }
 
