@@ -1022,6 +1022,65 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'Solditiy Basic Grammar 5':
+                return (
+                    <div className="container">
+
+                        <h2>데이터 타입 심화</h2>
+                        <div className="section">
+
+                            <h3>- 구조체의 매핑</h3>
+                            <ul>
+                                <li>매핑과 구조체를 함께 사용해 데이터를 더 구조적으로 관리할 수 있다.</li>
+                            </ul>
+
+                            <h3>- 다중 매핑 구조</h3>
+                            <ul>
+                                <li>매핑 안에 또 다른 매핑을 정의해 2차원 이상의 데이터 저장이 가능하다.</li>
+                                <li>주로 권한 관리와 복잡한 관계 설정에 유용하다.</li>
+                            </ul>
+
+                        </div>
+                        <h2>Fallback & Receive Functions</h2>
+                        <div className="section">
+
+                            <h3>- (Function) Receive</h3>
+                            <ul>
+                                <li>이더를 직접 수신할 때 호출되는 함수</li>
+                                <li>계약이 명시적으로 이더를 받을 때 호출</li>
+                                <li>external과 payable로 선언해야 함</li>
+                            </ul>
+
+                            <h3>- (function) Fallback</h3>
+                            <ul>
+                                <li>정의되지 않은 함수가 호출되거나, 데이터가 포함된 호출이 발생할 때 자동으로 실행</li>
+                                <li>external로 선언되어야 함</li>
+                                <li>이더 전송이 포함되었다면 payable도 필요</li>
+                            </ul>
+
+                        </div>
+                        <h2>에러 처리</h2>
+                        <div className="section">
+
+                            <h3>- try/catch 문법</h3>
+                            <ul>
+                                <li>외부 함수 호출이나 스마트 계약의 생성 시 오류가 발생할 수 있으며, 이를 방지하기 위해 try/catch 문법을 사용한다.</li>
+                                <li>try: 성공적으로 실행될 경우 결과 반환</li>
+                                <li>catch: 에러 발생 시 처리</li>
+                            </ul>
+
+                            <h3>- 사용자 정의 에러</h3>
+                            <ul>
+                                <li>특정 조건이 충족되지 않았을 때 발생할 수 있는 에러를 명확하게 정의할 수 있다.</li>
+                                <li>가스 비용이 절감되는 장점이 있다.</li>
+                                <li>error: 에러 정의</li>
+                                <li>revert: 에러 발생 시 실행 중단 및 에러 반환</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                )
+
         }
     }
 
@@ -1031,5 +1090,6 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
         </div>
     );
 }
+
 
 export default Solidity;
