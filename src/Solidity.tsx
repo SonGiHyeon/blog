@@ -1080,6 +1080,62 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'Solditiy Practice Exercise 1':
+                return (
+                    <div className="container">
+                        <h2>Getter & Setter</h2>
+                        <div className="section">
+
+                            <h3>Solidity의 Getter와 Setter</h3>
+
+                            <ul>
+                                <li>
+                                    Solidity에서 getter(조회 함수)와 setter(설정 함수)는 스마트 컨트랙트에서 상태 변수를 다루는 핵심 개념이다.
+                                </li>
+                            </ul>
+
+                            <h4>Getter 함수</h4>
+                            <ul>
+                                <li>상태 변수를 조회하는 함수(자동 생성 가능)</li>
+                                <li>public 가시성 사용 시 자동으로 생성됨</li>
+                            </ul>
+
+                            <h4>Setter 함수</h4>
+                            <ul>
+                                <li>상태 변수를 변경하는 함수</li>
+                                <li>수동으로 구현해야 함</li>
+                            </ul>
+
+                        </div>
+                        <h2>스마트 컨트랙트 개발에서 테스트가 중요한 이유</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>스마트 컨트랙트는 한 번 배포되면 수정이 불가능하기 때문에, 배포 전에 철저하게 테스트하는 것이 필수적이다.</li>
+                                <li>Hardhat 또는 Truffle은 테스트 및 배포 환경을 제공하는 강력한 이더리움 개발 도구로, 스마트 컨트랙트 테스트를 효율적으로 수행할 수 있도록 도와준다.</li>
+                            </ul>
+
+                            <h3>스마트 컨트랙트 테스트가 중요한 이유</h3>
+
+                            <ul>
+                                <li>배포 후 수정 불가능</li>
+                                <li>가스 비용 절감</li>
+                                <li>보안 강화</li>
+                                <li>예측 가능한 동작 보장</li>
+                            </ul>
+
+                            <h3>테스트 코드 작성 시 사용되는 라이브러리</h3>
+
+                            <ul>
+                                <li><strong>chai</strong>: 테스트 라이브러리</li>
+                                <li><strong>ethers</strong>: 이더리움(EVM)과 상호작용할 수 있도록 도와주는 라이브러리</li>
+                                <li><strong>Hardhat</strong>: 기본 블록체인 라이브러리로 ethers를 사용</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                )
 
         }
     }
