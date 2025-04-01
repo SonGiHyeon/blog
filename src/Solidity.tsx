@@ -1136,6 +1136,40 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'Solditiy Practice Exercise 2':
+                return (
+                    <div className="container">
+
+                        <h2>Public으로 선언하지 않은 상태변수의 Getter</h2>
+                        <div className="section">
+                            <h3>설명</h3>
+                            <ul>
+                                <li>Solidity에서 상태 변수를 public으로 선언하면 자동으로 getter 함수가 생성된다.</li>
+                                <li>private 또는 internal로 선언하면 외부에서 직접 접근할 수 없기 때문에 getter를 직접 구현해야 한다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>구조체의 getter & setter</h2>
+                        <div className="section">
+                            <h3>설명</h3>
+                            <ul>
+                                <li>Solidity에서 struct(구조체)는 기본적으로 접근 제한자로 설정되지 않는다.</li>
+                                <li>다른 상태 변수를 통해 private로 선언할 수 있다.</li>
+                            </ul>
+
+                            <h3>구조체의 getter</h3>
+                            <ul>
+                                <li>상태 변수를 private로 선언하면 getter 함수가 자동으로 생성되지 않는다.</li>
+                                <li>따라서 별도의 getter 함수를 public으로 만들어야 한다.</li>
+                            </ul>
+
+                            <h3>구조체의 setter</h3>
+                            <ul>
+                                <li>구조체 데이터를 설정하는 setter 함수는 특정 필드만 변경할 수도 있고, 전체 구조체를 한 번에 설정할 수도 있다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                )
 
         }
     }
