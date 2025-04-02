@@ -1170,6 +1170,132 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'Solditiy Practice Exercise 3':
+                return (
+                    <div className="container">
+
+                        <h2> 스마트 컨트랙트 테스트의 중요성 </h2>
+
+                        <div className="section">
+
+                            <h3> 로컬 테스트 </h3>
+                            <ul>
+                                <li>로컬 환경에서 테스트는 가장 빠르고 비용이 들지 않는 방법이다.</li>
+                            </ul>
+
+                            <h4> 로컬 테스트의 주요 목적 </h4>
+                            <ul>
+                                <li>기본적인 논리 검증</li>
+                                <li>이벤트 발생 여부 확인</li>
+                                <li>오류 및 예외 처리 검증</li>
+                                <li>가스 소비량 테스트</li>
+                            </ul>
+
+                            <h4> 사용 도구 </h4>
+                            <ul>
+                                <li><strong>Hardhat:</strong> 로컬 이더리움 네트워크를 제공하여 스마트 컨트랙트를 빠르게 배포하고 테스트 할 수 있음</li>
+                                <li><strong>Ganache:</strong> 이더리움 테스트 환경을 로컬에서 실행할 수 있도록 지원하는 도구</li>
+                                <li><strong>Foundry:</strong> 고성능 스마트 컨트랙트 개발 및 테스트 도구</li>
+                                <li><strong>Ethers.js / Web3.js:</strong> 블록체인과 상호작용하여 테스트 수행</li>
+                            </ul>
+
+                            <h4> 로컬 테스트의 한계 </h4>
+                            <ul>
+                                <li>실제 블록체인 네트워크와 다름</li>
+                                <li>실제 네트워크 지연 확인 불가능</li>
+                                <li>실제 가스비 측정 불가능</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 테스트넷 배포 및 검증 </h2>
+
+                        <div className="section">
+
+                            <ul>
+                                <li>테스트넷은 메인넷과 동일한 환경을 제공하지만, 가치를 가지지 않는 테스트 토큰을 사용한다.</li>
+                                <li>테스트넷에 컨트랙트를 배포하고 실제 블록체인 상호작용을 확인해야 한다.</li>
+                            </ul>
+
+                            <h4> 테스트넷에서 테스트하는 이유 </h4>
+                            <ul>
+                                <li>실제 블록체인 환경에서의 동작 확인</li>
+                                <li>다른 스마트 컨트랙트 및 DApp과의 상호작용 테스트</li>
+                                <li>네트워크 지연 시간 및 가스 소비량 검토</li>
+                                <li>배포 과정에서 발생할 수 있는 예상치 못한 문제 해결</li>
+                            </ul>
+
+                            <h4> 테스트넷 테스트의 한계 </h4>
+                            <ul>
+                                <li>여전히 가상 환경(테스트 토큰 사용)</li>
+                                <li>가스비는 실제와 다소 차이가 있을 수 있음</li>
+                                <li>일부 네트워크 문제는 메인넷과 다를 수 있음</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> 메인넷 배포 및 최종 검증 </h2>
+
+                        <div className="section">
+
+                            <h4> 메인넷 테스트의 중요성 </h4>
+                            <ul>
+                                <li>스마트 컨트랙트가 완전히 검증된 상태인지 확인</li>
+                                <li>실제 사용자와의 상호작용 테스트</li>
+                                <li>보안 및 안정성 검토</li>
+                                <li>실사용 환경에서의 가스 최적화 확인</li>
+                            </ul>
+
+                            <h4> 메인넷 배포 후 보안 점검 </h4>
+                            <ul>
+                                <li>컨트랙트 코드가 공개된 상태에서 문제가 없는지 검토</li>
+                                <li>트랜잭션을 통한 공격 가능성이 있는지 확인</li>
+                                <li>소유자 및 권한 관리 설정이 적절한지 점검</li>
+                            </ul>
+
+                        </div>
+
+                        <h2> Hardhat과 Truffle 기본 WEB3 라이브러리 차이점 </h2>
+
+                        <div className="section">
+
+                            <h4> Hardhat </h4>
+                            <ul>
+                                <li><strong>기본 라이브러리:</strong> ethers.js</li>
+                                <li>트랜잭션 및 스마트 컨트랙트 테스트에 최적화되어 있음</li>
+                            </ul>
+
+                            <h4> Truffle </h4>
+                            <ul>
+                                <li><strong>기본 라이브러리:</strong> web3.js</li>
+                                <li>Ganache 및 Truffle Suite와 함께 작동하도록 설계됨</li>
+                            </ul>
+
+                            <p>Truffle, Hardhat에서도 ethers.js와 web3.js 둘 다 사용 가능하다.</p>
+
+                        </div>
+
+                        <h2> ethers.js </h2>
+
+                        <div className="section">
+
+                            <ul>
+                                <li>이더리움 블록체인과 상호작용할 수 있도록 도와주는 JavaScript 라이브러리이다.</li>
+                            </ul>
+
+                            <h4> ethers.js의 특징 </h4>
+                            <ul>
+                                <li>이더리움 네트워크와 상호작용</li>
+                                <li>다양한 이더리움 네트워크 지원</li>
+                                <li>경량화 및 모듈화</li>
+                                <li>지갑 관리 기능 내장</li>
+                                <li>TypeScript 지원</li>
+                                <li>Etherscan API 지원</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                )
 
         }
     }
