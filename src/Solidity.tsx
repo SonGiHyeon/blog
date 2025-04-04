@@ -1294,6 +1294,52 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
                             </ul>
 
                         </div>
+
+                        <h2>Solidity의 string 비교</h2>
+                        <div className="section">
+
+                            <h3>Solidity에서 string 타입은 기본적으로 비교(== 연산자로)할 수 없다.</h3>
+
+                            <ul>
+                                <li>Solidity의 string은 가변 길이 데이터이므로, 메모리 내에서 직접 비교하는 것이 어렵다.</li>
+                            </ul>
+
+                        </div>
+                        <h2>string으로 비교할 때의 오류 발생 이유</h2>
+                        <div className="section">
+
+                            <h3>string 타입은 가변 크기의 동적 배열(bytes)로 저장됨</h3>
+
+                            <ul>
+                                <li>두 개의 string이 메모리에서 서로 다른 위치를 가질 수 있어 비교 연산(==)이 지원되지 않음</li>
+                            </ul>
+
+                        </div>
+                        <h2>Solidity의 문자열 비교 방법</h2>
+                        <div className="section">
+
+                            <h3>keccak256(abi.encodePacked(string))을 사용하여 문자열을 비교한다.</h3>
+
+                            <ul>
+                                <li><h4>abi.encodePacked(…)</h4>
+                                    <ul>
+                                        <li>문자열을 바이트로 변환</li>
+                                    </ul>
+                                </li>
+                                <li><h4>keccak256(…)</h4>
+                                    <ul>
+                                        <li>변환된 바이트 데이터를 해싱(hash)하여 고정된 크기의 값 생성</li>
+                                    </ul>
+                                </li>
+                                <li><h4>두 개의 해시값을 비교</h4>
+                                    <ul>
+                                        <li>같은 문자열이면 같은 해시값을 가지므로 비교 가능</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+
                     </div>
                 )
 
