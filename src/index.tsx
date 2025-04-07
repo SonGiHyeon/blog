@@ -31,8 +31,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/react-advanced': ['React State & Props', 'HTTP/네트워크', 'AJAX', 'TypeScript'],
     '/blockchain-network': ['On-Chain Data', 'DApp', 'Wallet', 'BlockChain Trilemma', 'TokenomicsResearch', 'Truffle & Hardhat'],
     '/solidity': ['Solditiy Basic Grammar 1', 'Solditiy Basic Grammar 2', 'Solditiy Basic Grammar 3', 'Solditiy Basic Grammar 4', 'Solditiy Basic Grammar 5',
-      'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3'
-
+      'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3', 'Solditiy ABI'
     ]
   };
 
