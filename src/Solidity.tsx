@@ -1420,6 +1420,112 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'ERC-20':
+                return (
+                    <div className="container">
+                        <h2> EIP & ERC </h2>
+                        <div className="section">
+
+                            <h3>스마트 컨트랙트 표준화의 필요성</h3>
+                            <ul>
+                                <li>스마트 컨트랙트의 통일된 표준이 없으면 서로 다른 스마트 컨트랙트 및 애플리케이션 간의 호환성 문제가 발생할 수 있다.</li>
+                                <li>EIP(이더리움 개선 제안, Ethereum Improvement Proposal)와 ERC(이더리움 요청 의견, Ethereum Request for Comments)가 도입되었다.</li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2> EIP (Ethereum Improvement Proposal, 이더리움 개선 제안) </h2>
+
+                            <ul>
+                                <li>이더리움 네트워크의 기능 추가, 성능 개선, 보안 업데이트 등을 제안하는 문서</li>
+                                <li>누구나 EIP를 작성하여 네트워크 기능 추가, 최적화, 버그 수정 등을 제안</li>
+                                <li>EIP는 이더리움 커뮤니티의 논의를 거쳐 승인될 경우, 네트워크에 반영</li>
+                            </ul>
+                        </div>
+
+                        <h2> ERC (Ethereum Request for Comments, 이더리움 표준 제안) </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>스마트 컨트랙트의 표준을 정하는 것이 바로 ERC이다.</li>
+                            </ul>
+
+                            <ul>
+                                <li>ERC는 스마트 컨트랙트 및 토큰 표준을 정의하는 EIP의 하위 개념</li>
+                                <li>개발자들은 ERC 표준을 따르면, 모든 애플리케이션에서 쉽게 호환되는 컨트랙트를 만들 수 있다.</li>
+                                <li>대표적인 ERC 표준으로 ERC-20, ERC-721 등이 있다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> ERC-20 </h2>
+                        <div className="section">
+
+                            <h3>토큰 표준 개요</h3>
+                            <ul>
+                                <li>이더리움 네트워크에서 사용되는 토큰 표준</li>
+                                <li>이더리움 블록체인에서 스마트 컨트랙트를 통해 생성되는 토큰들이 서로 호환될 수 있도록 기술적 규칙을 정의한 것</li>
+                            </ul>
+
+                            <h3>ERC-20의 역할과 중요성</h3>
+                            <ul>
+                                <li>ERC-20은 ICO 및 다양한 디지털 자산의 표준으로 활용된다.</li>
+                                <li>이더리움 네트워크에서 토큰 간의 상호 운용성을 보장하고, 전송 및 데이터 접근 방식을 통일하여 개발이 용이해진다.</li>
+                            </ul>
+
+                            <h3>DApp 및 이더와의 호환성</h3>
+                            <ul>
+                                <li>ERC-20 토큰은 이더리움 기반 DApp에서 사용되며, 이더와 쉽게 교환할 수 있도록 설계되었다.</li>
+                                <li>ERC-20 표준을 따르는 DApp은 스마트 컨트랙트, 소프트웨어 지갑, 하드웨어 지갑 등에서 자유롭게 지원된다.</li>
+                            </ul>
+
+                            <h3>개발자 및 사용자 친화적인 환경 제공</h3>
+                            <ul>
+                                <li>ERC-20 표준을 따르면, 개발자들은 일관된 방식으로 토큰을 생성하고 관리할 수 있다.</li>
+                                <li>이를 통해 지갑, 거래소, DApp 간의 원활한 상호작용이 가능해진다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> ERC-20 표준 </h2>
+                        <div className="section">
+
+                            <h3>필수 기능 (Functions)</h3>
+                            <ul>
+                                <li><strong>totalSupply()</strong>: 총발행량으로 토큰이 총 몇 개 있는지 알려준다.</li>
+                                <li><strong>transfer()</strong>: 송금으로 토큰을 총 발행 주소에서 개인 계정으로 송금할 수 있다.</li>
+                                <li><strong>balanceOf()</strong>: 잔액으로 계정에 있는 토큰을 반환한다.</li>
+                                <li><strong>transferFrom()</strong>: 사용자 간 송금 기능으로 사용자는 송금 기능을 이용하여 다른 사용자에게 토큰을 송금할 수 있다.</li>
+                                <li><strong>approve()</strong>: 승인 기능으로 사람들이 위조 토큰을 만드는 것을 방지하며 토큰의 총 발행량을 확인하여 트랜잭션을 허용하거나 거부한다.</li>
+                                <li><strong>allowance()</strong>: 허용 기능으로 사용자가 가진 것보다 더 많은 토큰을 보낼 수 없도록 제한하며, 거래가 이루어지는 경우 이를 취소한다.</li>
+                            </ul>
+
+                            <h3>이벤트 (Events)</h3>
+                            <ul>
+                                <li><strong>event Transfer(address indexed _from, address indexed _to, uint256 _value)</strong></li>
+                                <li><strong>event Approval(address indexed _owner, address indexed _spender, uint256 _value)</strong></li>
+                            </ul>
+                        </div>
+
+                        <h2> OpenZeppelin </h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>이더리움 및 스마트 컨트랙트 개발을 위한 보안 강화 라이브러리 및 프레임워크를 제공하는 오픈소스 프로젝트이다.</li>
+                                <li>ERC-20, ERC-721, ERC-1155 등의 표준을 포함한 스마트 컨트랙트의 재사용 가능한 코드를 제공한다.</li>
+                                <li>개발자들은 보안이 검증된 코드 기반을 활용하여 안전한 스마트 컨트랙트를 쉽게 구축할 수 있다.</li>
+                            </ul>
+
+                            <h3>OpenZeppelin의 주요 특징</h3>
+                            <ul>
+                                <li>스마트 컨트랙트 라이브러리 제공</li>
+                                <li>보안성 검증</li>
+                                <li>Upgradeable Contracts 지원</li>
+                                <li>Access Control(권한 관리)</li>
+                                <li>문서화 및 커뮤니티 지원</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
 
         }
     }
