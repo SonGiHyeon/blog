@@ -1526,6 +1526,129 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'ERC-721':
+                return (
+                    <div className="container">
+                        <h2>ERC721</h2>
+                        <div className="section">
+
+                            <h3>ERC-721의 등장 배경</h3>
+                            <ul>
+                                <li>EIP-721은 “대체 불가능한 토큰(Non-Fungible Token, NFT)”에 대한 개념을 처음으로 논의한 문서이다.</li>
+                                <li>EIP-721이 이더리움 표준으로 승인되면서 ERC-721이 되었고, 이를 기반으로 NFT가 본격적으로 사용되기 시작했다.</li>
+                                <li>ERC-721은 각각의 토큰이 고유한 속성을 가지는 대체 불가능한(Non-Fungible) 토큰이다.</li>
+                                <li>각 ERC-721 토큰은 개별적으로 구별되며, 특정 자산의 소유권 증명에 활용된다.</li>
+                            </ul>
+
+                            <h3>ERC-721의 주요 특징</h3>
+                            <h4>• 대체 불가능 (Non-Fungible)</h4>
+                            <ul>
+                                <li>각 토큰이 고유하며, 다른 토큰과 1:1로 교환할 수 없음</li>
+                            </ul>
+                            <h4>• 소유권 증명</h4>
+                            <ul>
+                                <li>특정 토큰이 특정 주소의 소유라는 점을 블록체인 상에서 증명할 수 있음</li>
+                            </ul>
+                            <h4>• 추적 가능</h4>
+                            <ul>
+                                <li>토큰의 생성, 전송, 소유권 이전 내역을 블록체인에서 확인 가능</li>
+                            </ul>
+                        </div>
+
+                        <h3>ERC721 표준</h3>
+                        <div className="section">
+                            <ul>
+                                <li>ERC-721을 준수하는 스마트 컨트랙트는 아래와 같은 필수 기능(Functions)과 이벤트(Events)를 구현해야 한다.</li>
+                            </ul>
+
+                            <h4>• ERC-721 필수 기능</h4>
+
+                            <h4>1. 특정 토큰의 소유자 확인</h4>
+                            <ul>
+                                <li><code>ownerOf(uint256 tokenId)</code></li>
+                                <li>특정 토큰 ID(tokenId)의 소유자 주소를 반환한다.</li>
+                                <li>NFT는 개별적으로 구별되므로, 각 토큰 ID가 특정 주소가 귀속된다.</li>
+                            </ul>
+
+                            <h4>2. 토큰 전송(소유자가 직접 실행)</h4>
+                            <ul>
+                                <li><code>transferFrom(address from, address to, uint256 tokenId)</code></li>
+                                <li><code>safeTransferFrom(address from, address to, uint256 tokenId)</code></li>
+                                <li><strong>transferFrom:</strong> from 주소에서 to 주소로 특정 NFT(tokenId)를 전송한다.</li>
+                                <li><strong>safeTransferFrom:</strong> transferFrom과 동일하지만, 수신자가 컨트랙트일 경우, 수신 컨트랙트가 ERC-721을 지원하는지 확인 후 전송한다.</li>
+                                <li>소유자가 실행할 수 있으며, <code>approve()</code>를 통해 다른 계정도 실행할 수 있다.</li>
+                            </ul>
+
+                            <h4>3. 승인(Approval) 기능</h4>
+                            <ul>
+                                <li><code>approve(address to, uint256 tokenId)</code></li>
+                                <li>특정 토큰(tokenId)에 대한 제어 권한을 다른 계정(to)에게 부여한다.</li>
+                                <li>이 기능을 사용하면 위임받은 계정이 <code>transferFrom()</code>을 실행할 수 있음</li>
+                            </ul>
+
+                            <h4>4. 전체 승인(Operator Approval) 기능</h4>
+                            <ul>
+                                <li><code>setApprovalForAll(address operator, bool approved)</code></li>
+                                <li>특정 주소(operator)가 모든 토큰을 관리할 수 있도록 승인한다.</li>
+                                <li>true이면 operator는 소유자의 모든 토큰을 전송할 수 있으며, false이면 권한을 해제한다.</li>
+                            </ul>
+
+                            <h4>5. 승인된 주소 조회</h4>
+                            <ul>
+                                <li><code>getApproved(uint256 tokenId) returns(address)</code></li>
+                                <li><code>isApproveForAll(address owner, address operator) returns(bool)</code></li>
+                                <li><strong>getApproved():</strong> 특정 토큰(tokenId)에 대해 승인된 계정(위임받은 계정)을 반환한다.</li>
+                                <li><strong>isApprovedForAll():</strong> 특정 owner의 모든 토큰을 전송할 수 있는 operator인지 확인한다.</li>
+                            </ul>
+
+                            <h4>6. 토큰(NFT)의 개수를 조회</h4>
+                            <ul>
+                                <li><code>balanceOf(address _owner) returns(uint256)</code></li>
+                                <li>특정 주소가 보유한 ERC-721 토큰(NFT)의 개수를 조회하는 함수이다.</li>
+                            </ul>
+
+                            <h4>• ERC-721 필수 이벤트(Events)</h4>
+
+                            <h4>1. 전송 이벤트</h4>
+                            <ul>
+                                <li><code>event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)</code></li>
+                                <li>NFT가 from 주소에서 to 주소로 전송될 때 발생하는 이벤트이다.</li>
+                                <li>새로운 NFT가 생성될 경우 from은 <code>0x0</code>이 된다.</li>
+                            </ul>
+
+                            <h4>2. 승인 이벤트</h4>
+                            <ul>
+                                <li><code>event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)</code></li>
+                                <li>특정 NFT(tokenId)에 대한 사용 권한이 approved 주소에 부여될 때 발생한다.</li>
+                            </ul>
+
+                            <h4>3. 전체 승인(Operator Approval) 이벤트</h4>
+                            <ul>
+                                <li><code>event ApprovalForAll(address indexed owner, address indexed operator, bool approved)</code></li>
+                                <li>owner가 operator에게 모든 NFT에 대한 권한을 부여하거나 해제할 때 발생한다.</li>
+                            </ul>
+                        </div>
+
+                        <h3>메타데이터(Metadata)</h3>
+                        <div className="section">
+
+                            <ul>
+                                <li>NFT 자체는 이미지, 비디오, 음악 등의 데이터를 직접 저장하지 않는다.</li>
+                                <li>대신, 메타데이터(<code>tokenURI</code>)를 사용하여 외부 저장소(EX: IPFS, Arweave, AWS, 온체 등)에 저장된 디지털 자산을 참조한다.</li>
+                                <li>블록체인은 데이터 저장 비용이 매우 비싸기 때문에 데이터를 직접 저장하지 않고 대신 tokenURI를 통해 외부 저장소에 저장된 데이터를 참조한다.</li>
+                            </ul>
+
+                            <h4>• tokenURI란?</h4>
+                            <ul>
+                                <li>NFT의 메타데이터(JSON 형식)를 저장하는 URI(Uniform Resource Identifier)</li>
+                                <li>NFT의 정보를 설명하는 JSON 파일의 URL을 반환</li>
+                                <li><code>tokenURI(uint256 tokenId)</code> 함수가 호출되면, 해당 토큰의 메타데이터 URL을 반환</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                )
 
         }
     }
