@@ -1649,7 +1649,175 @@ const Solidity = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'NFT Storage':
+                return (
+                    <div className="container">
+                        <h2>NFT Metadata</h2>
+                        <div className="section">
 
+                            <ul>
+                                <li>NFT가 무엇을 의미하는지를 설명하는 메타데이터가 필수적이다.</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>NFT 메타데이터란?</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>NFT의 메타데이터는 해당 NFT가 가진 정보를 포함하는 JSON 형식의 데이터이다.</li>
+                                <li>NFT 메타데이터가 포함하는 정보</li>
+                                <ul>
+                                    <li><strong>name:</strong> NFT의 이름</li>
+                                    <li><strong>description:</strong> NFT의 설명</li>
+                                    <li><strong>image:</strong> NFT를 나타내는 이미지의 URL</li>
+                                    <li><strong>attributes:</strong> NFT의 특징을 나타내는 속성 값들</li>
+                                </ul>
+                            </ul>
+
+                        </div>
+
+                        <h2>NFT 메타데이터가 중요한 이유</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>NFT는 단순한 토큰 ID와 소유자 정보만 저장</li>
+                                <li>하지만 NFT의 가치와 의미는 ‘메타데이터’에 의해 결정된다.</li>
+                                <li>
+                                    메타데이터의 중요성
+                                    <ul>
+                                        <li>소유권 증명</li>
+                                        <li>희소성 & 속성 제공</li>
+                                        <li>디지털 자산 연결</li>
+                                    </ul>
+                                </li>
+                                <li>메타데이터가 없다면, NFT는 단순한 숫자(Token ID)에 불과하게 된다.</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>메타데이터 저장 방식</h2>
+                        <div className="section">
+
+                            <h3>온체인 저장 방식</h3>
+                            <ul>
+                                <li>NFT의 메타데이터를 블록체인 자체에 저장하는 방식</li>
+                                <li>블록체인에 직접 기록되므로 변경이 불가능하며 영구적으로 유지된다.</li>
+                                <li>저장 비용(가스비)이 높고, 긴 데이터를 저장하기 어렵다는 단점이 있다.</li>
+                                <ul>
+                                    <li>변조 불가능, 영구 저장</li>
+                                    <li>블록체인에 직접 저장하므로 가스 비용 증가</li>
+                                </ul>
+                            </ul>
+
+                            <h3>오프체인 저장 방식</h3>
+                            <ul>
+                                <li>NFT의 메타데이터를 IPFS, Arweave 같은 외부 저장소에 저장하고, 그 URL만 블록체인에 기록한다.</li>
+                                <li>블록체인에는 메타데이터의 링크(URL)만 저장</li>
+                                <li>대부분의 NFT 프로젝트가 비용 절감과 확장성을 이유로 오프체인 방식을 사용</li>
+                                <ul>
+                                    <li>비용 절감, 더 많은 데이터를 저장 가능</li>
+                                    <li>링크가 사라지면(NFT 메타데이터가 손실되면) NFT의 가치를 잃을 위험이 존재함</li>
+                                </ul>
+                            </ul>
+
+                            <h3>메타데이터를 온체인에 저장하지 않는 주요 이유</h3>
+                            <ul>
+                                <li>가스비 부담이 큼(Storage Cost)</li>
+                                <li>대용량 데이터를 저장하기 어려움</li>
+                                <li>메타데이터 수정이 어려움(변경 불가능)</li>
+                                <li>오프체인 저장 방식이 이미 잘 구축되어 있음</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>NFT 메타데이터 저장을 위한 오프체인 솔루션</h2>
+                        <div className="section">
+
+                            <h3>탈중앙화 스토리지</h3>
+                            <ul>
+                                <li>블록체인과 유사하게 ‘분산 저장 구조’를 가진 솔루션으로, 데이터가 특정 서버에 의존하지 않는다.</li>
+                                <li>데이터를 작은 조각(Chunks)으로 나누어 여러 노드에 분산 저장된다.</li>
+                                <li>같은 데이터를 모든 노드가 저장하는 것이 아니라, 데이터 조각을 서로 다른 노드에 나눠서 보관한다.</li>
+                            </ul>
+
+                            <h4>IPFS(InterPlanetary File System)</h4>
+                            <ul>
+                                <li>가장 널리 사용되는 분산 시스템</li>
+                                <li>콘텐츠 주소 지정(CID, Content Identifier)을 사용하여 데이터를 찾음</li>
+                                <li>한 번 저장된 데이터는 변경 불가능</li>
+                            </ul>
+
+                            <h4>Pinata</h4>
+                            <ul>
+                                <li>IPFS 기반의 NFT 데이터 관리 서비스</li>
+                                <li>메타데이터 업로드와 고정 기능 제공</li>
+                                <li>API를 통해 NFT 메타데이터를 쉽게 관리할 수 있음</li>
+                            </ul>
+
+                            <h4>Arweave</h4>
+                            <ul>
+                                <li>블록체인 기반 영구 저장소</li>
+                                <li>데이터를 한 번 저장하면 영원히 유지(Permanent Storage)</li>
+                                <li>Solana, Ethereum 등의 NFT 프로젝트에서 사용됨</li>
+                            </ul>
+
+                            <h4>Filecoin</h4>
+                            <ul>
+                                <li>IPFS와 연계된 탈중앙화 스토리지</li>
+                                <li>데이터를 분산 저장하고, 일정 비용을 지불하면 보존을 보장함</li>
+                                <li>Opensea, NFT.Storage에서 지원</li>
+                            </ul>
+
+                            <h3>중앙화 스토리지(클라우드)</h3>
+                            <ul>
+                                <li>NFT 프로젝트에서 ‘비용 절감’과 ‘속도 최적화’를 위해 중앙화 클라우드 스토리지를 활용하는 경우도 있다.</li>
+                            </ul>
+
+                            <h4>AWS S3</h4>
+                            <ul>
+                                <li>NFT 메타데이터를 저장하는 중앙화된 클라우드 스토리지</li>
+                                <li>강력한 보안과 확장성 제공</li>
+                            </ul>
+
+                            <h4>Google Cloud Storage</h4>
+                            <ul>
+                                <li>NFT 메타데이터 및 이미지 저장 가능</li>
+                                <li>IPFS와 비교하면 빠른 액세스 가능</li>
+                            </ul>
+
+                            <h4>Firebase Storage</h4>
+                            <ul>
+                                <li>NFT 프로젝트에서 이미지와 JSON 메타데이터 저장</li>
+                                <li>모바일 및 웹 애플리케이션과 연동 용이</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>NFT가 만들어지는 과정</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>이미지 파일 준비</li>
+                                <li>해당 이미지를 Storage에 저장 후, 이미지가 저장되어있는 주소값을 얻는다.</li>
+                                <li>NFT Metadata를 구성하면서 해당 이미지의 주소값을 “image”라는 속성에 포함한다. 이후, 구성된 Metadata를 Storage에 저장 후 주소값을 얻는다.</li>
+                                <li>NFT 컨트랙트를 통해 NFT를 민팅할 때, 해당 주소값을 tokenURI로 사용하여 NFT를 민팅한다.</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>분산 저장소 - Pinata</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>Pinata는 IPFS 기반의 분산형 파일 저장 및 관리 플랫폼으로, 사용자가 IPFS를 보다 쉽게 활용할 수 있도록 도와주는 서비스</li>
+                                <li>NFT 메타데이터 저장 및 웹3 애플리케이션 개발을 위한 솔루션으로 많이 사용된다.</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                )
         }
     }
 
