@@ -141,7 +141,7 @@ const JavaScript = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
-            case 'Reference type, Array & Object Learing':
+            case '참조, 배열, 객체':
                 return (
                     <div className="container">
                         {/* 2/19 */}

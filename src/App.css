@@ -32,7 +32,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* 각 요소들 사이에 상단과 하단 간격을 주는 예시 */
+.element {
+  margin-top: 460px;
+  /* 요소 위쪽 간격 */
+  margin-bottom: 20px;
+  /* 요소 아래쪽 간격 */
 }

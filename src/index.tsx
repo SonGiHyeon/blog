@@ -26,7 +26,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
   const sidebarContent: SidebarContent = {
     '/blockchain-info': ['블록체인 구조와 특징', '해시함수', '블록 정보', '분산 원장', '이더리움'],
     '/web': ['웹 개요', 'Git 개요', 'HTML', 'CSS', 'JavaScript'],
-    '/javascript': ['JavaScript', 'Calculator', '참조 배열 객체', 'JavaScript Grammar', 'DOM'],
+    '/javascript': ['JavaScript', 'Calculator', '참조, 배열, 객체', 'JavaScript Grammar', 'DOM'],
     '/javascript-advanced': ['Higher Order Function', 'Object Oriented Programming', 'Asynchronous', 'React Basic', 'React SPA'],
     '/react-advanced': ['React State & Props', 'HTTP/네트워크', 'AJAX', 'TypeScript'],
     '/blockchain-network': ['On-Chain Data', 'DApp', 'Wallet', 'BlockChain Trilemma', 'TokenomicsResearch', 'Truffle & Hardhat'],
@@ -95,7 +95,7 @@ const Index = () => {
             <Route path="/blockchain-info" element={<BlockChainInfo activeContent={activeContent} />} />
             <Route path="/web" element={<Web activeContent={activeContent} />} />
             <Route path="/javascript" element={<JavaScript activeContent={activeContent} />} />
-            <Route path="/javascripts-advanced" element={<JavaScriptAdvanced activeContent={activeContent} />} />
+            <Route path="/javascript-advanced" element={<JavaScriptAdvanced activeContent={activeContent} />} />
             <Route path="/react-advanced" element={<ReactAdvanced activeContent={activeContent} />} />
             <Route path="/blockchain-network" element={<BlockChainNetwork activeContent={activeContent} />} />
             <Route path="/wallet" element={<Wallet />} />
