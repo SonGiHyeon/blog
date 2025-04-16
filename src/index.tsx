@@ -13,6 +13,7 @@ import BlockChainNetwork from './BlockChainNetwork';
 import Wallet from './Wallet';
 import Explorer from './explorer';
 import Solidity from './Solidity';
+import NFT from './NFT';
 
 window.Buffer = Buffer;
 
@@ -84,6 +85,7 @@ const Index = () => {
         <Link to="/wallet">Wallet</Link>
         <Link to="/explorer">Explorer</Link>
         <Link to="/solidity">Solidity</Link>
+        <Link to="/NFT">NFT</Link>
       </nav>
 
       <div className="main-content">
@@ -101,6 +103,7 @@ const Index = () => {
             <Route path="/wallet" element={<Wallet />} />
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/solidity" element={<Solidity activeContent={activeContent} />} />
+            <Route path="/NFT" element={<NFT activeContent={activeContent} />} />
           </Routes>
         </div>
       </div>
