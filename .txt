@@ -1,0 +1,8 @@
+// .sol 컨트랙트(ERC-721)랑 배포하기 위한 .ts 파일이 필요(EX: npm run deploy)
+// abi 파일이랑 메타데이터 파일 필요?(EX: npm run mint)
+
+// - ERC-721을 위해 만들어야 하는 파일 목록 -
+// scripts/deploy.ts
+// web3/ethers.ts
+// apis/upload.metadata.ts(메타데이터 정보)
+// apis/upload.file.ts
