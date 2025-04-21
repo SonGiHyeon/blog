@@ -14,6 +14,7 @@ import Wallet from './Wallet';
 import Explorer from './explorer';
 import Solidity from './Solidity';
 import NFT from './NFT';
+import SolidityAdvanced from './SolidityAdvanced';
 
 window.Buffer = Buffer;
 
@@ -33,7 +34,8 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/blockchain-network': ['On-Chain Data', 'DApp', 'Wallet', 'BlockChain Trilemma', 'TokenomicsResearch', 'Truffle & Hardhat'],
     '/solidity': ['Solditiy Basic Grammar 1', 'Solditiy Basic Grammar 2', 'Solditiy Basic Grammar 3', 'Solditiy Basic Grammar 4', 'Solditiy Basic Grammar 5',
       'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3', 'Solditiy ABI', 'ERC-20', 'ERC-721', 'NFT Storage'
-    ]
+    ],
+    '/solidity-advanced': ['Test-Driven Contract Development']
   };
 
   return (
@@ -63,7 +65,9 @@ const Index = () => {
       '/javascript-advanced': 'Higher Order Function',
       '/react-advanced': 'React State & Props',
       '/blockchain-network': 'On-Chain Data',
-      '/solidity': 'Solditiy Basic Grammar 1'
+      '/solidity': 'Solditiy Basic Grammar 1',
+      '/solidity-advanced': 'Test-Driven Contract Development'
+
     };
     setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);
@@ -86,6 +90,8 @@ const Index = () => {
         <Link to="/explorer">Explorer</Link>
         <Link to="/solidity">Solidity</Link>
         <Link to="/NFT">NFT</Link>
+        <Link to="/solidity-advanced">SolidityAdvanced</Link>
+
       </nav>
 
       <div className="main-content">
@@ -104,6 +110,7 @@ const Index = () => {
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/solidity" element={<Solidity activeContent={activeContent} />} />
             <Route path="/NFT" element={<NFT activeContent={activeContent} />} />
+            <Route path="/solidity-advanced" element={<SolidityAdvanced activeContent={activeContent} />} />
           </Routes>
         </div>
       </div>
