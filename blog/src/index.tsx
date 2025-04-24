@@ -35,7 +35,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/solidity': ['Solditiy Basic Grammar 1', 'Solditiy Basic Grammar 2', 'Solditiy Basic Grammar 3', 'Solditiy Basic Grammar 4', 'Solditiy Basic Grammar 5',
       'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3', 'Solditiy ABI', 'ERC-20', 'ERC-721', 'NFT Storage'
     ],
-    '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)']
+    '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)', 'EIP 2771(Meta Transactions)']
   };
 
   return (

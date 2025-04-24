@@ -219,6 +219,172 @@ const SolidityAdvanced = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'EIP 2771(Meta Transactions)':
+                return (
+                    <div className="container">
+                        <h2>msg.sender</h2>
+                        <div className="section">
+
+                            <h3>msg.sender란?</h3>
+                            <ul>
+                                <li>msg.sender는 이더리움 스마트 컨트랙트에서 현재 실행 중인 함수의 호출자를 나타내는 특별한 전역 함수이다.</li>
+                                <li>모든 트랜잭션 또는 함수 호출은 특정한 주소에 의해 발생하며, msg.sender는 그 주소를 반환한다.</li>
+                            </ul>
+
+                            <h3>msg.sender의 기본 동작</h3>
+                            <ul>
+                                <li>트랜잭션이 발생하면 트랜잭션을 발생시킨 주소(EOA 또는 컨트랙트 주소)가 msg.sender가 된다.</li>
+                                <li>만약 A 컨트랙트가 B 컨트랙트를 호출하면, msg.sender는 A 컨트랙트의 주소가 된다.</li>
+                            </ul>
+
+                            <h3>msg.sender가 ERC-20에서 동작하는 방식</h3>
+
+                            <h4>transfer: 토큰 전송 (msg.sender = 토큰을 보내는 사람)</h4>
+                            <ul>
+                                <li>기능: msg.sender가 자신의 토큰을 다른 주소로 전송할 때 사용된다.</li>
+                                <li>msg.sender의 역할
+                                    <ul>
+                                        <li>송금자(토큰 보유자)의 주소를 나타냄</li>
+                                        <li>_balances[msg.sender]를 확인하여 잔액이 충분한지 검증</li>
+                                        <li>토큰을 msg.sender → recipient로 전송</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>approve: 토큰 사용 권한 위임 (msg.sender = 토큰 소유자)</h4>
+                            <ul>
+                                <li>기능: msg.sender가 특정 spender 주소에게 자신의 토큰을 사용할 수 있도록 허락</li>
+                                <li>msg.sender의 역할
+                                    <ul>
+                                        <li>msg.sender(토큰 소유자)가 spender(제3자, 보통 스마트 컨트랙트)에게 일정량의 토큰 사용을 허가</li>
+                                        <li>_allowance[msg.sender][spender]에 허용된 금액 저장</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>transferFrom: 위임된 토큰 전송 (msg.sender = 승인받은 사용자)</h4>
+                            <ul>
+                                <li>기능: msg.sender가 approve를 통해 허가받은 토큰을 대신 전송</li>
+                                <li>msg.sender의 역할
+                                    <ul>
+                                        <li>msg.sender는 spender 역할(토큰 소유자로부터 위임받은 계정)</li>
+                                        <li>_allowances[sender][msg.sender]를 확인하여 권한 내에서 실행하는지 검증</li>
+                                        <li>msg.sender는 sender의 토큰을 대신 recipient에게 전송 가능</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>_mint: 새로운 토큰 발행 (msg.sender = 발행자)</h4>
+                            <ul>
+                                <li>기능: 컨트랙트 배포자가 새로운 토큰을 생성</li>
+                                <li>msg.sender의 역할
+                                    <ul>
+                                        <li>_mint는 보통 onlyOwner 제한이 있으며, 토큰 발행 권한이 있는 관리자만 호출 가능</li>
+                                        <li>msg.sender가 새로운 토큰을 생성하고 특정 주소에 할당</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>_burn: 토큰 소각 (msg.sender = 토큰 소유자)</h4>
+                            <ul>
+                                <li>기능: msg.sender가 자신의 토큰을 소각</li>
+                                <li>msg.sender의 역할
+                                    <ul>
+                                        <li>msg.sender가 자신의 토큰을 소각할 때 호출</li>
+                                        <li>_balances[msg.sender]에서 소각할 수량만큼 차감</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <h2>ERC-2771: Secure Protocol for Native Meta Transactions</h2>
+                        <div className="section">
+
+                            <h3>ERC-2771이란?</h3>
+                            <ul>
+                                <li>ERC-2771은 메타 트랜잭션을 쉽게 구현할 수 있도록 도와주는 표준이다.</li>
+                                <li>이 표준을 따르면, 사용자는 직접 가스비를 지불하지 않고도 트랜잭션을 실행할 수 있다.</li>
+                            </ul>
+
+                            <h3>Meta Transaction</h3>
+                            <ul>
+                                <li>ETH가 없는 사용자도 트랜잭션을 실행할 수 있도록 하기 위해 메타 트랜잭션이 등장했다.</li>
+                                <li>메타 트랜잭션은 사용자가 가스비를 직접 지불하지 않고 스마트 컨트랙트와 상호작용할 수 있도록 하는 트랜잭션 방식이다.</li>
+                                <li>사용자는 트랜잭션에 서명만 하고, 제3자(Relayer)가 해당 트랜잭션을 블록체인에 제출하여 가스비를 대신 지불한다.</li>
+                                <li>이를 통해 ETH가 없는 사용자도 이더리움 네트워크에서 트랜잭션을 실행할 수 있으며, 사용자 경험(UX)을 개선할 수 있다.</li>
+                            </ul>
+
+                            <h3>메타 트랜잭션 실행 과정</h3>
+                            <ul>
+                                <li>사용자가 직접 트랜잭션을 실행하는 것이 아니라, 제3자(Relayer)가 가스비를 대신 지불하는 방식이다.</li>
+                                <li>사용자는 서명만 하면 되고, Relayer가 블록체인에 제출하여 트랜잭션을 실행한다.</li>
+                                <li>이 과정에서 Forwarder(포워더) 컨트랙트가 서명을 검증하고, 올바른 트랜잭션인지 확인한다.</li>
+                                <li>이 후 Recipient(최종 컨트랙트)는 사용자가 실행하고자 했던 기능을 실행한다.
+                                    <ul>
+                                        <li>msg.sender를 실제 사용자로 인식하여 트랜잭션 실행</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4>역할</h4>
+                            <ul>
+                                <li>사용자(Transaction Signer): 트랜잭션을 서명하는 주체</li>
+                                <li>Relayer(가스 대납자): 사용자의 서명된 트랜잭션을 블록체인에 제출하는 주체</li>
+                                <li>Forwarder(포워더): 트랜잭션을 중계하고 검증하는 컨트랙트</li>
+                                <li>Recipient(최종 컨트랙트): 트랜잭션을 실행하는 컨트랙트</li>
+                            </ul>
+
+                            <h3>사용자의 실제 주소 추출하기</h3>
+                            <ul>
+                                <li>메타 트랜잭션이 담긴 트랜잭션에서는 msg.sender가 Forwarder 주소로 설정되기 때문에, 실제 사용자의 주소를 별도로 추출해야 한다.</li>
+                                <li>Forwarder를 신뢰할 수 있는지 확인(isTrustedForwarder 함수 호출)</li>
+                                <li>msg.data의 마지막 20바이트에서 실제 사용자 주소를 호출</li>
+                                <li>만약 Forwarder가 아닐 경우 기존 msg.sender 그대로 반환</li>
+                            </ul>
+
+                            <h3>EIP-2771 주요 함수</h3>
+
+                            <h4>1. isTrustedForwarder(address forwarder) {arrow} bool</h4>
+                            <ul>
+                                <li>특정 Forwarder(중계자)가 신뢰할 수 있는지 확인하는 함수</li>
+                                <li>Recipient(최종 실행 컨트랙트)는 Forwarder가 신뢰할 수 있는지를 검증해야 한다.</li>
+                                <li>메타 트랜잭션을 처리할 때 필수적인 보안 기능을 제공한다.</li>
+                            </ul>
+
+                            <h4>2. _msgSender() {arrow} address</h4>
+                            <ul>
+                                <li>일반 트랜잭션에서는 msg.sender가 그대로 반환되지만,</li>
+                                <li>Forwarder를 통한 메타 트랜잭션일 경우 실제 사용자를 반환한다.</li>
+                            </ul>
+
+                            <h4>3. _msgData() {arrow} bytes calldata</h4>
+                            <ul>
+                                <li>일반적인 트랜잭션에서는 msg.data를 그대로 반환하지만,</li>
+                                <li>메타 트랜잭션에서는 추가된 데이터를 포함한다.</li>
+                            </ul>
+
+                            <h4>4. execute(ForwardRequest request) {arrow} bool</h4>
+                            <ul>
+                                <li>Relayer가 메타 트랜잭션을 실제로 실행하는 함수이다.</li>
+                                <li>사용자의 서명을 검증한 후, Forwarder가 Recipient 컨트랙트에 트랜잭션을 전달한다.</li>
+                            </ul>
+
+                            <h4>5. verify(ForwardRequest request) {arrow} bool</h4>
+                            <ul>
+                                <li>사용자의 서명이 올바른지 검증하는 함수</li>
+                                <li>잘못된 서명이 제출될 경우, 메타 트랜잭션이 실행되지 않도록 방지한다.</li>
+                            </ul>
+
+                            <h4>6. nonces(address signer) {arrow} uint256</h4>
+                            <ul>
+                                <li>각 사용자의 Nonce(트랜잭션 실행 순서)를 관리한다.</li>
+                                <li>메타 트랜잭션이 중복 실행되지 않도록 방지하는 역할을 한다.</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                )
 
         }
 
