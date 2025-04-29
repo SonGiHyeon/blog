@@ -386,6 +386,145 @@ const SolidityAdvanced = ({ activeContent }: { activeContent: string }) => {
                     </div>
                 )
 
+            case 'Upgradable':
+                return (
+                    <div className="container">
+                        <h2>Upgradable Contract</h2>
+                        <div className="section">
+
+                            <h3>Proxy Contract & Implementation Contract</h3>
+                            <ul>
+                                <li>프록시 패턴에서는 사용자가 프록시 컨트랙트에 함수를 호출하면, 프록시 컨트랙트는 내부에 저장된 로직 컨트랙트의 주소를 참조해 실제 기능을 대신 실행해준다.</li>
+                            </ul>
+
+                            <h3>Proxy Contract(프록시 컨트랙트)</h3>
+                            <h4>역할: 중계자</h4>
+                            <ul>
+                                <li>사용자가 직접 사용하는 외부 인터페이스</li>
+                                <li>사용자의 함수 호출을 받아서, 실제 로직이 구현된 Implementation Contract로 위임(delegate) 합니다.</li>
+                                <li>자신의 상태 변수(Storage)는 유지한 채, 로직만 외부 컨트랙트에 위임한다.</li>
+                            </ul>
+
+                            <h4>핵심 기능</h4>
+                            <ul>
+                                <li>delegatecall을 통해 로직을 실행</li>
+                                <li>implementation 주소를 저장하고 있음</li>
+                                <li>업그레이드 시, 이 주소만 바꿔주면 다른 로직을 실행할 수 있음</li>
+                            </ul>
+
+                            <h3>Implementation Contract(로직 컨트랙트)</h3>
+                            <h4>역할: 실제 비지니스 로직 수행</h4>
+                            <ul>
+                                <li>함수 로직이 실제로 구현되어 있는 컨트랙트</li>
+                                <li>직접 사용되지 않고, 항상 Proxy를 통해서만 호출된다.</li>
+                                <li>상태변수는 가지지만, 실제로 저장은 Proxy의 storage에 저장된다(delegatecall 때문)</li>
+                            </ul>
+
+                            <h4>특징</h4>
+                            <ul>
+                                <li>단독으로는 호출되지 않음</li>
+                                <li>필요한 경우, 새로운 로직 버전을 만들어 Proxy에 연결시켜 업그레이드 가능</li>
+                            </ul>
+
+                        </div>
+                        <h2>Storage - 스마트 컨트랙트에서 데이터가 저장되는 방식(storage)</h2>
+                        <div className="section">
+
+                            <h4>storage는 블록체인 상의 ‘디스크 저장소’ 같은 것</h4>
+                            <ul>
+                                <li>컨트랙트 주소와 연결된 고유한 저장공간</li>
+                                <li>값은 트랜잭션 이후에도 계속 유지됨</li>
+                                <li>가스 비용이 높음(쓰기 비용이 큼)</li>
+                            </ul>
+
+                            <h4>저장 방식 - slot 단위로 저장됨</h4>
+                            <ul>
+                                <li>storage는 기본적으로 32바이트 단위(slot)로 구성되어 있다.</li>
+                            </ul>
+
+                            <h3>Storage: Proxy 패턴 & Upgradable</h3>
+                            <h4>EIP-1967 슬롯 고정 방식</h4>
+                            <ul>
+                                <li>이 슬롯은 implementation address를 저장하기 위해 정해둔 고유 슬롯</li>
+                                <li>다른 상태 변수와 절대 슬롯 충돌이 안 나게 하기 위해 고정된 위치 사용</li>
+                            </ul>
+
+                        </div>
+                        <h2>핵심 기능 - fallback & delegatecall</h2>
+                        <div className="section">
+
+                            <h3>1. fallback 함수 - 사용자 진입점</h3>
+                            <ul>
+                                <li>사용자가 Proxy 컨트랙트에 정의되지 않은 함수를 호출하면,</li>
+                                <li>이 fallback() 함수가 실행되고,</li>
+                                <li>내부에서 delegatecall()을 통해 실제 로직 컨트랙트로 요청을 넘긴다.</li>
+                            </ul>
+
+                            <h3>2. delegatecall - 핵심 위임 로직</h3>
+                            <ul>
+                                <li>Proxy 컨트랙트에서 다른 컨트랙트(= Implementation)의 코드를 실행시킴</li>
+                                <li>단, Proxy의 상태(storage)를 그대로 사용함</li>
+                                <li>즉 로직은 Implementation이 제공, 저장은 Proxy가 담당</li>
+                            </ul>
+
+                            <h3>전체 흐름</h3>
+                            <ul>
+                                <li>1. 유저가 프록시에 호출</li>
+                                <li>2. Fallback 작동</li>
+                                <li>3. delegatecall 실행</li>
+                                <li>4. 로직 컨트랙트의 코드 실행</li>
+                                <li>5. 결과는 프록시의 storage에 저장</li>
+                            </ul>
+
+                        </div>
+                        <h2>Proxy Pattern</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>프록시 패턴은 스마트 컨트랙트에서 업그레이드 가능한 시스템을 만들기 위한 핵심 설계 패턴이다.</li>
+                                <li>스마트 컨트랙트에서는 프록시 패턴을 사용해, 사용자는 하나의 주소(Proxy)에만 요청을 보내고, 실제 로직은 Implementation(로직 컨트랙트)이 수행되도록 구성한다.</li>
+                            </ul>
+
+                            <h3>구성요소 3가지</h3>
+                            <ul>
+                                <li>Proxy Pattern을 위한 핵심 구성요소는 다음과 같다.</li>
+                                <li>Proxy Contract: 유저가 호출하는 진입점, 실제 로직은 없고 delegatecall로 위임</li>
+                                <li>Implementation Contract(Logic): 실제 기능이 정의된 컨트랙트</li>
+                                <li>Storage(Proxy 내부): 데이터는 Proxy에 저장됨(delegatecall이기 때문)</li>
+                            </ul>
+
+                        </div>
+                        <h2>다양한 Upgrade Pattern</h2>
+                        <div className="section">
+
+                            <h3>1. Transparent Proxy Pattern(투명 프록시 패턴)</h3>
+                            <ul>
+                                <li>OpenZeppelin에서 기본으로 제공하는 패턴이며, OpenZeppelin 자체적으로 개발한 패턴이다.</li>
+                            </ul>
+
+                            <h4>핵심 개념</h4>
+                            <ul>
+                                <li>Proxy와 Implementation 분리</li>
+                                <li>Admin 주소만 업그레이드를 수행할 수 있고, 일반 사용자는 오직 로직만 호출 가능</li>
+                                <li>일반 사용자가 Proxy에 Implementation의 함수를 호출하면 {arrow} delegatecall 발생</li>
+                                <li>Admin이 Implementation 함수를 호출하려 하면 {arrow} 실행이 막힘</li>
+                            </ul>
+
+                            <h3>2. UUPS(Universal Upgradeable Proxy Standard)</h3>
+                            <ul>
+                                <li>더 최근의 업그레이드 패턴이며, OpenZeppelin도 권장하는 방식이다.</li>
+                            </ul>
+
+                            <h4>핵심 개념</h4>
+                            <ul>
+                                <li>업그레이드 로직이 로직 컨트랙트(Implementation)에 포함됨</li>
+                                <li>Proxy는 오직 delegatecall만 수행하고, upgrade 기능은 로직에 위임</li>
+                                <li>upgradeTo(address) 같은 업그레이드 함수가 Implementation에 존재</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
         }
 
     }
