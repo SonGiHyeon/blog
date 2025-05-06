@@ -525,6 +525,164 @@ const SolidityAdvanced = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+
+
+            case 'Defi - Uniswap':
+                return (
+                    <div className="container">
+                        <h2>DeFi와 DEX의 이해</h2>
+
+                        <div className="section">
+
+                            <h3>CeFi와 DeFi의 개념</h3>
+
+                            <h4>CeFi (Centralized Finance)</h4>
+                            <ul>
+                                <li>중앙화된 금융 시스템</li>
+                                <li>은행이나 중앙 기관을 통해 거래</li>
+                                <li>거래 내역을 중앙 기관이 보유 및 통제</li>
+                            </ul>
+
+                            <h4>DeFi (Decentralized Finance)</h4>
+                            <ul>
+                                <li>탈중앙화된 금융 생태계</li>
+                                <li>블록체인 네트워크 상에서 스마트 컨트랙트 기반으로 운영</li>
+                                <li>중개 기관 없이 개인 간 직접 금융 거래</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>유니스왑이란?</h2>
+
+                        <div className="section">
+
+                            <ul>
+                                <li>유니스왑은 대표적인 탈중앙화 거래소이다.</li>
+                                <li>중앙 서버나 관리자가 없이도 블록체인상에서 암호화폐를 직접 거래할 수 있게 해주는 플랫폼이다.</li>
+                            </ul>
+
+                            <h3>CEX(중앙화 거래소)와 DEX(탈중앙화 거래소)</h3>
+
+                            <h4>CEX의 동작 방식</h4>
+                            <ul>
+                                <li>사용자의 암호화폐는 거래소가 보관한다.</li>
+                                <li>사용자는 거래소가 제공하는 인터페이스(UI)를 통해 사고팔 수 있다.</li>
+                                <li>거래는 거래소의 내부 장부에서 처리된다.</li>
+                            </ul>
+
+                            <h4>초기 DEX의 등장: EtherDelta</h4>
+                            <ul>
+                                <li>CEX처럼 오더북 기반의 시스템을 블록체인 위에 구현하려 했다.</li>
+                            </ul>
+
+                            <h4>한계점</h4>
+                            <ul>
+                                <li>높은 가스비</li>
+                                <li>확장성 문제</li>
+                                <li>유동성 부족</li>
+                            </ul>
+
+                            <h3>유니스왑의 핵심 특징</h3>
+                            <ul>
+                                <li>오더북 없음</li>
+                                <li>AMM(Automated Market Maker) 도입</li>
+                            </ul>
+
+                            <h3>AMM의 혁신</h3>
+                            <ul>
+                                <li>AMM 방식에서는 누구나 유동성을 제공할 수 있다.</li>
+                                <li>제공된 유동성을 기반으로 알고리즘이 가격을 결정하고 거래를 자동으로 체결한다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>유동성</h2>
+
+                        <div className="section">
+                            <ul>
+                                <li>중앙화 거래소에서는 거래소 자체가 보유한 현금을 기반으로 토큰을 사고팔 수 있다.</li>
+                                <li>탈중앙화 거래소는 중앙화된 자산을 취급하지 않고, 오직 탈중앙화 자산끼리만 거래 가능하다.</li>
+                                <li>이때 등장한 것이 유동성 공급자(LP)이며, 유니스왑은 AMM 방식으로 이를 자동 운용한다.</li>
+                            </ul>
+
+                            <h4>유동성이란?</h4>
+                            <ul>
+                                <li>‘자산을 원하는 때에 원하는 방식으로 바꿀 수 있는 능력’</li>
+                            </ul>
+
+                            <h3>유동성 풀(Liquidity Pool)이란?</h3>
+                            <ul>
+                                <li>스마트 컨트랙트에 예치된 자산의 저장소</li>
+                            </ul>
+
+                            <h4>유동성 풀의 구조와 원리</h4>
+                            <ul>
+                                <li>사용자가 풀에 자산을 예치하면, 풀 안에 있는 비율을 기준으로 교환 비율이 결정된다.</li>
+                            </ul>
+
+                            <h4>유동성 공급자의 역할</h4>
+                            <ul>
+                                <li>누구나 LP가 될 수 있으며, 두 토큰을 비율에 맞춰 쌍으로 예치해야 한다.</li>
+                                <li>예치의 대가로 LP Token을 받고, 풀에서 발생한 거래 수수료를 나눠 갖는다.</li>
+                            </ul>
+
+                            <h3>AMM, 유동성 풀을 움직이는 핵심 기술</h3>
+                            <ul>
+                                <li>AMM은 사람이 아닌 알고리즘이 거래 가격을 결정한다.</li>
+                                <li>중앙화 거래소는 오더북 기반, DEX는 Peer-to-Contract 구조를 따른다.</li>
+                            </ul>
+
+                            <h4>AMM의 핵심 역할</h4>
+                            <ul>
+                                <li>유동성 풀 안의 자산 비율을 기반으로 가격 결정</li>
+                                <li>수요와 공급에 따라 가격 자동 조정</li>
+                            </ul>
+
+                            <ul>
+                                <li>유니스왑은 CPMM(Constant Product Market Maker) 모델을 사용한다.</li>
+                                <li>이는 ‘X * Y = K’라는 공식을 기반으로 가격을 조정한다.</li>
+                            </ul>
+
+                            <h3>비영구적 손실</h3>
+                            <ul>
+                                <li>유동성 풀에 유동성을 공급하면 수수료를 받는다.</li>
+                                <li>그러나 자산 가격의 변동으로 인해 보유만 했을 때보다 손해를 보는 상황 발생</li>
+                            </ul>
+
+                            <h4>비영구적 손실은 왜 발생하는가?</h4>
+                            <ul>
+                                <li>두 자산이 페어로 공급되며 한쪽 자산의 가격만 변해도 자동 조정이 발생</li>
+                                <li>출금 시, 예치 당시보다 손해가 날 수 있다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>Uniswap V1, V2</h2>
+
+                        <div className="section">
+                            <h4>Uniswap V1 특징</h4>
+                            <ul>
+                                <li>AMM과 CPMM 구조로 유동성 공급</li>
+                                <li>시장 균형을 위해 가격 차이가 발생하며 차익거래(Arbitrage)를 유도</li>
+                                <li>Slippage 발생 가능</li>
+                                <li>P2C(Peer-to-Contract) 방식 사용</li>
+                            </ul>
+
+                            <h4>Uniswap V2 특징</h4>
+                            <ul>
+                                <li>ERC20-ERC20 페어 지원</li>
+                                <li>TWAP(Time-Weighted Average Price) 기반 가격 오라클</li>
+                                <li>플래시 스왑 기능 지원</li>
+                                <li>Core / Periphery 아키텍처 분리</li>
+                            </ul>
+
+                            <ul>
+                                <li><strong>Core Contract:</strong> 스왑, 유동성 공급 등 핵심 로직 담당</li>
+                                <li><strong>Periphery Contract:</strong> UI, 라우팅 등 부가 기능 담당</li>
+                                <li>이러한 구조는 보안성 및 유지보수 용이성을 높여줌</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                )
         }
 
     }
