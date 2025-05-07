@@ -683,6 +683,150 @@ const SolidityAdvanced = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case '오라클(Oracle)':
+                return (
+                    <div className="container">
+                        <h2>오라클(Oracle)</h2>
+
+                        <div className="section">
+                            <h3>오라클이란?</h3>
+                            <ul>
+                                <li>스마트 컨트랙트를 대신해 외부 데이터를 안전하게 전달해주는 역할</li>
+                                <li>블록체인 외부의 데이터를 읽어와서, 스마트 컨트랙트에게 전달해주는 중개 시스템</li>
+                            </ul>
+
+                            <h3>오라클 역할 요약</h3>
+                            <ul>
+                                <li><strong>데이터 공급:</strong> 외부 API, 센서, 서버 등에서 데이터를 가져와 블록체인에 전달</li>
+                                <li><strong>트리거 제공:</strong> 스마트 컨트랙트 실행 조건을 만족시키는 외부 정보 제공</li>
+                                <li><strong>자동화 지원:</strong> 실제 세계에서 발생한 일을 기반으로 계약을 자동으로 실행 가능하게 함</li>
+                            </ul>
+                        </div>
+
+                        <h2>오라클의 종류와 비교</h2>
+
+                        <div className="section">
+                            <h3>푸시 방식(Push)</h3>
+                            <ul>
+                                <li><strong>정의:</strong> 오라클이 스스로 주기적으로 데이터를 블록체인에 올림</li>
+                            </ul>
+                            <h4>장점</h4>
+                            <ul>
+                                <li>빠른 응답</li>
+                                <li>반복 요청 없이 참조 가능</li>
+                            </ul>
+                            <h4>단점</h4>
+                            <ul>
+                                <li>쓸모없는 데이터도 계속 올라감 → 비용 발생 증가</li>
+                            </ul>
+
+                            <h3>풀 방식(Pull)</h3>
+                            <ul>
+                                <li><strong>정의:</strong> 스마트 컨트랙트가 직접 요청을 보내고, 오라클이 그때 데이터를 응답</li>
+                            </ul>
+                            <h4>장점</h4>
+                            <ul>
+                                <li>불필요한 데이터 전송 없음</li>
+                                <li>요청 중심이라 유연함</li>
+                            </ul>
+                            <h4>단점</h4>
+                            <ul>
+                                <li>오라클 응답 지연 시 계약 실행도 지연</li>
+                                <li>트랜잭션이 2개 이상 필요할 수 있음 (요청 → 응답)</li>
+                            </ul>
+                        </div>
+
+                        <h2>오라클의 신뢰 방식</h2>
+
+                        <div className="section">
+                            <h3>중앙화 오라클</h3>
+                            <ul>
+                                <li><strong>정의:</strong> 하나의 데이터 제공자 또는 서버가 정보를 전달</li>
+                            </ul>
+                            <h4>장점</h4>
+                            <ul>
+                                <li>빠르고 간단하며 구현 쉬움</li>
+                            </ul>
+                            <h4>단점</h4>
+                            <ul>
+                                <li>단일 실패 지점</li>
+                                <li>조작 가능성 있음</li>
+                                <li>탈중앙 철학과는 거리 있음</li>
+                            </ul>
+
+                            <h3>탈중앙 오라클</h3>
+                            <ul>
+                                <li><strong>정의:</strong> 여러 노드가 데이터를 수집하고, 다수의 합의를 통해 결과를 제공</li>
+                            </ul>
+                            <h4>장점</h4>
+                            <ul>
+                                <li>조작에 강함</li>
+                                <li>검증 가능성 높음</li>
+                            </ul>
+                            <h4>단점</h4>
+                            <ul>
+                                <li>구현 복잡</li>
+                                <li>비용 높음</li>
+                            </ul>
+                        </div>
+
+                        <h2>오라클 사용 사례</h2>
+
+                        <div className="section">
+                            <ul>
+                                <li>가격 정보: 암호화폐, 주식, 환율</li>
+                                <li>날씨 데이터</li>
+                                <li>스포츠 경기 결과</li>
+                                <li>무작위값(랜덤값) - VRF</li>
+                                <li>외부 API 연결</li>
+                            </ul>
+                        </div>
+
+                        <h2>오라클 문제</h2>
+
+                        <div className="section">
+                            <h3>주요 위협 요소</h3>
+                            <ul>
+                                <li>조작 가능성</li>
+                                <li>시간 지연</li>
+                                <li>가용성 문제</li>
+                            </ul>
+
+                            <h3>해결 전략</h3>
+                            <ul>
+                                <li><strong>다중 오라클 사용:</strong> 체인링크는 7~31개 노드의 데이터를 가져와 집계 (중앙값, 평균값, 합의 알고리즘 등)</li>
+                                <li><strong>탈중앙화된 오라클 네트워크 사용:</strong> 오픈 네트워크에서 노드들이 ‘경제적 인센티브’를 갖고 데이터 제공에 참여함</li>
+                                <li><strong>신뢰 기반이 아닌 게임 이론 기반 보안 모델</strong></li>
+                            </ul>
+                        </div>
+
+                        <h2>Chainlink VRF (Verifiable Random Function)</h2>
+
+                        <div className="section">
+                            <h3>스마트 컨트랙트에서 랜덤 값이 어려운 이유?</h3>
+                            <ul>
+                                <li>블록체인은 결정적(deterministic)인 시스템</li>
+                                <li>모든 노드가 같은 입력에 대해 같은 결과를 계산해야 하므로, 보안상 매우 취약</li>
+                            </ul>
+
+                            <h3>VRF의 동작 흐름</h3>
+                            <ul>
+                                <li>1. 스마트 컨트랙트가 VRF에 랜덤 값을 요청</li>
+                                <li>2. Chainlink 노드가 무작위값 + 암호학적 증명을 생성</li>
+                                <li>3. <code>fulfillRandomWords()</code> 함수로 무작위값을 컨트랙트에 전달</li>
+                                <li>4. 컨트랙트는 값을 수신하고 자동으로 검증</li>
+                            </ul>
+
+                            <h3>Chainlink VRF의 Pull 방식</h3>
+                            <ul>
+                                <li><strong>1단계 (Request):</strong> 사용자 or 계약이 요청을 보냄 → 스마트 컨트랙트가 “데이터를 달라”고 요청 (Pull 방식)</li>
+                                <li><strong>2단계 (Off-chain 처리):</strong> 오라클 노드가 off-chain에서 서명된 랜덤 값을 생성 → 검증 가능한 형식으로 스마트 컨트랙트에 전달</li>
+                                <li><strong>3단계 (Response):</strong> 오라클이 <code>fulfillRandomWords()</code> 호출 → Pull 방식의 응답</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
         }
 
     }
