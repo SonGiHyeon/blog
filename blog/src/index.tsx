@@ -15,6 +15,7 @@ import Explorer from './explorer';
 import Solidity from './Solidity';
 import NFT from './NFT';
 import SolidityAdvanced from './SolidityAdvanced';
+import Server from './Server';
 
 window.Buffer = Buffer;
 
@@ -35,7 +36,8 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/solidity': ['Solditiy Basic Grammar 1', 'Solditiy Basic Grammar 2', 'Solditiy Basic Grammar 3', 'Solditiy Basic Grammar 4', 'Solditiy Basic Grammar 5',
       'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3', 'Solditiy ABI', 'ERC-20', 'ERC-721', 'NFT Storage'
     ],
-    '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)', 'EIP 2771(Meta Transactions)', 'Upgradable', 'Defi - Uniswap', '오라클(Oracle)']
+    '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)', 'EIP 2771(Meta Transactions)', 'Upgradable', 'Defi - Uniswap', '오라클(Oracle)'],
+    '/server': ['Server intro']
   };
 
   return (
@@ -66,7 +68,8 @@ const Index = () => {
       '/react-advanced': 'React State & Props',
       '/blockchain-network': 'On-Chain Data',
       '/solidity': 'Solditiy Basic Grammar 1',
-      '/solidity-advanced': 'Test-Driven Contract Development'
+      '/solidity-advanced': 'Test-Driven Contract Development',
+      'server': 'Server intro'
     };
     setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);
@@ -90,7 +93,7 @@ const Index = () => {
         <Link to="/solidity">Solidity</Link>
         <Link to="/NFT">NFT</Link>
         <Link to="/solidity-advanced">SolidityAdvanced</Link>
-
+        <Link to="/server">Server</Link>
       </nav>
 
       <div className="main-content">
@@ -110,6 +113,7 @@ const Index = () => {
             <Route path="/solidity" element={<Solidity activeContent={activeContent} />} />
             <Route path="/NFT" element={<NFT activeContent={activeContent} />} />
             <Route path="/solidity-advanced" element={<SolidityAdvanced activeContent={activeContent} />} />
+            <Route path="/server" element={<Server activeContent={activeContent} />} />
           </Routes>
         </div>
       </div>
