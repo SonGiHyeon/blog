@@ -277,6 +277,153 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                     </div>
 
                 )
+            case 'Express':
+                return (
+                    <div className="container">
+                        <h2>Express</h2>
+
+                        <div className="section">
+
+                            <h3>- Express는 Node.js를 위한 가볍고 유연한 웹 애플리케이션 프레임워크다.</h3>
+                            <ul>
+                                <li>다양한 HTTP 유틸리티와 미들웨어를 제공하여 빠르게 서버를 구축하고 API를 만들 수 있도록 돕는다.</li>
+                            </ul>
+
+                            <ul>
+                                <li>Node.js의 기본 HTTP 모듈 위에 만들어졌다.</li>
+                                <li>RESTful API, 웹 애플리케이션, 마이크로서비스에 적합하다.</li>
+                                <li>‘미들웨어’ 기반으로 구성되어 있어 구조를 단순하게 유지하면서도 확장이 쉽다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>왜 Express를 사용할까?</h2>
+
+                        <div className="section">
+                            <h3>- Express의 장점</h3>
+                            <ul>
+                                <li>코드가 간결해지고 유지보수가 쉬워짐</li>
+                                <li>라우팅, 요청 파싱, 정적 파일 제공 등 기능이 내장되어 있음</li>
+                                <li>다양한 미들웨어와의 호환성이 뛰어남</li>
+                                <li>커뮤니티가 크고 학습 자료가 풍부함</li>
+                            </ul>
+
+                            <ul>
+                                <li>Express는 웹 서버 개발을 빠르게 시작할 수 있도록 도와주는 ‘기본 툴킷’ 역할을 한다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>Express 기본 구조</h2>
+
+                        <div className="section">
+                            <h3>- app.js 또는 server.js의 역할</h3>
+                            <ul>
+                                <li>Express 애플리케이션 생성(express() 호출)</li>
+                                <li>미들웨어 등록(app.use())</li>
+                                <li>라우터 연결(app.use(‘/경로’, 라우터) 방식 또는 app.get() 등 직접 정의)</li>
+                                <li>서버 실행(app.listen())</li>
+                            </ul>
+
+                            <h3>- 미들웨어란(Middleware)?</h3>
+                            <ul>
+                                <li>요청과 응답 사이에서 실행되는 함수</li>
+                                <li>모든 Express 앱은 미들웨어의 연속체로 구성되어 있다.</li>
+                            </ul>
+
+                            <h4>* 주요 미들웨어 예시</h4>
+                            <ul>
+                                <li><strong>express.json()</strong>: JSON 요청 본문을 자동으로 파싱해 req.body에 넣어준다.</li>
+                                <li><strong>express.static()</strong>: 정적 파일(CSS, JS, 이미지 등)을 제공할 때 사용한다.</li>
+                                <li><strong>커스텀 미들웨어</strong></li>
+                            </ul>
+
+                            <h3>- 라우팅(Routing)</h3>
+                            <ul>
+                                <li>라우팅이란, 클라이언트의 요청 URL과 메서드(GET, POST 등)에 따라 어떤 동작을 할지 정의하는 것</li>
+                                <li>app.get()</li>
+                                <li>app.post()</li>
+                                <li>app.put()</li>
+                                <li>app.delete()</li>
+                                <li>app.patch()</li>
+                            </ul>
+
+                            <h3>- 요청(Request)과 응답(Response) 객체</h3>
+
+                            <h4>* req 객체 예시</h4>
+                            <ul>
+                                <li>req.method: 요청 방식(GET, POST 등)</li>
+                                <li>req.url: 요청 경로</li>
+                                <li>req.query: URL 쿼리 파라미터</li>
+                                <li>req.params: 경로 파라미터</li>
+                                <li>req.body: 요청 본문(json 미들웨어 필요)</li>
+                            </ul>
+
+                            <h4>* res 객체 예시</h4>
+                            <ul>
+                                <li>res.send(): 문자열 응답</li>
+                                <li>res.json(): JSON 응답</li>
+                                <li>res.status(code): 상태 코드 설정</li>
+                            </ul>
+                        </div>
+
+                        <h2>REST API 기능 설계</h2>
+
+                        <div className="section">
+                            <h3>- CRUD 구조</h3>
+                            <ul>
+                                <li>생성: POST: 데이터를 생성</li>
+                                <li>조회: GET: 데이터를 읽거나 조회</li>
+                                <li>수정: PUT / PATCH: 데이터를 수정</li>
+                                <li>삭제: DELETE: 데이터를 삭제</li>
+                            </ul>
+
+                            <h3>- 파라미터 처리</h3>
+                            <ul>
+                                <li>req.params(경로 파라미터)</li>
+                                <li>req.query(쿼리 스트링)</li>
+                                <li>req.body(본문 데이터)</li>
+                            </ul>
+
+                            <h3>- 상태 코드와 응답 보내기</h3>
+                            <ul>
+                                <li>응답을 보낼 때는 단순히 데이터를 넘겨주는 것뿐 아니라 적절한 HTTP 상태 코드도 함께 보내는 것이 중요하다.</li>
+                            </ul>
+
+                            <h4>* 자주 쓰이는 상태 코드</h4>
+                            <ul>
+                                <li>200: OK - 성공적인 일반 요청</li>
+                                <li>201: Created - 리소스 생성 성공</li>
+                                <li>204: No Content - 응답 본문 없음</li>
+                                <li>400: Bad Request - 잘못된 요청</li>
+                                <li>404: Not Found - 리소스 없음</li>
+                                <li>500: Internal Server Error - 서버 오류</li>
+                            </ul>
+                        </div>
+
+                        <h2>에러 핸들링과 구조화</h2>
+
+                        <div className="section">
+                            <h3>- 404 / 500 에러 처리 미들웨어</h3>
+                            <ul>
+                                <li>Express는 마지막까지 어떤 라우터에도 매칭되지 않으면 404 에러를 처리하고, 에러가 발생하면 500 오류를 핸들링 할 수 있는 미들웨어를 정의할 수 있다.</li>
+                                <li>이 둘 미들웨어는 app.use()의 마지막에 배치하는 것이 원칙이다.</li>
+                            </ul>
+
+                            <h3>- 라우터 분리(express.Router())</h3>
+                            <ul>
+                                <li>하나의 파일에 모든 API를 넣기보다는 기능 단위로 분리하는 것이 유지보수에 좋다.</li>
+                            </ul>
+
+                            <h3>- 컨트롤러 / 서비스 계층 구조</h3>
+                            <ul>
+                                <li>기능이 복잡해지면 요청 처리 로직을 컨트롤러와 서비스 계층으로 나눈다.</li>
+                            </ul>
+
+                            <h4>* Controller: 요청(req)와 응답(res)을 처리하는 레벨</h4>
+                            <h4>* Service: 실제 로직을 수행하는 계층(DB 조회, 데이터 가공 등)</h4>
+
+                        </div>
+                    </div>
+                )
 
         }
 
