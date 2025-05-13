@@ -424,6 +424,90 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'Cookie & Session & JWT':
+                return (
+                    <div className="container">
+                        <h2> 우리는 왜 인증이 필요한가? </h2>
+                        <div className="section">
+
+                            <h3>인증 & 인가</h3>
+
+                            <h4>Authentication (인증):</h4>
+                            <ul>
+                                <li>정의: “너 누구야?”</li>
+                                <li>예시: 로그인, 서명, 패스워드 입력</li>
+                            </ul>
+
+                            <h4>Authorization (인가):</h4>
+                            <ul>
+                                <li>정의: “너 이거 할 수 있어?”</li>
+                                <li>예시: 관리자만 접근, 글 수정 권한</li>
+                            </ul>
+
+                            <h3>서버는 기억력이 없다?</h3>
+
+                            <ul>
+                                <li>웹에서의 요청 방식:</li>
+                                <ul>
+                                    <li>[브라우저] → 요청 → [서버] → 응답 → 끝</li>
+                                </ul>
+                                <li>서버는 요청이 끝나면 이전 요청을 잊어버린다.</li>
+                                <li>상태를 저장하지 않는(stateless) 특성 때문이다.</li>
+                            </ul>
+
+                            <h3>로그인 상태 유지: 세션 & 쿠키</h3>
+
+                            <ul>
+                                <li>‘세션’과 ‘쿠키’ 같은 기술은 ‘로그인 상태’를 기억하게 만들어주는 장치다.</li>
+                            </ul>
+
+                            <h4>쿠키</h4>
+                            <ul>
+                                <li>저장 위치: 브라우저(클라이언트)</li>
+                                <li>담고 있는 정보: 세션 ID, 사용자 정보 등</li>
+                                <li>사용 목적: 사용자가 ‘누군지’ 계속해서 알려주기 위해</li>
+                            </ul>
+
+                            <h4>세션</h4>
+                            <ul>
+                                <li>저장 위치: 서버</li>
+                                <li>담고 있는 정보: 사용자 상태(id, 권한 등)</li>
+                                <li>서버가 ‘사용자의 로그인 상태나 권한’을 유지하고 식별하기 위해</li>
+                            </ul>
+
+                            <h3>JWT(JSON Web Token): 로그인 상태를 저장하는 또 다른 방식</h3>
+
+                            <ul>
+                                <li>사용자의 인증 정보를 포함하는 토큰 기반 인증 방식</li>
+                                <li>서버에 상태를 저장하지 않음 (Stateless)</li>
+                            </ul>
+
+                            <h4>JWT는 왜 사용될까?</h4>
+                            <ul>
+                                <li>세션을 서버에 저장하지 않아도 됨 → 확장성 ↑</li>
+                                <li>클라이언트에 모든 정보 포함 → 서버 부담 ↓</li>
+                                <li>다양한 서비스(API, 모바일 등)에서 일관된 인증 가능</li>
+                            </ul>
+
+                            <h4>JWT 구조</h4>
+                            <ul>
+                                <li>Header: 알고리즘, 토큰 타입</li>
+                                <li>Payload: 사용자 정보 (예: userId)</li>
+                                <li>Signature: 위조 방지용 서명</li>
+                            </ul>
+
+                            <h4>예시 흐름</h4>
+                            <ul>
+                                <li>1. 로그인 시 서버가 JWT 생성해 클라이언트에 전달</li>
+                                <li>2. 클라이언트가 JWT를 저장 (예: localStorage, cookie)</li>
+                                <li>3. 이후 요청마다 Authorization: Bearer &lt;토큰&gt; 헤더에 포함해 전송</li>
+                                <li>4. 서버는 토큰 유효성만 검증하고 사용자 인증 완료</li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                )
 
         }
 
