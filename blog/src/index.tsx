@@ -37,7 +37,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
       'Solditiy Practice Exercise 1', 'Solditiy Practice Exercise 2', 'Solditiy Practice Exercise 3', 'Solditiy ABI', 'ERC-20', 'ERC-721', 'NFT Storage'
     ],
     '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)', 'EIP 2771(Meta Transactions)', 'Upgradable', 'Defi - Uniswap', '오라클(Oracle)'],
-    '/server': ['Server intro', 'Express', 'Cookie & Session & JWT']
+    '/server': ['Server intro', 'Express', 'Cookie & Session & JWT', 'NestJS']
   };
 
   return (

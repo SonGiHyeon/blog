@@ -508,6 +508,127 @@ const Server = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'NestJS':
+                return (
+                    <div className="container">
+                        <h2> NestJS </h2>
+                        <div className="section">
+
+                            <h4>Node.js 기반의 서버 애플리케이션을 위한 프레임워크로, Express 위에서 동작하며 모듈화, 객체지향, 함수형 프로그래밍 요소를 통합한 구조를 제공한다.</h4>
+                        </div>
+
+                        <h2> Express와의 관계 </h2>
+                        <div className="section">
+                            <ul>
+                                <li>NextJS는 기본적으로 Express 위에서 동작한다.</li>
+                                <li>Express를 사용하는 것처럼 요청 처리나 라우팅을 수행할 수 있다.</li>
+                                <li>Fastify(웹 서버 프레임워크)를 선택하여 더 빠른 처리도 가능하다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> NestJS의 주요 특징 </h2>
+                        <div className="section">
+
+                            <h3>의존성 주입</h3>
+                            <ul>
+                                <li>NestJS는 의존성 주입 컨테이너를 제공하여 클래스 간 결합도를 낮추고 유지보수를 쉽게 한다.</li>
+                            </ul>
+                            <h3>모듈 기반 설계</h3>
+                            <ul>
+                                <li>각 기능은 Module 단위로 분리되며, Controller와 Service가 함께 구성된다.</li>
+                            </ul>
+                            <h3>테스트 친화적 구조</h3>
+                            <ul>
+                                <li>Nest는 TestingModule과 의존성 주입을 통해 ‘단위 테스트’와 ‘통합 테스트’를 쉽게 할수 있다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> NestJS 프로그램 구성예시 - User </h2>
+                        <div className="section">
+
+                            <h3>Nest CLI로 구성 요소 생성하기</h3>
+                            <ul>
+                                <li>nest generate controller user</li>
+                                <li>nest generate service user</li>
+                                <li>nest generate module user</li>
+                            </ul>
+                            <h3>Controller - HTTP 요청을 처리하는 진입점</h3>
+                            <ul>
+                                <li>컨트롤러는 클라이언트의 HTTP 요청을 받아 해당 요청을 서비스로 전달한다.</li>
+                            </ul>
+                            <h3>Service - 비지니스 로직 처리</h3>
+                            <ul>
+                                <li>서비스는 실제 로직이나 데이터를 처리하는 계층</li>
+                                <li>컨트롤러로부터 요청을 받고, 결과를 반환한다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> 요청 처리 고급 기능 </h2>
+                        <div className="section">
+
+                            <h3>DTO(Data Transfer Object)와 유효성 검사</h3>
+                            <ul>
+                                <li>요청 데이터의 형식과 제약을 명확히 정의하는 객체</li>
+                                <li>class-validator 라이브러리와 함께 사용하면 유효성 검사를 간편하게 처리할 수 있다.</li>
+                            </ul>
+                            <h3>Pipe: 요청 값의 변환 및 검증</h3>
+                            <ul>
+                                <li>Pipe는 요청이 컨트롤러에 도달하기 전 값을 가공하거나 검증하는 데 사용된다.</li>
+                            </ul>
+                            <h3>미들웨어 사용하기</h3>
+                            <ul>
+                                <li>미들웨어는 라우트에 도달하기 전 공통 처리 로직을 넣는 데 사용된다.</li>
+                                <li>로깅, 인증, 카운트 증가 등 다양한 용도로 활용된다.</li>
+                            </ul>
+                            <h3>Exception Filter로 예외 처리 통일</h3>
+                            <ul>
+                                <li>NestJS에서는 Exception Filter를 통해 예외 처리 형식을 통일할 수 있다.</li>
+                            </ul>
+                        </div>
+
+                        <h2> 인증 및 보안 </h2>
+                        <div className="section">
+
+                            <h3>JWT 안중 방식과 Passport + Guard 조합을 사용해 안전한 사용자 인증 흐름을 구현하는 것이 핵심이다.</h3>
+                            <h4>개념 이해: 인증 흐름의 구성 요소</h4>
+                            <ul>
+                                <li>JWT: 사용자 정보를 담아 클라이언트에게 전달하는 토큰</li>
+                                <li>Passport: 다양한 인증 전략(Local, JWT 등)을 지원하는 미들웨어</li>
+                                <li>Guard: 요청을 가로채 인증된 사용자만 접근 허용</li>
+                                <li>Decorator: 인증된 사용자 정보에 접근할수 있게 해줌(@Request, @User)</li>
+                            </ul>
+                            <h4>JWT 로그인 흐름 구현</h4>
+                            <ul>
+                                <li>AuthModule 기본 설정</li>
+                            </ul>
+                            <h4>Passport 모듈과 Guard 활용</h4>
+                            <ul>
+                                <li>JwtStrategy 구현</li>
+                                <li>Guard 구현</li>
+                            </ul>
+                            <h4>로그인 구현</h4>
+                            <ul>
+                                <li>로그인 요청 처리 및 토큰 발급</li>
+                            </ul>
+                            <h4>인증된 사용자 정보 요청하기</h4>
+                            <ul>
+                                <li>Guard 적용</li>
+                                <li>커스텀 데코레이터(@User)</li>
+                            </ul>
+                        </div>
+
+                        <h2> 환경변수 관리 - @nestjs/config </h2>
+                        <div className="section">
+
+                            <h3>환경변수를 관리해야 하는 이유</h3>
+                            <ul>
+                                <li>인증정보(JWT 비밀키, DB 비밀번호 등)를 코드에 직접 쓰는 건 보안상 위험</li>
+                                <li>운영 환경(dev, prod, test 등)에 따라 유동적인 설정값 필요</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
 
         }
 
