@@ -629,6 +629,43 @@ const Server = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'NestJS - 컨트랙트 요청 API 1':
+                return (
+                    <div className="container">
+                        <div className="section">
+                            <h2> NestJS 클래스, this, readonly 키워드 이해하기 </h2>
+
+                            <h3> 클래스와 constructor 기본 구조 이해하기 </h3>
+
+                            <ul>
+                                <li>NestJS의 서비스는 보통 클래스 기반으로 작성된다.</li>
+                                <li>@Injectable() 데코레이터가 붙은 이 클래스는 의존성 주입을 통해 다른 서비스나 설정을 받아서 사용하게 된다.</li>
+                            </ul>
+
+                            <h4>constructor는 클래스를 초기화하는 함수</h4>
+                            <ul>
+                                <li>NestJS는 EtherService를 자동으로 생성해서 ethersService에 주입함</li>
+                            </ul>
+
+                            <h3> this </h3>
+
+                            <ul>
+                                <li>this는 현재 클래스 인스턴스를 가리킨다.</li>
+                                <li>this.ethersService는 생성자에서 받은 서비스 인스턴스</li>
+                                <li>즉 ethersService는 DatatypeService 안에서 계속 쓰일 수 있게 this로 접근하는 것이다.</li>
+                            </ul>
+
+                            <h3> readonly의 역할 </h3>
+
+                            <ul>
+                                <li>readonly는 한 번 할당하면 더 이상 바꿀 수 없는 속성</li>
+                                <li>클래스 안에서 실수로 다른 값으로 바꾸는 걸 방지함</li>
+                                <li>즉, readonly는 안전하게 의존성 주입받은 인스턴스를 보호해주는 역할을 한다.</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                )
 
         }
 
