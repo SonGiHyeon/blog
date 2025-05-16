@@ -666,6 +666,48 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'NestJS - 컨트랙트 요청 API 2':
+                return (
+                    <div className="container">
+                        <h2>DTO</h2>
+                        <div className="section">
+
+                            <h4>DTO(Data Transfer Object)는 컨트롤러와 서비스 간 데이터 전달을 위한 객체</h4>
+                            <ul>
+                                <li>API 요청/응답에 사용되는 데이터 구조를 정의</li>
+                                <li>DB 모델(Entity)와 분리된 ‘입출력 전용 객체’</li>
+                                <li>NestJS에서는 클래스로 정의하고 데코레이터로 유효성 검사를 설정</li>
+                            </ul>
+
+                            <h4>DTO를 쓰는 이유</h4>
+                            <ul>
+                                <li>타입 안정성: 타입스크립트의 장점을 활용</li>
+                                <li>명시적 구조: 협업과 유지보수에 용이</li>
+                                <li>유효성 검증: 사용자 입력을 안전하게 처리</li>
+                            </ul>
+
+                        </div>
+
+                        <h2>NestJS 예외 처리(Exceptions)</h2>
+                        <div className="section">
+
+                            <ul>
+                                <li>NestJS는 HttpException 클래스를 통해 HTTP 상태 코드 기반의 에러 응답을 처리할 수 있도록 돕는다.</li>
+                                <li>기본적으로 NestJS는 <code>throw new HttpException(…)</code> 방식으로 에러를 발생시키고, 이를 클라이언트에게 JSON 응답으로 반환한다.</li>
+                            </ul>
+
+                            <h4>기본 예외 클래스들</h4>
+                            <ul>
+                                <li>클래스명: <code>BadRequestException</code>, 상태 코드: 400, 설명: 잘못된 요청</li>
+                                <li>클래스명: <code>UnauthorizedException</code>, 상태 코드: 401, 설명: 인증 실패</li>
+                                <li>클래스명: <code>ForbiddenException</code>, 상태 코드: 403, 설명: 권한 없음</li>
+                                <li>클래스명: <code>NotFoundException</code>, 상태 코드: 404, 설명: 리소스 없음</li>
+                                <li>클래스명: <code>InternalServerErrorException</code>, 상태 코드: 500, 설명: 서버 내부 오류</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                )
 
         }
 
