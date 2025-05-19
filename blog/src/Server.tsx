@@ -708,6 +708,38 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'NestJS - 컨트랙트 요청 API 3':
+                return (
+                    <div className="container">
+                        <h2>Request Data 처리하기: @Query, @Param, @Body</h2>
+
+                        <div className="section">
+                            <h3>@Query - 쿼리스트링 데이터를 받을 때</h3>
+                            <h4>
+                                <ul>
+                                    <li>URL 뒤에 ?key=value 형태로 전달되는 데이터를 처리한다.</li>
+                                    <li>검색 조건, 페이지네이션 등 선택적 데이터를 받을 때 자주 사용된다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>@Param - URL 경로 변수 받기</h3>
+                            <h4>
+                                <ul>
+                                    <li>URL 경로에 포함된 값을 변수처럼 추출할 때 사용된다.</li>
+                                    <li>특정 리소스 식별자(id 등)를 받을 때 자주 사용된다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>@Body - POST/PUT 요청의 본문 데이터 받기</h3>
+                            <h4>
+                                <ul>
+                                    <li>클라이언트가 보내는 JSON 형식의 데이터를 받을 때 사용된다.</li>
+                                    <li>주로 POST, PUT 등의 요청에서 사용된다.</li>
+                                </ul>
+                            </h4>
+                        </div>
+                    </div>
+                )
 
         }
 
