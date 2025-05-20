@@ -740,6 +740,55 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'NestJS - 컨트랙트 요청 API 4':
+                return (
+                    <div className="container">
+                        <h2>Interceptor</h2>
+                        <div className="section">
+                            <h3>Interceptor는 요청(request)과 응답(response) 사이에서 동작하는 미들웨어와 유사한 컴포넌트이다.</h3>
+                            <h3>NestJS의 AOP(관점 지향 프로그래밍) 기능 중 하나이다.</h3>
+                            <h3>@Injectable() 데코레이터와 NestInterceptor 인터페이스를 사용한다.</h3>
+                        </div>
+
+                        <h2>사용 예시</h2>
+                        <div className="section">
+                            <h4>요청 전/후 로직 처리</h4>
+                            <ul>
+                                <li>로깅</li>
+                                <li>타이머 측정 등</li>
+                            </ul>
+
+                            <h4>응답 구조 변경</h4>
+                            <h4>예외 래핑</h4>
+                            <h4>캐싱 처리 등</h4>
+                        </div>
+
+                        <h2>기본 구조</h2>
+                        <div className="section">
+                            <h4>intercept()는 요청을 가로채고, 다음 핸들러를 호출한다.</h4>
+                            <h4>next.handle()은 실제 컨트롤러의 응답 스트림이다.</h4>
+                            <h4>map() 연산자를 통해 응답 데이터를 포장하거나 수정할 수 있다.</h4>
+                        </div>
+
+                        <h2>적용 방법</h2>
+                        <div className="section">
+                            <ul>
+                                <li>전역(Global)으로 적용</li>
+                                <li>특정 컨트롤러나 라우터에 적용</li>
+                            </ul>
+                        </div>
+
+                        <h2>실무 활용 예시</h2>
+                        <div className="section">
+                            <ul>
+                                <li>응답 일괄 포맷팅</li>
+                                <li>요청 시간 측정</li>
+                                <li>캐싱 처리(Custom Decorator와 함께)</li>
+                            </ul>
+                        </div>
+                    </div>
+                )
+
 
         }
 
