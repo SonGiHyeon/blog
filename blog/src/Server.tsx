@@ -788,8 +788,264 @@ const Server = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case 'NestJS - 컨트랙트 요청 API 5':
+                return (
+                    <div className="container">
+                        <h2>RESTful하게 API를 설계하는 방법</h2>
 
+                        <div className="section">
+                            <h3>REST의 정의</h3>
+                            <ul>
+                                <li>REST(Representational State Transfer)는 웹의 리소스를 정의하고 리소스에 대한 주소(URI)를 지정해 접근하도록 하는 아키텍처 스타일이다.</li>
+                            </ul>
 
+                            <h3>핵심 원칙</h3>
+                            <ul>
+                                <li>클라이언트 - 서버 구조</li>
+                                <li>무상태(Stateless)</li>
+                                <li>일관된 인터페이스(Uniform Interface)</li>
+                                <li>캐시 가능(Cacheable)</li>
+                                <li>계층화된 시스템</li>
+                            </ul>
+                        </div>
+
+                        <h2>RESTful한 URL 설계 원칙</h2>
+
+                        <div className="section">
+                            <h3>URL은 동사보다는 명사를 사용</h3>
+                            <ul>
+                                <li>올바른 방식: <code>GET /users/1</code></li>
+                                <li>잘못된 방식: <code>GET /getUserById?id=1</code></li>
+                            </ul>
+
+                            <h3>복수형 명사 사용</h3>
+                            <ul>
+                                <li>리소스는 일반적으로 복수형 명사로 표현</li>
+                                <li>예시:
+                                    <ul>
+                                        <li><code>GET /books</code></li>
+                                        <li><code>POST /books</code></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>HTTP 메서드 활용</h3>
+                            <ul>
+                                <li>GET: 리소스 조회</li>
+                                <li>POST: 리소스 생성</li>
+                                <li>PUT: 리소스 전체 수정</li>
+                                <li>PATCH: 리소스 일부 수정</li>
+                                <li>DELETE: 리소스 삭제</li>
+                            </ul>
+
+                            <h3>계층적 자원 구조 설계</h3>
+                            <ul>
+                                <li>부모 - 자식 관계를 URI에 표현</li>
+                                <li>예시:
+                                    <ul>
+                                        <li><code>GET /users/1/posts</code>: 특정 유저의 게시글</li>
+                                        <li><code>GET /users/1/posts/5</code>: 특정 유저의 특정 게시글</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>쿼리 파라미터의 사용</h3>
+                            <ul>
+                                <li>검색이나 필터링에 사용</li>
+                                <li>예시:
+                                    <ul>
+                                        <li><code>GET /books?author=tolkien&sort=desc</code></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h2>상태 코드의 의미 있는 반환</h2>
+
+                        <div className="section">
+                            <ul>
+                                <li>200 OK: 정상 처리</li>
+                                <li>201 Created: 리소스 생성 성공</li>
+                                <li>204 No Content: 성공했지만 리턴할 데이터 없음</li>
+                                <li>400 Bad Request: 요청 오류 (잘못된 파라미터 등)</li>
+                                <li>404 Not Found: 리소스 없음</li>
+                                <li>500 Internal Server Error: 서버 오류</li>
+                            </ul>
+                        </div>
+
+                        <h2>Param, Query, Body는 언제 쓰는 걸까?</h2>
+
+                        <div className="section">
+                            <h3>@Param(): 경로(주소)에서 값을 추출할 때</h3>
+                            <ul>
+                                <li>URL 안에 있는 값을 변수처럼 사용하는 경우</li>
+                                <li>필수값인 경우가 많고, 리소스를 식별할 때 사용</li>
+                                <li>경로에 <code>:id</code>를 지정하고,
+                                    <ul>
+                                        <li>클라이언트가 <code>/users/123</code> 요청 시, id - ‘123’으로 전달됨</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>@Query(): URL 뒤의 ?key=value 형식의 값을 추출할 때</h3>
+                            <ul>
+                                <li>검색 필터, 정렬 조건, 페이징 정보 등 선택적 조건 전달</li>
+                                <li>값이 없어도 동작할 수 있도록 설계</li>
+                                <li>예시:
+                                    <ul>
+                                        <li><code>role=admin</code>, <code>active=true</code>는 모두 쿼리 파라미터</li>
+                                        <li>사용자는 선택적으로 여러 조건을 조합할 수 있음</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h3>@Body(): 요청 본문(Body)에서 JSON 데이터 추출</h3>
+                            <ul>
+                                <li>POST, PUT, PATCH에서 클라이언트가 보내는 실제 데이터</li>
+                                <li>구조화된 객체 형태로 DTO에 매핑해서 사용</li>
+                                <li>사용자로부터 데이터를 받아 저장하거나 처리할 때 필수</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
+            case 'scheduling':
+                return (
+                    <div className="container">
+                        <h2>스케줄러(Scheduling)</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <h4>
+                                <ul>
+                                    <li>서버 애플리케이션에서 특정 작업을 자동으로 주기적으로 실행하는 것</li>
+                                    <li>특정 시간마다</li>
+                                    <li>특정 주기마다</li>
+                                    <li>정해진 시점에 자동으로 함수를 실행시켜주는 ‘자동 실행 시스템’이다.</li>
+                                </ul>
+                            </h4>
+
+                        </div>
+                        <h2>CRON</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <h4>
+                                <ul>
+                                    <li>시간 기반 작업 스케줄러</li>
+                                    <li>서버에서 일정 주기마다 어떤 작업(스크립트, 명령어 등)을 자동 실행하고 싶을 때 사용한다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>Cron 표현식(CRON Expression)</h3>
+                            <h4>
+                                <ul>
+                                    <li>특정 시점을 지정하기 위해 5~6개의 필드를 가진 문자열을 사용하게 된다</li>
+                                    <li>NestJS의 @nestjs/schedule 등에서는 초 필드까지 지원하는 6자리 형식을 사용함</li>
+                                </ul>
+                            </h4>
+
+                            <h3>Cron 사용처</h3>
+                            <h4>
+                                <ul>
+                                    <li><strong>리눅스 서버</strong>
+                                        <ul>
+                                            <li>crontab -e 명령어로 Cron job 등록</li>
+                                            <li>주기적으로 로그 정리, DB 백업 등</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>백엔드 프레임워크(NestJS, Spring 등)</strong>
+                                        <ul>
+                                            <li>NestJS에서는 @Cron() 데코레이터 사용</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </h4>
+
+                            <h3>CRON 표현식 예시</h3>
+                            <h4>
+                                <ul>
+                                    <li>* * * * * {arrow} 매 분 실행</li>
+                                    <li>0 0 * * * {arrow} 매일 자정에 실행</li>
+                                    <li>*/10 * * * * {arrow} 매 10분마다 실행</li>
+                                    <li>0 9 * * 1 {arrow} 매주 월요일 오전 9시에 실행</li>
+                                    <li>CRON 표현식은 “분 시 일 월 요일”의 구조로 되어 있으며, 유연하게 주기를 조정할 수 있다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>NestJS CronExpression</h3>
+                            <h4>
+                                <ul>
+                                    <li>NestJS에서는 CronExpression이라는 이름으로 CRON 표현식을 정리하여 제공한다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>@Cron, @Interval, @Timeout</h3>
+                            <h4>
+                                <ul>
+                                    <li>데코레이터: @Cron - CRON 표현식 기반</li>
+                                    <li>데코레이터: @Interval(ms) - 일정 간격마다 실행</li>
+                                    <li>데코레이터: @Timeout(ms) - 일정 시간 후 한 번만 실행</li>
+                                </ul>
+                            </h4>
+
+                        </div>
+                        <h2>NestJS에서 스케줄러(Scheduler) 구현하기</h2>
+                        <div className="section">
+
+                            <h3>스케줄러란?</h3>
+                            <h4>
+                                <ul>
+                                    <li>서버에서 주기적으로 자동 실행되는 작업을 만들고 싶을 때 사용하는 기능</li>
+                                    <li>NestJS는 @Cron 데코레이터와 CronExpression을 활용해 구현할 수 있다.</li>
+                                </ul>
+                            </h4>
+
+                            <h3>사용 패키지</h3>
+                            <h4>
+                                <ul>
+                                    <li>@nestjs/schedule 패키지를 사용하면 쉽게 스케줄링 기능을 구현할 수 있다.</li>
+                                    <li>주기적으로 백업, 로그 정리, 알림 전송 등 다양한 자동화 작업을 수행할 수 있다.</li>
+                                </ul>
+                            </h4>
+
+                        </div>
+                        <h2>Logger</h2>
+                        <div className="section">
+
+                            <h3>Logger란?</h3>
+                            <h4>
+                                <ul>
+                                    <li>NestJS가 제공하는 ‘내장 로깅 도구’이다.</li>
+                                    <li>어떤 이벤트가 발생했는지, 오류가 있는지 등을 콘솔 또는 외부 시스템에 출력할 수 있게 해준다.</li>
+                                    <li>개발, 테스트, 운영 환경 모두에서 중요한 역할을 하는 핵심 도구</li>
+                                </ul>
+                            </h4>
+
+                            <h3>Logger를 써야 되는 이유</h3>
+                            <h4>
+                                <ul>
+                                    <li><strong>상황: 디버깅</strong> {arrow} 실행 흐름을 추적할 수 있음</li>
+                                    <li><strong>상황: 에러 추적</strong> {arrow} 예외가 언제, 어디서 발생했는지 파악 가능</li>
+                                    <li><strong>상황: 운영 모니터링</strong> {arrow} 서버 상태나 이벤트를 주기적으로 기록 가능</li>
+                                </ul>
+                            </h4>
+
+                            <h3>로그 레벨 종류</h3>
+                            <h4>
+                                <ul>
+                                    <li><code>log()</code>: 일반적인 정보 로그(INFO)</li>
+                                    <li><code>warn()</code>: 경고 상황(WARN)</li>
+                                    <li><code>error()</code>: 에러 상황(ERROR)</li>
+                                    <li><code>debug()</code>: 디버깅 로그(DEBUG)</li>
+                                    <li><code>verbose()</code>: 상세한 정보 로그(VERBOSE)</li>
+                                </ul>
+                            </h4>
+
+                        </div>
+
+                    </div>
+                )
         }
 
     }
