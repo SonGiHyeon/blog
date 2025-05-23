@@ -16,6 +16,7 @@ import Solidity from './Solidity';
 import NFT from './NFT';
 import SolidityAdvanced from './SolidityAdvanced';
 import Server from './Server';
+import Backend from './Backend';
 
 window.Buffer = Buffer;
 
@@ -39,7 +40,8 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/solidity-advanced': ['Test-Driven Contract Development', 'Gas less - EIP-2612(Permit)', 'EIP 2771(Meta Transactions)', 'Upgradable', 'Defi - Uniswap', '오라클(Oracle)'],
     '/server': ['Server intro', 'Express', 'Cookie & Session & JWT', 'NestJS', 'NestJS - 컨트랙트 요청 API 1', 'NestJS - 컨트랙트 요청 API 2', 'NestJS - 컨트랙트 요청 API 3', 'NestJS - 컨트랙트 요청 API 4', 'NestJS - 컨트랙트 요청 API 5',
       'scheduling'
-    ]
+    ],
+    '/backend': ['Database']
   };
 
   return (
@@ -71,7 +73,8 @@ const Index = () => {
       '/blockchain-network': 'On-Chain Data',
       '/solidity': 'Solditiy Basic Grammar 1',
       '/solidity-advanced': 'Test-Driven Contract Development',
-      '/server': 'Server intro'
+      '/server': 'Server intro',
+      '/backend': 'Backend'
     };
     setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);
@@ -96,6 +99,7 @@ const Index = () => {
         <Link to="/NFT">NFT</Link>
         <Link to="/solidity-advanced">SolidityAdvanced</Link>
         <Link to="/server">Server</Link>
+        <Link to="/backend">Backend</Link>
       </nav>
 
       <div className="main-content">
@@ -116,6 +120,7 @@ const Index = () => {
             <Route path="/NFT" element={<NFT activeContent={activeContent} />} />
             <Route path="/solidity-advanced" element={<SolidityAdvanced activeContent={activeContent} />} />
             <Route path="/server" element={<Server activeContent={activeContent} />} />
+            <Route path="/backend" element={<Backend activeContent={activeContent} />} />
           </Routes>
         </div>
       </div>
