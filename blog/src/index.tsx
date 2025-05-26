@@ -41,7 +41,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/server': ['Server intro', 'Express', 'Cookie & Session & JWT', 'NestJS', 'NestJS - 컨트랙트 요청 API 1', 'NestJS - 컨트랙트 요청 API 2', 'NestJS - 컨트랙트 요청 API 3', 'NestJS - 컨트랙트 요청 API 4', 'NestJS - 컨트랙트 요청 API 5',
       'scheduling'
     ],
-    '/backend': ['Database']
+    '/backend': ['Database', 'SQL 기본 문법']
   };
 
   return (
@@ -74,7 +74,7 @@ const Index = () => {
       '/solidity': 'Solditiy Basic Grammar 1',
       '/solidity-advanced': 'Test-Driven Contract Development',
       '/server': 'Server intro',
-      '/backend': 'Backend'
+      '/backend': 'Database'
     };
     setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);

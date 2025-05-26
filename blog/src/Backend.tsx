@@ -208,6 +208,146 @@ const Backend = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'SQL 기본 문법':
+                return (
+                    <div className="container">
+                        <div className="section">
+                            <h2>SQL 문법</h2>
+                            <h3>SQL(Structured Query Language)은 데이터베이스에 정보를 요청하거나 조작하기 위한 언어</h3>
+                            <ul>
+                                <li>SELECT(데이터를 가져오고)</li>
+                                <li>INSERT(데이터를 넣고)</li>
+                                <li>UPDATE(데이터를 수정하고)</li>
+                                <li>DELETE(데이터를 지우기)</li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>기본 SQL 문법 구조</h2>
+                            <h3>SQL 문장은 보통 이렇게 생겼다</h3>
+                            <ul>
+                                <li><code>SELECT 컬럼명 FROM 테이블명 WHERE 조건;</code></li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>SQL 기본 명령어 - SELECT, INSERT, UPDATE, DELETE</h2>
+
+                            <h3>1. SELECT - 데이터 조회하기</h3>
+                            <ul>
+                                <li>데이터베이스에서 필요한 정보를 꺼내올 때 사용하는 명령어</li>
+                                <li>예시: <code>SELECT 컬럼명 FROM 테이블명;</code></li>
+                            </ul>
+                            <h4>WHERE 조건을 붙이면?</h4>
+                            <ul>
+                                <li>SELECT, UPDATE, DELETE 쿼리에서 “어떤 행(Row)을 대상으로 할지” 정하는 필터 조건</li>
+                            </ul>
+
+                            <h3>2. INSERT - 데이터 추가하기</h3>
+                            <ul>
+                                <li>테이블에 새로운 행(Row)을 삽입할 때 사용</li>
+                                <li>예시: <code>INSERT INTO 테이블명(컬럼1, 컬럼2)</code></li>
+                            </ul>
+
+                            <h3>3. UPDATE - 데이터 수정하기</h3>
+                            <ul>
+                                <li>기존 데이터를 변경할 때 사용</li>
+                                <li><strong>주의:</strong> WHERE를 꼭 써야 특정 데이터만 변경</li>
+                                <li>예시: <code>UPDATE 테이블명 SET 컬럼1 = 값1, 컬럼2 = 값2 WHERE 조건;</code></li>
+                            </ul>
+
+                            <h3>4. DELETE - 데이터 삭제하기</h3>
+                            <ul>
+                                <li>특정 조건에 해당하는 데이터를 지울 때 사용</li>
+                                <li><strong>주의:</strong> WHERE를 꼭 써야 특정 데이터만 삭제</li>
+                                <li>예시: <code>DELETE FROM 테이블명 WHERE 조건;</code></li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>SQL 조건문 - WHERE, AND, OR, LIKE</h2>
+
+                            <h3>1. WHERE - 조건을 걸어 데이터를 필터링하기</h3>
+                            <ul>
+                                <li>“이 조건을 만족하는 데이터만”이라는 뜻</li>
+                                <li>예시: <code>SELECT * FROM 테이블명 WHERE 조건;</code></li>
+                            </ul>
+
+                            <h3>2. AND, OR - 여러 조건 결합하기</h3>
+                            <ul>
+                                <li><strong>AND:</strong> 모든 조건을 동시에 만족</li>
+                                <li><strong>OR:</strong> 하나라도 만족하면 포함</li>
+                            </ul>
+
+                            <h3>3. LIKE - 패턴으로 문자열 검색하기</h3>
+                            <ul>
+                                <li>문자열이 특정 패턴일 때 검색</li>
+                                <li>예시 패턴:
+                                    <ul>
+                                        <li>'A%': A로 시작하는 값</li>
+                                        <li>'%son': -son으로 끝나는 값</li>
+                                        <li>'%Lee%': Lee를 포함하는 값</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>SQL 결과를 정돈하는 법 - ORDER BY와 LIMIT</h2>
+
+                            <h3>1. ORDER BY - 결과 정렬하기</h3>
+                            <ul>
+                                <li>쿼리 결과를 특정 열을 기준으로 정렬</li>
+                                <li>예시: <code>SELECT * FROM 테이블명 ORDER BY 컬럼명 [ASC | DESC]</code></li>
+                                <li>ASC: 오름차순</li>
+                                <li>DESC: 내림차순</li>
+                            </ul>
+
+                            <h3>2. LIMIT - 결과 행 수 제한하기</h3>
+                            <ul>
+                                <li>조회 결과 중 몇 개만 보고 싶을 때 사용</li>
+                                <li>예시: <code>SELECT * FROM 테이블명 LIMIT 숫자;</code></li>
+                            </ul>
+
+                            <h3>3. ORDER BY + LIMIT 함께 쓰기</h3>
+                            <ul>
+                                <li>정렬된 결과 중 일부만 보고 싶을 때 자주 사용</li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>JOIN</h2>
+                            <h3>JOIN은 SQL에서 두 개 이상의 테이블을 연결해 하나의 결과처럼 보여주는 기능</h3>
+
+                            <h3>JOIN 기본 구조</h3>
+                            <ul>
+                                <li><code>SELECT * FROM A JOIN B ON A.공통컬럼 = B.공통컬럼</code></li>
+                            </ul>
+
+                            <h3>JOIN의 종류와 차이점</h3>
+                            <ul>
+                                <li><strong>INNER JOIN:</strong> 두 테이블에 공통되는 데이터만 조회</li>
+                                <li><strong>LEFT JOIN:</strong> 왼쪽 테이블의 모든 데이터 + 일치하는 오른쪽 데이터</li>
+                                <li><strong>RIGHT JOIN:</strong> 오른쪽 테이블의 모든 데이터 + 일치하는 왼쪽 데이터</li>
+                                <li><strong>FULL JOIN:</strong> 양쪽 테이블의 모든 데이터</li>
+                            </ul>
+                        </div>
+
+                        <div className="section">
+                            <h2>SQL 집계 함수와 GROUP BY - 데이터를 요약하고 통계내기</h2>
+
+                            <h3>대표적인 집계 함수</h3>
+                            <ul>
+                                <li><strong>COUNT():</strong> 행 개수 세기</li>
+                                <li><strong>AVG():</strong> 평균값 계산</li>
+                                <li><strong>MAX():</strong> 최대값</li>
+                                <li><strong>MIN():</strong> 최소값</li>
+                                <li><strong>SUM():</strong> 합계</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
 
         }
     }
