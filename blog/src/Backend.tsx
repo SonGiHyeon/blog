@@ -348,6 +348,137 @@ const Backend = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case '고급 SQL과 성능':
+                return (
+                    <div className="container">
+                        <h2>SubQuery</h2>
+
+                        <div className="section">
+                            <h3>서브쿼리란?</h3>
+                            <ul>
+                                <li>SQL을 더 강력하고 유연하게 만들어주는 핵심 기능 중 하나로 “하나의 쿼리 안에 또 다른 쿼리”를 작성하는 것</li>
+                                <li>메인 쿼리(Main Query)를 도와서 중간 결과를 만들거나, 필터링을 도와주는 역할</li>
+                            </ul>
+
+                            <h3>서브쿼리 기본 구조</h3>
+                            <pre>
+                                SELECT 컬럼명
+                                FROM (서브쿼리) AS 별칭
+                                WHERE 조건;
+                            </pre>
+                            <ul>
+                                <li>서브쿼리는 항상 () 소괄호 안에 작성</li>
+                                <li>서브쿼리는 메인쿼리에 값을 제공하거나, 조건을 만든다.</li>
+                            </ul>
+
+                            <h3>서브쿼리 사용 위치 3가지</h3>
+                            <ul>
+                                <li><strong>SELECT 내부</strong>: 특정 컬럼을 계산해서 가져옴</li>
+                                <li><strong>WHERE 내부</strong>: 조건으로 사용</li>
+                                <li><strong>FROM 내부</strong>: 임시 테이블처럼 사용</li>
+                            </ul>
+                        </div>
+
+                        <h2>View, Transaction, Commit/Rollback</h2>
+
+                        <div className="section">
+                            <h3>View(뷰) - 가상의 테이블</h3>
+                            <ul>
+                                <li>뷰(View)는 실제 데이터를 저장하지 않고, SELECT 쿼리 결과를 마치 테이블처럼 보여주는 가상의 테이블</li>
+                            </ul>
+
+                            <pre>
+                                CREATE VIEW 뷰이름 AS
+                                SELECT … FROM … WHERE …;
+                            </pre>
+
+                            <h4>뷰의 특징</h4>
+                            <ul>
+                                <li>가볍다(데이터 별도 저장 X)</li>
+                                <li>복잡한 쿼리를 쉽게 재사용할 수 있다.</li>
+                                <li>단점: 뷰를 갱신하는 건 일부 제한이 있음</li>
+                            </ul>
+
+                            <h3>Transaction(트랜잭션) - 작업을 하나처럼 묶기</h3>
+                            <ul>
+                                <li>트랜잭션(Transaction)은 데이터베이스에서 여러 작업을 하나의 단위로 묶는 것</li>
+                                <li>모두 성공해야 하고, 하나라도 실패하면 전부 취소해야 한다 (마치 try-catch문과 비슷)</li>
+                            </ul>
+
+                            <h3>Commit / Rollback - 결과 확정 또는 취소</h3>
+                            <ul>
+                                <li><strong>COMMIT</strong> → 트랜잭션의 모든 변경 사항을 확정하고 저장</li>
+                                <li><strong>ROLLBACK</strong> → 트랜잭션 중 발생한 변경 사항을 모두 취소</li>
+                            </ul>
+                        </div>
+
+                        <h2>Index</h2>
+
+                        <div className="section">
+                            <h3>인덱스란?</h3>
+                            <ul>
+                                <li>데이터베이스 테이블에서 필요한 데이터를 빠르게 찾기 위한 일종의 “목차”</li>
+                                <li>인덱스를 만들면 특정 데이터를 순식간에 조회할 수 있다.</li>
+                            </ul>
+
+                            <h4>인덱스가 필요한 상황</h4>
+                            <ul>
+                                <li>WHERE로 특정 값을 자주 검색할 때</li>
+                                <li>JOIN에 사용하는 컬럼일 때</li>
+                                <li>ORDER BY 혹은 GROUP BY에 쓰이는 컬럼일 때</li>
+                            </ul>
+
+                            <h4>주의사항</h4>
+                            <ul>
+                                <li>모든 컬럼에 인덱스를 만들면 안 됨 — 인덱스도 저장 공간을 차지하고, INSERT/UPDATE 성능이 느려짐</li>
+                                <li>자주 변경되는 컬럼에 인덱스 주의 — 수정될 때마다 인덱스도 갱신돼야 함</li>
+                                <li>읽기(Read) 위주 테이블에 특히 유리 — 조회가 많은 경우 인덱스 효과가 큼</li>
+                            </ul>
+
+                            <h3>복합 인덱스(Composite Index)</h3>
+                            <ul>
+                                <li>여러 컬럼을 조합해 하나의 인덱스로 만드는 것도 가능하다.</li>
+                                <li>인덱스는 왼쪽 컬럼부터 최우선 적용된다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>정규화와 비정규화</h2>
+
+                        <div className="section">
+                            <h3>정규화(Normalization)</h3>
+                            <ul>
+                                <li>데이터 중복을 줄이고, 일관성을 높이기 위해 테이블을 쪼개는 것</li>
+                            </ul>
+
+                            <h4>정규화의 목적</h4>
+                            <ul>
+                                <li>데이터 중복 제거</li>
+                                <li>데이터 무결성 강화</li>
+                                <li>유지보수 용이</li>
+                            </ul>
+
+                            <h4>정규화 단계</h4>
+                            <ul>
+                                <li><strong>1NF(제1정규형)</strong>: 각 컬럼이 원자값(atomic value)만 갖는다 (리스트 형태 X)</li>
+                                <li><strong>2NF(제2정규형)</strong>: 부분적 종속 제거 (기본 키의 일부에만 종속되는 컬럼 제거)</li>
+                                <li><strong>3NF(제3정규형)</strong>: 이행적 종속 제거 (기본 키가 아닌 컬럼에 또 다른 컬럼이 종속되지 않게)</li>
+                            </ul>
+
+                            <h3>비정규화(Denormalization)</h3>
+                            <ul>
+                                <li>속도나 편의성을 위해 일부러 정규화를 깨고 중복을 허용하는 것</li>
+                            </ul>
+
+                            <h4>비정규화의 이유</h4>
+                            <ul>
+                                <li>성능 최적화 (JOIN이 많으면 느려지기 때문)</li>
+                                <li>조회 속도 향상 (테이블을 합치지 않고 한 번에 읽게 함)</li>
+                                <li>단순화 (복잡한 테이블 구조를 단순하게)</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
 
         }
     }

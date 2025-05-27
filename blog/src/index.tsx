@@ -41,7 +41,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     '/server': ['Server intro', 'Express', 'Cookie & Session & JWT', 'NestJS', 'NestJS - 컨트랙트 요청 API 1', 'NestJS - 컨트랙트 요청 API 2', 'NestJS - 컨트랙트 요청 API 3', 'NestJS - 컨트랙트 요청 API 4', 'NestJS - 컨트랙트 요청 API 5',
       'scheduling'
     ],
-    '/backend': ['Database', 'SQL 기본 문법']
+    '/backend': ['Database', 'SQL 기본 문법', '고급 SQL과 성능']
   };
 
   return (
