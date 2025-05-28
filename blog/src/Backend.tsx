@@ -479,6 +479,51 @@ const Backend = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'NestJS U& DB 설계':
+                return (
+                    <div className="container">
+                        <h2> NestJS & DB 설계 </h2>
+
+                        <div className="section">
+                            <h3>Entity</h3>
+                            <ul>
+                                <li>엔티티(Entity)란, 현실 세계에 존재하는 사물, 개념, 사람, 사건 등의 데이터를 표현하기 위한 단위</li>
+                                <li>정보를 저장하고 관리해야 하는 대상</li>
+                                <li>엔티티는 표(Table)로 표현된다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>NestJS와 DB 연결: Entity</h2>
+
+                        <div className="section">
+                            <ul>
+                                <li> NestJS와 DB 연결을 위해 사용되는 것들
+                                    <ul>
+                                        <li>Entity(엔티티)</li>
+                                        <li>Repository(레포지토리)</li>
+                                        <li>Service(서비스)</li>
+                                        <li>Controller(컨트롤러)</li>
+                                    </ul>
+                                </li>
+                                <li> Entity는 데이터베이스의 구조(테이블)을 정의하는 가장 기본적인 부분</li>
+                            </ul>
+
+                            <h3>Entity란?(NestJS 기준)</h3>
+                            <ul>
+                                <li>NestJS에서는 TypeORM 같은 라이브러리를 사용해서 데이터베이스 테이블을 TypeScript 코드로 표현한다.</li>
+                                <li>이때 사용하는 것이 바로 <code>@Entity()</code> 데코레이터이다.</li>
+                            </ul>
+
+                            <h3>앤티티와 DB의 연결 순서</h3>
+                            <ul>
+                                <li>NestJS에서 <code>@Entity</code> 클래스를 정의하면 TypeORM이 그 클래스를 DB 테이블로 인식한다.</li>
+                                <li>클래스의 속성(<code>@Column()</code>)이 DB 테이블의 컬럼(column)이 된다.</li>
+                                <li>그리고 NestJS는 이 구조를 기반으로 데이터를 조회하거나 저장할 수 있는 Repository 객체를 자동으로 만들어준다.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
 
         }
     }
