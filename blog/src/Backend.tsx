@@ -524,7 +524,112 @@ const Backend = ({ activeContent }: { activeContent: string }) => {
 
                     </div>
                 )
+            case 'Server & DB':
+                return (
+                    <div className="container">
+                        <h2>Repository</h2>
 
+                        <div className="section">
+                            <h3>개요</h3>
+                            <ul>
+                                <li>데이터베이스에 접근하여 데이터를 CRUD(Create, Read, Update, Delete) 하는 전담 객체이다.</li>
+                                <li>NestJS는 TypeORM과 함께 사용할 때, 이 Repository 패턴을 적극 활용한다.</li>
+                                <li>Repository는 데이터베이스에 질문하거나 저장하는 창구 역할이다.</li>
+                            </ul>
+
+                            <h3>주요 역할</h3>
+                            <ul>
+                                <li><strong>읽기:</strong> 특정 조건에 맞는 데이터를 조회(<code>find</code>, <code>findOne</code>)</li>
+                                <li><strong>쓰기:</strong> 새로운 데이터를 추가(<code>save</code>, <code>insert</code>)</li>
+                                <li><strong>수정:</strong> 기존 데이터를 업데이트(<code>update</code>)</li>
+                                <li><strong>삭제:</strong> 데이터를 삭제(<code>delete</code>)</li>
+                            </ul>
+
+                            <h3>Repository가 중요한 이유</h3>
+                            <ul>
+                                <li>비지니스 로직과 DB 로직을 분리할 수 있다.</li>
+                                <li>테스트 코드 작성이 용이해진다.</li>
+                                <li>ORM이 제공하는 기능을 추상화해서 깔끔한 코드로 만들 수 있다.</li>
+                            </ul>
+                        </div>
+
+                        <h2>Repository Methods</h2>
+
+                        <div className="section">
+                            <h3>find()</h3>
+                            <ul>
+                                <li>모든 레코드 조회</li>
+                            </ul>
+
+                            <h3>findOne()</h3>
+                            <ul>
+                                <li>단일 레코드 조회(복합 조건 포함 가능)</li>
+                            </ul>
+
+                            <h3>findOneBy()</h3>
+                            <ul>
+                                <li>단일 조건만 받을 때 사용</li>
+                                <li><code>findOne</code>보다 간결함</li>
+                            </ul>
+
+                            <h3>findBy()</h3>
+                            <ul>
+                                <li>여러 조건으로 여러 개의 레코드 조회</li>
+                            </ul>
+
+                            <h3>findOneOrFail()</h3>
+                            <ul>
+                                <li>결과가 없으면 예외(<code>EntityNotFoundError</code>) 발생</li>
+                            </ul>
+
+                            <h3>save()</h3>
+                            <ul>
+                                <li>데이터 저장: id가 있으면 업데이트, 없으면 생성(Upsert)</li>
+                            </ul>
+
+                            <h3>insert()</h3>
+                            <ul>
+                                <li>항상 새 데이터 삽입</li>
+                            </ul>
+
+                            <h3>update()</h3>
+                            <ul>
+                                <li>기존 데이터 업데이트(조건으로 선택, 전체 또는 부분 업데이트)</li>
+                            </ul>
+
+                            <h3>remove() / delete()</h3>
+                            <ul>
+                                <li><code>remove()</code>는 엔티티 객체를 넣고, <code>delete()</code>는 조건을 넣음</li>
+                            </ul>
+
+                            <h3>count()</h3>
+                            <ul>
+                                <li>조건에 맞는 레코드 개수 반환</li>
+                            </ul>
+
+                            <h3>exist()</h3>
+                            <ul>
+                                <li>조건에 맞는 데이터가 존재하는지 boolean 반환</li>
+                            </ul>
+
+                            <h3>createQueryBuilder()</h3>
+                            <ul>
+                                <li>복잡한 쿼리를 직접 작성할 때 사용</li>
+                            </ul>
+
+                            <h3>softDelete()</h3>
+                            <ul>
+                                <li>실제로 데이터를 DB에서 완전히 지우지 않고, 특정 필드(예: <code>deletedAt</code>)에 삭제된 시간만 기록하는 방식</li>
+                            </ul>
+
+                            <h4>softDelete를 사용하기 위한 전제조건</h4>
+                            <ul>
+                                <li><code>UserEntity</code>에서 <code>@DeleteDateColumn()</code>이 선언되어 있어야 함</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                )
         }
     }
     return (
