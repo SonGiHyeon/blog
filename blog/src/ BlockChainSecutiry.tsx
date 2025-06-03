@@ -152,15 +152,174 @@ const BlockChainSecutiry = ({ activeContent }: { activeContent: string }) => {
                         </div>
                     </div>
                 )
+            case '스마트 컨트랙트 보안':
+                return (
+                    <div className="container">
+                        <h2>스마트 컨트랙트의 위험성과 수정 불가능성</h2>
+                        <div className="section">
+
+                            <h3>수정이 불가능하다는 것은?</h3>
+                            <ul>
+                                <li><strong>버그 또는 실수</strong>: 코드 오류로 인해 자금이 잘못 전송되거나 영구적으로 잠길 수 있음</li>
+                                <li><strong>보안 취약점</strong>: 해커가 스마트 컨트랙트를 악용하여 자산을 탈취할 수 있음</li>
+                                <li><strong>수정 불가</strong>: 한 번 배포되면 업데이트가 불가능하여, 새로운 버전을 만들어야 함</li>
+                                <li><strong>자금 손실 리스크</strong>: 이더리움, 토큰 등의 자산이 스마트 컨트랙트에 잠기거나 도난당할 수 있음</li>
+                            </ul>
+
+                            <h3>대비책</h3>
+                            <ul>
+                                <li>컨트랙트 감사</li>
+                                <li>테스트 네트워크에서 실험</li>
+                                <li>업그레이드 가능한 구조</li>
+                                <li>타임</li>
+                            </ul>
+
+                        </div>
+                        <h2>재진입 공격(Reentrancy)</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>외부에서 호출된 계약(또는 주소)이 스마트 컨트랙트로 다시 돌아와 원래 함수가 끝나기 전에 반복해서 실행되도록 조작하는 공격</li>
+                            </ul>
+
+                            <h3>재진입 공격 막는 방법</h3>
+                            <ul>
+                                <li>해결 방법 1: 상태 먼저 바꾸기 – 잔고를 먼저 0으로 만들고 나서 돈을 보낸다</li>
+                                <li>해결 방법 2: 재진입 방지 락 사용 – 함수에 잠금(lock)를 걸어 중복 실행을 방지한다</li>
+                            </ul>
+
+                        </div>
+                        <h2>오버플로우/언더플로우</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>스마트컨트랙트에서는 숫자의 범위가 제한되어 있으며 이를 초과하거나 0 아래로 내려가면 문제가 발생한다</li>
+                            </ul>
+
+                            <h3>유형</h3>
+                            <ul>
+                                <li><strong>오버플로우</strong>: 숫자가 너무 커져서 범위를 넘는 경우</li>
+                                <li><strong>언더플로우</strong>: 숫자가 너무 작아져서 0 밑으로 내려가는 경우</li>
+                            </ul>
+
+                            <h3>예방 방법</h3>
+                            <ul>
+                                <li>최신 컴파일러 사용 (Solidity 0.8.0 이상)</li>
+                                <li>SafeMath 사용 (0.8.0 미만 버전에서)</li>
+                            </ul>
+
+                        </div>
+                        <h2>프론트러닝(Frontrunning)</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>다른 사람의 거래를 먼저 보고, 같은 거래를 더 높은 가스비로 앞질러 제출해 이익을 챙기는 행위</li>
+                            </ul>
+
+                            <h3>예시</h3>
+                            <ul>
+                                <li>대기열(메모리풀)에 올라온 거래를 보고 프론트러너가 수수료를 더 높게 설정해 먼저 채택되게 함</li>
+                            </ul>
+
+                            <h3>방어 방법</h3>
+                            <ul>
+                                <li>거래 숨기기: 해시를 먼저 올리고 나중에 내용을 공개(commit-reveal)</li>
+                                <li>최대 허용 슬리피지 설정: 가격이 급변하면 자동으로 거래 취소</li>
+                                <li>MEV 방지 툴 사용: MEV-Blocker, Flashbots 등</li>
+                                <li>프라이버시 블록체인 이용: Aztec, Secret Network</li>
+                            </ul>
+
+                        </div>
+                        <h2>DelegateCall 취약성</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li><code>delegatecall</code>: 외부 컨트랙트의 코드를 내 컨트랙트의 상태를 유지한 채 실행</li>
+                                <li>A.delegatecall(B) ⇒ A의 상태값을 사용하면서 B의 코드를 실행</li>
+                            </ul>
+
+                            <h3>사용 이유</h3>
+                            <ul>
+                                <li>코드 재사용</li>
+                                <li>실행 효율성 향상</li>
+                            </ul>
+
+                            <h3>문제점</h3>
+                            <ul>
+                                <li>상태 공유: 외부 코드가 내 상태 변수에 접근해 조작 가능</li>
+                                <li>제어권 상실: 공격자가 소유자 권한 탈취 가능</li>
+                                <li>위임된 코드가 악의적일 수 있음</li>
+                            </ul>
+
+                            <h3>예방 방법</h3>
+                            <ul>
+                                <li>신뢰할 수 있는 코드만 호출</li>
+                                <li>슬롯 정렬 확인</li>
+                                <li>OpenZeppelin 라이브러리 사용</li>
+                                <li>UUPS 패턴 등 안전한 업그레이드 방식 활용</li>
+                            </ul>
+
+                        </div>
+                        <h2>Timestamp 의존성</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>스마트 컨트랙트에서 블록의 timestamp 값을 기반으로 중요한 조건 판단 시 발생할 수 있는 문제</li>
+                            </ul>
+
+                            <h3>문제점</h3>
+                            <ul>
+                                <li>채굴자 조작 가능성</li>
+                                <li>게임/복권 등에서 예측 가능성</li>
+                            </ul>
+
+                            <h3>권장 대안</h3>
+                            <ul>
+                                <li>Chainlink VRF 사용 (랜덤값 오라클)</li>
+                                <li>block.number 사용 (상대 시간 기반)</li>
+                                <li>중요한 조건 판단에 사용하지 말 것 – 단순 기록용 사용 권장</li>
+                            </ul>
+
+                        </div>
+                        <h2>Access Control 설정 미비</h2>
+                        <div className="section">
+
+                            <h3>정의</h3>
+                            <ul>
+                                <li>접근 제어는 스마트 컨트랙트의 특정 기능을 누가 호출할 수 있는지를 제한하는 기능</li>
+                            </ul>
+
+                            <h3>위험 시나리오</h3>
+                            <ul>
+                                <li>무단 토큰 발행</li>
+                                <li>소유권 이전</li>
+                                <li>긴급 중단 기능 악용</li>
+                                <li>민감한 설정 변경</li>
+                            </ul>
+
+                            <h3>방지 방법</h3>
+                            <ul>
+                                <li>onlyOwner</li>
+                                <li>AccessControl</li>
+                                <li>사용자 정의 제어</li>
+                            </ul>
+
+                        </div>
+                        )
         }
     }
 
-    return (
-        <div className="blockchain-secutiry">
-            {renderContent()}
-        </div>
-    );
+                        return (
+                        <div className="blockchain-secutiry">
+                            {renderContent()}
+                        </div>
+                        );
 
 }
 
-export default BlockChainSecutiry;
+                        export default BlockChainSecutiry;
