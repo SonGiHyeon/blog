@@ -310,16 +310,17 @@ const BlockChainSecutiry = ({ activeContent }: { activeContent: string }) => {
                             </ul>
 
                         </div>
-                        )
+                    </div>
+                )
         }
     }
 
-                        return (
-                        <div className="blockchain-secutiry">
-                            {renderContent()}
-                        </div>
-                        );
+    return (
+        <div className="blockchain-secutiry">
+            {renderContent()}
+        </div>
+    );
 
 }
+export default BlockChainSecutiry;
 
-                        export default BlockChainSecutiry;
