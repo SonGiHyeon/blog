@@ -45,7 +45,7 @@ const Sidebar = ({ setActiveContent }: { setActiveContent: (content: string) => 
     ],
     '/backend': ['Database', 'SQL 기본 문법', '고급 SQL과 성능', 'NestJS & DB 설계', 'Server & DB'],
     '/blockchain-secutiry': ['블록체인 기본 원리', '스마트 컨트랙트 보안'],
-    '/aws': ['AWS Intro']
+    '/aws': ['AWS Front Deploy', 'AWS Back Deploy', 'Message Queue']
   };
 
   return (
@@ -80,7 +80,7 @@ const Index = () => {
       '/server': 'Server intro',
       '/backend': 'Database',
       '/blockchain-secutiry': '블록체인 기본 원리',
-      '/aws': 'AWS Intro'
+      '/aws': 'AWS Front Deploy'
     };
     setActiveContent(defaultContentMap[location.pathname] || '');
   }, [location.pathname]);
